@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+/*
+ * Identità visiva di Cerca Bandi — palette "contrasto fluo" del prototipo.
+ * Ogni colore è definito una sola volta qui: le pagine usano i nomi (bg-ink, text-muted,
+ * bg-go…), mai i valori esadecimali. Per cambiare un colore basta modificarlo in questo file.
+ */
+@theme {
+  --font-sans: var(--font-archivo), system-ui, sans-serif;
+
+  /* base */
+  --color-ink: #0f0f12;
+  --color-ink-soft: #2a2a30;
+  --color-paper: #ffffff;
+  --color-panel: #f1f1f4;
+  --color-line: #dfdfe4;
+  --color-muted: #6b6b73;
+
+  /* accenti */
+  --color-blue: #3d5cff;
+  --color-green: #00a971;
+  --color-yellow: #f4ec6f;
+  --color-red: #e01b4f;
+  --color-lime: #d4ff3d;
+  --color-magenta: #ff3dae;
+
+  /* toni dei verdetti: sfondo + testo */
+  --color-go: #00f5a0;
+  --color-go-ink: #003d28;
+  --color-cond: #f4ec6f;
+  --color-cond-ink: #4a3d00;
+  --color-investigate: #dce2ff;
+  --color-investigate-ink: #1f2a66;
+  --color-indirect: #3d5cff;
+  --color-indirect-ink: #ffffff;
+  --color-nogo: #e01b4f;
+  --color-nogo-ink: #ffffff;
+  --color-neutral: #ededf1;
+  --color-neutral-ink: #46464d;
+  --color-closed: #0f0f12;
+  --color-closed-ink: #d4ff3d;
+
+  /* testi di sezione */
+  --color-positive-text: #00693f;
+  --color-warning-text: #8a6d00;
+
+  /* raggi */
+  --radius-card: 10px;
+  --radius-control: 8px;
+  --radius-nav: 6px;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-size: 13.5px;
+}

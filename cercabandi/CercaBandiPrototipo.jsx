@@ -1,0 +1,2752 @@
+const DATA = {
+  "profiles": [
+    {
+      "id": "studio-fauda",
+      "name": "Studio Fauda",
+      "shortName": "SF",
+      "organizationType": "Studio di ingegneria e progettazione multidisciplinare",
+      "legalForm": "Studio associato / operatore economico",
+      "headquarters": "Borgosesia (VC), Piemonte, Italia",
+      "website": "studiofauda.com",
+      "sourceUrl": "https://www.studiofauda.com/",
+      "levels": [
+        "Europeo",
+        "Nazionale",
+        "Regionale",
+        "Locale"
+      ],
+      "territories": [
+        "Piemonte",
+        "Biella",
+        "Vercelli",
+        "Novara",
+        "Italia",
+        "Unione europea"
+      ],
+      "beneficiaryTypes": [
+        "Operatore economico per servizi di ingegneria e architettura",
+        "Partner tecnico di enti pubblici e soggetti territoriali",
+        "Componente di RTP o consorzio"
+      ],
+      "roles": [
+        "Operatore economico",
+        "Progettista / consulente",
+        "Mandataria RTP",
+        "Mandante RTP",
+        "Partner"
+      ],
+      "themes": [
+        "Rischio idrogeologico",
+        "Rigenerazione urbana",
+        "Riqualificazione edilizia ed efficienza energetica",
+        "Edilizia scolastica e sportiva",
+        "Ponti e viabilità",
+        "Sviluppo territoriale"
+      ],
+      "capabilities": [
+        "Progettazione, direzione lavori, contabilità e coordinamento della sicurezza",
+        "Opere idrauliche, sistemazione di torrenti e mitigazione del rischio idrogeologico",
+        "Edifici pubblici, strutture, prevenzione incendi ed efficientamento energetico",
+        "Infrastrutture stradali, ponti, rigenerazione urbana e sviluppo territoriale",
+        "Supporto a enti pubblici per accesso a finanziamenti e attuazione di progetti complessi"
+      ],
+      "references": [
+        "Opere sul torrente Sessera e interventi post-alluvione",
+        "Edilizia scolastica e sportiva finanziata da PNRR, BEI e fondi nazionali",
+        "Rigenerazione urbana, riqualificazione energetica e programmi territoriali"
+      ],
+      "certifications": [
+        "Abilitazioni professionali",
+        "CSP/CSE",
+        "Prevenzione incendi",
+        "Certificazione energetica"
+      ],
+      "staff": "Team multidisciplinare interno con professionisti e collaboratori esterni",
+      "turnover": "Da completare con fatturato globale e specifico degli ultimi esercizi",
+      "minLeadDays": 12,
+      "preferredBudget": "Servizi tecnici e programmi territoriali di scala locale, nazionale ed europea",
+      "partnerPolicy": "RTP o partenariato quando geologia, impianti, ricerca, comunicazione o requisiti di punta non sono coperti internamente.",
+      "evidenceReady": [
+        "Portfolio lavori",
+        "Esperienze con amministrazioni locali",
+        "Competenze tecniche multidisciplinari"
+      ],
+      "evidenceMissing": [
+        "Fatturato verificato",
+        "Matrice certificati di regolare esecuzione",
+        "Polizze e massimali",
+        "Disponibilità partner per categoria"
+      ],
+      "notes": "Profilo iniziale costruito da sito istituzionale e informazioni di progetto. I dati economici e documentali devono essere validati prima di usarlo per un GO definitivo.",
+      "accent": "lime",
+      "verifiedAt": "8 agosto 2026",
+      "isSeed": true
+    },
+    {
+      "id": "piccolo-comune-alto-piemonte",
+      "name": "Piccolo Comune dell’Alto Piemonte · persona",
+      "shortName": "PC",
+      "organizationType": "Persona composita: Comune montano, pedemontano o turistico di piccola dimensione",
+      "legalForm": "Comune / ente locale territoriale",
+      "headquarters": "Province di Biella, Vercelli o Novara · Piemonte",
+      "website": "",
+      "sourceUrl": "https://servizi.regione.piemonte.it/catalogo/pista-piemonte-statistica-bdde",
+      "levels": [
+        "Europeo",
+        "Nazionale",
+        "Regionale",
+        "Locale"
+      ],
+      "territories": [
+        "Piemonte",
+        "Biella",
+        "Vercelli",
+        "Novara",
+        "Alto Piemonte",
+        "Italia",
+        "Unione europea"
+      ],
+      "beneficiaryTypes": [
+        "Comune piemontese: soglia demografica da verificare bando per bando",
+        "Ente locale proprietario o gestore di immobili, infrastrutture e spazio pubblico",
+        "Soggetto attuatore di opere pubbliche e servizi locali",
+        "Comune montano, area interna o destinazione turistica solo se la classificazione ufficiale lo conferma",
+        "Componente di Unione di Comuni o partenariato territoriale"
+      ],
+      "roles": [
+        "Beneficiario diretto",
+        "Capofila",
+        "Partner",
+        "Soggetto attuatore"
+      ],
+      "themes": [
+        "Rischio idrogeologico",
+        "Rigenerazione urbana",
+        "Riqualificazione edilizia ed efficienza energetica",
+        "Edilizia scolastica e sportiva",
+        "Ponti e viabilità",
+        "Sviluppo territoriale",
+        "Turismo culturale e territori minori",
+        "Accessibilità e partecipazione culturale",
+        "Competenze digitali e capacity building"
+      ],
+      "capabilities": [
+        "Programmazione locale tramite DUP, bilancio, programma triennale dei lavori e pianificazione territoriale",
+        "Titolarità o gestione di edifici pubblici, viabilità, spazi civici, impianti e patrimonio locale, da verificare sul bene candidato",
+        "Ruolo istituzionale per affidare e attuare lavori, servizi tecnici e servizi pubblici nel rispetto del Codice dei contratti",
+        "Conoscenza diretta dei fabbisogni della comunità e capacità di raccordo con Provincia, Unione, Regione, gestori e associazioni",
+        "Possibilità di aggregare interventi intercomunali quando la scala del singolo ente non è sostenibile"
+      ],
+      "references": [],
+      "certifications": [
+        "Mandato istituzionale di ente locale · da collegare al Comune reale"
+      ],
+      "staff": "Ipotesi prudenziale: organico ridotto e funzioni tecniche/finanziarie talvolta condivise o supportate dall’esterno. Nessun GO finché RUP, responsabile finanziario e carico operativo non sono confermati nominativamente.",
+      "turnover": "Il fatturato non è pertinente. Verificare bilancio 2026–2028, risultato di amministrazione, fondo cassa, indebitamento, tempi di pagamento, spazi di cofinanziamento e capacità di anticipare le spese.",
+      "minLeadDays": 45,
+      "preferredBudget": "Nessuna soglia automatica: dimensionare ogni candidatura sul bilancio reale. Fascia di test €250.000–€3.000.000, da ridurre o aggregare se gestione e cofinanziamento non sono sostenibili.",
+      "partnerPolicy": "Capofila solo con mandato politico, RUP, ragioneria, progetto e coperture già disponibili. In caso contrario preferire Unione, Provincia o altro ente aggregatore; usare partner specialistici per energia, cultura, digitale, clima e partecipazione.",
+      "evidenceReady": [
+        "Mandato istituzionale del Comune, da associare all’ente reale prima dell’analisi"
+      ],
+      "evidenceMissing": [
+        "Comune reale, popolazione aggiornata e classificazioni ufficiali",
+        "DUP, bilancio, programma triennale e cofinanziamento disponibile",
+        "RUP, personale tecnico-finanziario e carico delle gare già in corso",
+        "Livello progettuale, quadro economico e cronoprogramma dell’intervento",
+        "Titolarità del bene, vincoli, autorizzazioni e disponibilità delle aree",
+        "Storico di contributi, revoche, ritardi e capacità di rendicontazione",
+        "Capacità di anticipazione di cassa e copertura dei costi non ammissibili",
+        "Accordi con Unione, Provincia, gestori e partner operativi"
+      ],
+      "notes": "Persona di ricerca, non ente reale. La base comparativa comprende Ghemme, Coggiola, Varallo, Gattinara, Armeno e Orta San Giulio. Il campione attraversa soglie demografiche diverse: un bando riservato ai Comuni fino a 5.000 abitanti non può essere considerato automaticamente compatibile. Applicare sette gate: beneficiario; popolazione/classificazione; progetto; proprietà e permessi; cofinanziamento e cassa; RUP/team; gestione post-intervento. Le gare per servizi professionali non sono candidature del Comune: il Comune è committente.",
+      "accent": "coral",
+      "verifiedAt": "9 agosto 2026",
+      "isSeed": true,
+      "isPersona": true,
+      "badgeLabel": "Persona di ricerca · non è un ente reale",
+      "researchSummary": "dati territoriali, capacità amministrativa e programmazione delle opere",
+      "researchSources": [
+        {
+          "label": "Regione Piemonte · PiSta/BDDE",
+          "url": "https://servizi.regione.piemonte.it/catalogo/pista-piemonte-statistica-bdde"
+        },
+        {
+          "label": "ISTAT · Demografia comunale",
+          "url": "https://demo.istat.it/"
+        },
+        {
+          "label": "Ghemme · Ufficio tecnico",
+          "url": "https://comune.ghemme.novara.it/amministrazione-trasparente/sezioni/2804478-organigramma/contenuti/2810361-organigramma-ufficio-tecnico"
+        },
+        {
+          "label": "Coggiola · Trasparenza e opere",
+          "url": "https://www.comune.coggiola.bi.it/Menu?IDVoceMenu=207380"
+        },
+        {
+          "label": "Varallo · Amministrazione trasparente",
+          "url": "https://www.comune.varallo.vc.it/Menu?IDDettaglio=287983"
+        },
+        {
+          "label": "Gattinara · Programmazione lavori",
+          "url": "https://www.comune.gattinara.vc.it/Menu?IDDettaglio=287950"
+        },
+        {
+          "label": "Armeno · Programma opere pubbliche",
+          "url": "https://www.comune.armeno.no.it/it-it/amministrazione-trasparente/opere-pubbliche/atti-di-programmazione-delle-opere-pubbliche"
+        },
+        {
+          "label": "Orta San Giulio · Programmazione opere",
+          "url": "https://www.comune.ortasangiulio.no.it/Menu?IDDettaglio=273083"
+        },
+        {
+          "label": "Politiche di coesione · capacità dei piccoli Comuni",
+          "url": "https://politichecoesione.governo.it/it/dipartimento/comunicazioni/notizie-dal-dipartimento/piccoli-comuni-grandi-cambiamenti-a-roma-gli-stati-generali-dei-piccoli-comuni/"
+        }
+      ]
+    },
+    {
+      "id": "proprietario-rurale-ginosa",
+      "name": "Proprietario rurale · Ginosa (TA)",
+      "shortName": "PR",
+      "organizationType": "Persona fisica proprietaria di fondo rurale con casa, parte storica, pozzo, ulivi e alberi da frutto",
+      "legalForm": "Persona fisica · impresa agricola non costituita e non presunta",
+      "headquarters": "Ginosa (TA), Puglia, Italia",
+      "website": "",
+      "sourceUrl": "https://www.comune.ginosa.ta.it/Amministrazione-Trasparente/Pianificazione-e-governo-del-territorio",
+      "levels": [
+        "Nazionale",
+        "Regionale",
+        "Locale"
+      ],
+      "territories": [
+        "Ginosa",
+        "Taranto",
+        "Puglia",
+        "Italia"
+      ],
+      "beneficiaryTypes": [
+        "Persona fisica proprietaria, possessore o detentore per misure che ammettono soggetti privati",
+        "Proprietario di bene culturale solo se l’interesse culturale è formalmente accertato",
+        "Imprenditore agricolo ex art. 2135 c.c. soltanto nello scenario aziendale da verificare",
+        "Proprietario, detentore o possessore di terreno olivetato per le sole misure fitosanitarie che lo prevedono espressamente",
+        "Non automaticamente Coltivatore Diretto o IAP"
+      ],
+      "roles": [
+        "Beneficiario diretto",
+        "Proprietario / detentore"
+      ],
+      "themes": [
+        "Patrimonio architettonico rurale e restauro",
+        "Agricoltura, olivicoltura e frutteti",
+        "Risorsa idrica, pozzi e irrigazione",
+        "Paesaggio rurale, biodiversità e agroforestazione",
+        "Riqualificazione edilizia ed efficienza energetica",
+        "Turismo culturale e territori minori"
+      ],
+      "capabilities": [
+        "Disponibilità di un fondo rurale a Ginosa con fabbricato, parte storica, pozzo, ulivi e alberi da frutto, da dimostrare con titoli e dati catastali",
+        "Possibilità di separare il programma in tre lotti funzionali: abitazione, bene storico-rurale e sistema agricolo-idrico",
+        "Potenziale gestione diretta degli interventi come proprietario, con tecnici, agronomo, CAA e Soprintendenza secondo la misura"
+      ],
+      "references": [],
+      "certifications": [
+        "Titolo di proprietà e conformità catastale · da acquisire",
+        "Qualifica di imprenditore agricolo, iscrizione CCIAA, partita IVA agricola, fascicolo SIAN, CD/IAP · non verificate",
+        "Dichiarazione di interesse culturale della parte storica · da verificare",
+        "Titolo concessorio e regolarità del pozzo · da verificare"
+      ],
+      "staff": "Proprietario con professionisti esterni da incaricare. Nessuna struttura agricola, amministrativa o tecnica stabile è oggi documentata.",
+      "turnover": "Capacità privata di anticipazione e cofinanziamento da verificare. Non risultano reddito agricolo, produzione standard o solidità di un’impresa agricola.",
+      "minLeadDays": 60,
+      "preferredBudget": "Da costruire dopo rilievo e computo, separando costi dell’abitazione, restauro della parte storica, regolarizzazione del pozzo e investimenti produttivi su uliveto/frutteto.",
+      "partnerPolicy": "Non costituire un’impresa solo per inseguire un contributo. Attivare lo scenario agricolo esclusivamente dopo verifica con agronomo, CAA e commercialista della produzione standard, degli obblighi permanenti e della sostenibilità. Per il bene storico operare come proprietario con tecnico del restauro e Soprintendenza.",
+      "evidenceReady": [
+        "Localizzazione nel Comune di Ginosa",
+        "Descrizione preliminare degli asset: casa, parte storica, pozzo, ulivi e alberi da frutto"
+      ],
+      "evidenceMissing": [
+        "Atto di proprietà, visure, mappe e identificativi di tutte le particelle e dei fabbricati",
+        "Destinazione urbanistica, stato legittimo, agibilità, titoli edilizi e vincoli PPTR",
+        "Datazione, rilievo, fotografie e verifica formale dell’interesse culturale della parte storica",
+        "Stato strutturale, destinazione d’uso futura, computo e progetto distinto per casa e annesso storico",
+        "Concessione, censimento, uso autorizzato, portata, qualità dell’acqua e canoni del pozzo",
+        "Superficie, varietà, età, stato fitosanitario e redditività di ulivi e alberi da frutto",
+        "Verifica catastale della particella nelle aree Xylella: Ginosa non dà automaticamente accesso alle misure per Xylella pauca",
+        "Partita IVA agricola, iscrizione CCIAA/INPS, fascicolo aziendale SIAN e qualifica ex art. 2135 c.c.",
+        "Produzione standard: almeno €15.000 per l’attuale SRD01.05, o €5.000 nello scenario esclusivamente olivicolo",
+        "Budget disponibile, cofinanziamento, capacità di anticipazione e copertura dei costi non ammissibili"
+      ],
+      "notes": "Applicare due scenari separati. SCENARIO A — persona fisica: cercare contributi per proprietari privati, beni culturali, paesaggio rurale e agevolazioni edilizie; l’impresa agricola non è un requisito generale. SCENARIO B — impresa agricola: necessario per gli investimenti produttivi PAC come SRD01.05, con fascicolo SIAN e produzione standard minima. La qualifica CD/IAP non è il requisito base dell’avviso SRD01.05, ma può migliorare il punteggio. La casa a uso abitativo è esclusa da SRD01.05 anche se il proprietario diventa imprenditore agricolo; sono potenzialmente ammissibili solo fabbricati rurali a uso produttivo e investimenti agricoli conformi. Il pozzo è prima di tutto un gate autorizzativo: nessun GO finché concessione e uso non sono regolari. Non iniziare lavori prima delle domande e autorizzazioni quando la misura lo vieta.",
+      "accent": "violet",
+      "verifiedAt": "9 agosto 2026",
+      "isSeed": true,
+      "isPersona": true,
+      "badgeLabel": "Profilo preliminare · non presume un’impresa agricola",
+      "eligibilityHeadline": "Azienda agricola: sì per i bandi PAC produttivi; no per le misure rivolte al proprietario privato. La casa abitativa non diventa ammissibile solo aprendo un’impresa.",
+      "researchSummary": "ammissibilità persona fisica/impresa, patrimonio rurale, pozzo, uliveto e vincoli territoriali",
+      "researchSources": [
+        {
+          "label": "CSR Puglia · bandi e avvisi",
+          "url": "https://csr.regione.puglia.it/bandi"
+        },
+        {
+          "label": "CSR Puglia · SRD01.05 generalista",
+          "url": "https://csr.regione.puglia.it/intervento-srd01.05-generalista-operativi-i-termini-per-la-presentazione-delle-domande-di-sostegno"
+        },
+        {
+          "label": "Avviso SRD01.05 · DAG 37/2026",
+          "url": "https://csr.regione.puglia.it/documents/20117/151972/DAG%2Bn.%2B37%2Bdel%2B08.06.2026.pdf/a4e7d974-6d45-b6c2-47ac-948426ad76ee?t=1781594640810&version=1.2"
+        },
+        {
+          "label": "SABAP Brindisi, Lecce e Taranto · contributi",
+          "url": "https://sabap-le.cultura.gov.it/servizi-al-cittadino/servizi-generali/contributi/"
+        },
+        {
+          "label": "Regione Puglia · architettura rurale",
+          "url": "https://www.regione.puglia.it/web/turismo-e-cultura/-/architettura-rurale-al-via-gli-aiuti-per-il-recupero-e-la-valorizzazione-di-edifici-storici-rurali-e-per-la-tutela-del-paesaggio-rurale"
+        },
+        {
+          "label": "PSR Puglia · Sottomisura 7.6",
+          "url": "https://psr.regione.puglia.it/sottomisura-7.6"
+        },
+        {
+          "label": "Regione Puglia · delimitazioni Xylella 2026",
+          "url": "https://burp.regione.puglia.it/documents/20135/2816423/DET_112_7_7_2026.pdf/8bda7b9c-fa4c-aea7-d0e6-eac74a84755f?download=true&t=1784818245260"
+        },
+        {
+          "label": "Regione Puglia · legge acque 7/2025",
+          "url": "https://burp.regione.puglia.it/documents/20135/2577619/LR_07_2025.pdf/be0dd20a-e205-c875-a591-a63dd9b024b5?t=1748625572269&version=1.0"
+        },
+        {
+          "label": "PPTR Puglia · cartografia",
+          "url": "https://sit.puglia.it/portal/portale_pianificazione_regionale/Piano%20Paesaggistico%20Territoriale"
+        },
+        {
+          "label": "Comune di Ginosa · pianificazione",
+          "url": "https://www.comune.ginosa.ta.it/Amministrazione-Trasparente/Pianificazione-e-governo-del-territorio"
+        }
+      ]
+    },
+    {
+      "id": "digital-library",
+      "name": "Digital Library – Istituto centrale per la digitalizzazione del patrimonio culturale",
+      "shortName": "DL",
+      "organizationType": "Istituto centrale del Ministero della cultura con autonomia speciale",
+      "legalForm": "Amministrazione pubblica centrale / istituto del MiC",
+      "headquarters": "Roma, Italia",
+      "website": "digitallibrary.cultura.gov.it",
+      "sourceUrl": "https://digitallibrary.cultura.gov.it/chi-siamo/",
+      "levels": [
+        "Europeo",
+        "Nazionale"
+      ],
+      "territories": [
+        "Italia",
+        "Unione europea"
+      ],
+      "beneficiaryTypes": [
+        "Amministrazione pubblica centrale",
+        "Istituto culturale statale",
+        "Soggetto attuatore e coordinatore di programmi nazionali",
+        "Partner istituzionale in progetti europei di ricerca e innovazione"
+      ],
+      "roles": [
+        "Beneficiario diretto",
+        "Capofila",
+        "Partner",
+        "Soggetto attuatore"
+      ],
+      "themes": [
+        "Patrimonio culturale digitale",
+        "Infrastrutture dati e interoperabilità",
+        "IA, metadatazione e servizi digitali",
+        "Accessibilità e partecipazione culturale",
+        "Competenze digitali e capacity building",
+        "Turismo culturale e territori minori",
+        "Ricerca e innovazione"
+      ],
+      "capabilities": [
+        "Coordinamento e promozione dei programmi di digitalizzazione del patrimonio culturale del MiC",
+        "Piano nazionale di digitalizzazione e linee guida metodologiche",
+        "Ecomic e I.PaC: infrastrutture, servizi e interoperabilità del patrimonio digitale",
+        "Digitalizzazione 2D/3D, conservazione, accessibilità e valorizzazione dei contenuti culturali",
+        "Formazione, miglioramento delle competenze digitali e supporto agli istituti culturali",
+        "Sviluppo di network europei e programmi di ricerca e innovazione"
+      ],
+      "references": [
+        "Coordinamento dell’investimento PNRR M1C3 1.1 Strategie e piattaforme digitali",
+        "Piano nazionale di digitalizzazione del patrimonio culturale 2022–2026",
+        "Ecomic, I.PaC e cantieri nazionali di digitalizzazione",
+        "Progetti di digitalizzazione 3D e valorizzazione in ambiente digitale"
+      ],
+      "certifications": [
+        "Mandato istituzionale MiC",
+        "Soggetto attuatore PNRR"
+      ],
+      "staff": "Competenze culturali, amministrative, tecnologiche e di coordinamento nazionale; consistenza da validare per singola call",
+      "turnover": "Non applicabile come impresa; verificare capacità finanziaria e regole dell’amministrazione per ogni programma",
+      "minLeadDays": 30,
+      "preferredBudget": "Programmi di ricerca e innovazione anche intorno a €10 milioni, con partenariati pubblici e territoriali",
+      "partnerPolicy": "Capofila solo con governance, capacità amministrativa e cofinanziamento già definiti; altrimenti partner istituzionale o coordinatore di rete.",
+      "evidenceReady": [
+        "Mandato istituzionale",
+        "PND",
+        "Portafoglio PNRR",
+        "Infrastrutture e progetti nazionali"
+      ],
+      "evidenceMissing": [
+        "Budget disponibile per cofinanziamento",
+        "Pipeline europea approvata",
+        "Partner internazionali formalizzati",
+        "Capacità di rendicontazione per la call specifica"
+      ],
+      "notes": "Priorità: fondi europei, reti con Commissione europea, AgID, Consip, Smarter Italy e stakeholder pubblici territoriali; R&S e servizi digitali per la valorizzazione dei territori culturali minori.",
+      "accent": "blue",
+      "verifiedAt": "8 agosto 2026",
+      "isSeed": true
+    },
+    {
+      "id": "nova",
+      "name": "NOVA",
+      "shortName": "NV",
+      "organizationType": "Associazione, community civica e progetto editoriale indipendente",
+      "legalForm": "Associazione · personalità giuridica e iscrizione RUNTS da verificare",
+      "headquarters": "Italia · sede legale da verificare",
+      "website": "nova.ong",
+      "sourceUrl": "https://www.nova.ong/",
+      "levels": [
+        "Europeo",
+        "Nazionale",
+        "Regionale",
+        "Locale"
+      ],
+      "territories": [
+        "Italia",
+        "Unione europea",
+        "Comunità digitali"
+      ],
+      "beneficiaryTypes": [
+        "Associazione e organizzazione della società civile, se statuto e rappresentanza lo confermano",
+        "Ente del Terzo settore soltanto se l’iscrizione RUNTS è verificata",
+        "Partner di progetto per comunicazione, partecipazione e community engagement",
+        "Soggetto editoriale o rete informale: ammissibilità da verificare call per call"
+      ],
+      "roles": [
+        "Partner",
+        "Beneficiario diretto"
+      ],
+      "themes": [
+        "Partecipazione civica e cittadinanza europea",
+        "Informazione, dati e alfabetizzazione mediatica",
+        "Giovani, comunità e democrazia",
+        "Politiche pubbliche e innovazione sociale",
+        "Comunicazione e cultura digitale"
+      ],
+      "capabilities": [
+        "Produzione editoriale periodica su politica, Europa, società e cultura dei dati",
+        "Lettura critica dei dati e contrasto alla semplificazione nel dibattito pubblico",
+        "Comunicazione digitale tramite newsletter e canali social",
+        "Attivazione di community e coinvolgimento di persone interessate alla vita pubblica",
+        "Competenze multidisciplinari del gruppo su Unione europea, commercio internazionale, giornalismo e formazione"
+      ],
+      "references": [
+        "Newsletter “Ogni Martedì su due”, avviata nel 2026",
+        "Contenuti su dati, politiche pubbliche, trasporti, lavoro, difesa ed Europa",
+        "Presenza Instagram e community WhatsApp dichiarate nei canali pubblici"
+      ],
+      "certifications": [
+        "Iscrizione RUNTS / eventuale qualifica APS o ODV · da verificare"
+      ],
+      "staff": "Gruppo editoriale e community in fase iniziale; ruoli, disponibilità e responsabilità da formalizzare",
+      "turnover": "Dati economici, conto corrente dedicato e capacità di cofinanziamento non pubblicamente verificati",
+      "minLeadDays": 30,
+      "preferredBudget": "Progetti pilota e partenariati su partecipazione, informazione e cittadinanza; scala economica da validare",
+      "partnerPolicy": "Preferibile il ruolo di partner contenutistico e di community. Capofila solo dopo verifica di personalità giuridica, governance, rendicontazione e solidità finanziaria.",
+      "evidenceReady": [
+        "Associazione con percorso di adesione U25 e standard",
+        "Newsletter pubblicata",
+        "Canali digitali attivi",
+        "Team autoriale identificabile",
+        "Community in costruzione"
+      ],
+      "evidenceMissing": [
+        "Statuto registrato e assenza di scopo di lucro verificabile",
+        "Iscrizione RUNTS / qualifica APS o ODV",
+        "Sede legale e territori operativi",
+        "Legale rappresentante e poteri di firma",
+        "Bilanci e conto dedicato",
+        "Esperienze pregresse finanziate",
+        "Procedure di rendicontazione e tutela dati",
+        "Indipendenza formale da partiti e movimenti politici"
+      ],
+      "notes": "Profilo iniziale ricavato dai canali pubblici indicati e dalle informazioni associative già disponibili. La ricerca non deve limitarsi ai bandi pubblici: per NOVA vanno attivati anche fondazioni di origine bancaria, fondazioni corporate, erogazioni private, matching grant e raccolta di comunità. Questi canali restano subordinati a territorio, statuto, assenza di lucro, indipendenza politica, progetto e capacità di rendicontazione. La partita IVA non viene mostrata nell’interfaccia pubblica.",
+      "accent": "violet",
+      "verifiedAt": "9 agosto 2026",
+      "isSeed": true,
+      "badgeLabel": "Associazione · status ETS da verificare",
+      "eligibilityHeadline": "I fondi privati sono un canale reale, ma non automatico: sede, territorio del progetto, statuto non profit, indipendenza politica e capacità di rendicontazione sono gate prima del match tematico.",
+      "researchSummary": "fondi pubblici, fondazioni di origine bancaria, filantropia corporate e finanza di comunità",
+      "researchSources": [
+        {
+          "label": "RUNTS · ricerca e qualifica ETS",
+          "url": "https://servizi.lavoro.gov.it/runts/it-it/Ricerca-enti"
+        },
+        {
+          "label": "Commissione europea · funding per ONG",
+          "url": "https://commission.europa.eu/funding-and-tenders/how-apply/eligibility-who-can-get-funding/funding-opportunities-ngos_en"
+        },
+        {
+          "label": "ACRI · Fondazioni di origine bancaria",
+          "url": "https://www.acri.it/fondazioni/"
+        },
+        {
+          "label": "Fondazione Cariplo · bandi",
+          "url": "https://www.fondazionecariplo.it/contributi/bandi/"
+        },
+        {
+          "label": "Compagnia di San Paolo · contributi",
+          "url": "https://www.compagniadisanpaolo.it/it/cosa-facciamo/contributi/"
+        },
+        {
+          "label": "Fondazione CRT · progetti e bandi",
+          "url": "https://www.fondazionecrt.it/progetti-e-bandi/"
+        },
+        {
+          "label": "Fondazione Con il Sud · bandi",
+          "url": "https://www.fondazioneconilsud.it/bandi/"
+        },
+        {
+          "label": "Fondazione TIM · bandi",
+          "url": "https://www.fondazionetim.it/bandi"
+        },
+        {
+          "label": "Agenzia Entrate · 5 per mille",
+          "url": "https://www.agenziaentrate.gov.it/portale/area-tematica-5x1000"
+        }
+      ],
+      "sourcePackIds": [
+        "civic-nonprofit",
+        "private-philanthropy"
+      ]
+    }
+  ],
+  "opportunities": [
+    {
+      "id": "puglia-srd01-05-generalista-2026",
+      "level": "Regionale",
+      "kind": "Contributo",
+      "status": "Aperto",
+      "participationMode": "Candidatura diretta",
+      "profileParticipationModes": {
+        "studio-fauda": "Opportunità commerciale indiretta",
+        "piccolo-comune-alto-piemonte": "Non applicabile",
+        "proprietario-rurale-ginosa": "Candidatura diretta"
+      },
+      "title": "SRD01.05 generalista: investimenti produttivi nelle aziende agricole pugliesi",
+      "authority": "Regione Puglia · CSR 2023–2027",
+      "territory": "Puglia · fondo a Ginosa da verificare per particella",
+      "theme": "Agricoltura, olivicoltura e frutteti",
+      "deadline": "8–22 ottobre 2026 · sette operazioni con scadenze intermedie",
+      "daysLeft": 74,
+      "value": "€ 60 mln · aiuto 60% base, 65% per localizzazione, 80% giovani",
+      "risk": "Alto",
+      "effort": "Molto alto · impresa, fascicolo SIAN, EIP, progetto e autorizzazioni",
+      "profileEfforts": {
+        "proprietario-rurale-ginosa": "Molto alto · non sostenibile partendo oggi da una semplice proprietà non aziendale"
+      },
+      "probability": "0% come sola persona fisica; da stimare solo dopo verifica dell’impresa e della graduatoria",
+      "profileProbabilities": {
+        "proprietario-rurale-ginosa": "0% nello stato attuale; 20–40% soltanto se impresa, produzione standard, progetto e punteggio risultano solidi"
+      },
+      "sourceName": "CSR Puglia · SRD01.05 generalista · DAG 37/2026 e DAG 49/2026",
+      "sourceUrl": "https://csr.regione.puglia.it/intervento-srd01.05-generalista-operativi-i-termini-per-la-presentazione-delle-domande-di-sostegno",
+      "sourceType": "Fonte primaria",
+      "sourceDate": "Verificato il 9 agosto 2026",
+      "confidence": "Alta",
+      "targetProfileId": "proprietario-rurale-ginosa",
+      "profileScores": {
+        "studio-fauda": 35,
+        "digital-library": 8,
+        "nova": 6,
+        "piccolo-comune-alto-piemonte": 5,
+        "proprietario-rurale-ginosa": 91
+      },
+      "profileVerdicts": {
+        "studio-fauda": "OPPORTUNITÀ INDIRETTA · consulenza a impresa agricola",
+        "digital-library": "NO-GO",
+        "nova": "NO-GO",
+        "piccolo-comune-alto-piemonte": "NON APPLICABILE",
+        "proprietario-rurale-ginosa": "NO-GO OGGI · serve impresa agricola e produzione standard minima"
+      },
+      "profileAnalyses": {
+        "proprietario-rurale-ginosa": {
+          "eligibility": [
+            "Il beneficiario deve essere imprenditore agricolo singolo o associato ai sensi dell’art. 2135 c.c.: la sola proprietà del terreno non è sufficiente.",
+            "La produzione standard aziendale deve essere almeno € 15.000; per un progetto esclusivamente olivicolo è ammessa la soglia ridotta di € 5.000.",
+            "Servono fascicolo aziendale aperto, aggiornato e validato, domanda SIAN, Elaborato Informatico Progettuale e assistenza di CAA o professionista agricolo abilitato.",
+            "La qualifica CD/IAP non è indicata come requisito base CR01, ma è premiata nei criteri di selezione: aprire una partita IVA non equivale a essere competitivi.",
+            "La casa e gli arredi a uso abitativo sono espressamente esclusi. Possono essere valutati fabbricati rurali produttivi, impianti irrigui, attrezzature, oliveto e frutteto solo se coerenti con l’attività e con tutti i titoli."
+          ],
+          "advantages": [
+            "Il fondo con ulivi e alberi da frutto è tematicamente coerente con investimenti produttivi, irrigazione efficiente e ammodernamento agricolo.",
+            "L’aiuto base arriva al 60% e può salire nelle condizioni previste dall’avviso; la dotazione complessiva è significativa.",
+            "Un pozzo già regolare e un fabbricato realmente produttivo possono rafforzare un progetto aziendale integrato, ma non sanare irregolarità pregresse."
+          ],
+          "weaknesses": [
+            "Il profilo non documenta impresa, fascicolo SIAN, produzione standard, bilanci agricoli, autorizzazioni o progetto: oggi manca il presupposto soggettivo.",
+            "La finestra operativa è troppo breve per costruire in modo prudente da zero impresa, redditività, progetto e titoli senza un’attività agricola già reale.",
+            "La parte più urgente per il proprietario — sistemare la casa — non è finanziabile su questa misura se resta a uso abitativo."
+          ],
+          "redFlags": [
+            "Non costituire un’azienda agricola esclusivamente per inseguire il contributo: obblighi fiscali, previdenziali, produttivi e di mantenimento possono superarne il vantaggio.",
+            "Non iniziare lavori o ordinare beni prima della domanda quando l’avviso lo vieta; le spese possono diventare integralmente non ammissibili.",
+            "Nessuna spesa sul pozzo va inserita finché concessione, uso, portata e regolarità non sono verificati con Provincia di Taranto e disciplina regionale.",
+            "Ginosa ricade in una delimitazione per Xylella multiplex ST26, ma ciò non rende automaticamente la particella ammissibile alle misure dedicate a Xylella pauca."
+          ],
+          "nextSteps": [
+            "Chiedere a CAA, agronomo e commercialista una pre-verifica scritta su art. 2135 c.c., produzione standard, fascicolo, costi permanenti e punteggio stimato.",
+            "Calcolare superficie, colture, resa e produzione standard per particella; fermarsi se non si raggiunge la soglia senza ipotesi artificiali.",
+            "Separare il programma in tre fascicoli: abitazione privata, parte storica e investimento agricolo-idrico; finanziare ogni voce solo sul canale corretto.",
+            "Procedere sul bando agricolo esclusivamente se impresa e attività esistono già in sostanza e il progetto supera un vero controllo economico GO/NO-GO."
+          ]
+        }
+      },
+      "eligibility": [
+        "Beneficiari: imprenditori agricoli singoli o associati ex art. 2135 c.c.",
+        "Produzione standard minima € 15.000, ridotta a € 5.000 per progetti esclusivamente olivicoli.",
+        "Fascicolo SIAN ed EIP obbligatori; l’abitazione è esclusa dalle spese ammissibili."
+      ],
+      "advantages": [
+        "Investimenti produttivi, irrigui e su fabbricati rurali aziendali possono essere coerenti."
+      ],
+      "weaknesses": [
+        "La proprietà privata senza impresa non è ammissibile."
+      ],
+      "redFlags": [
+        "Non confondere proprietà del fondo e qualifica di imprenditore agricolo."
+      ],
+      "nextSteps": [
+        "Verificare impresa, produzione standard, fascicolo e titoli prima di qualunque spesa."
+      ]
+    },
+    {
+      "id": "mic-contributi-beni-culturali-privati-taranto",
+      "level": "Nazionale",
+      "kind": "Avviso",
+      "status": "Aperto",
+      "participationMode": "Candidatura diretta",
+      "profileParticipationModes": {
+        "proprietario-rurale-ginosa": "Candidatura diretta"
+      },
+      "title": "Contributi statali per restauro e conservazione di beni culturali privati",
+      "authority": "Ministero della cultura · SABAP Brindisi, Lecce e Taranto",
+      "territory": "Province di Brindisi, Lecce e Taranto",
+      "theme": "Patrimonio architettonico rurale e restauro",
+      "deadline": "Procedura permanente · istanza prima dell’inizio dei lavori",
+      "daysLeft": null,
+      "value": "Conto capitale di norma non oltre il 50% · possibile conto interessi",
+      "risk": "Medio",
+      "effort": "Alto · vincolo, progetto di restauro, autorizzazione e anticipazione finanziaria",
+      "profileEfforts": {
+        "proprietario-rurale-ginosa": "Alto · 60–120 giorni o più per verifiche, progetto e autorizzazione"
+      },
+      "probability": "Non stimabile senza vincolo culturale e disponibilità di bilancio ministeriale",
+      "profileProbabilities": {
+        "proprietario-rurale-ginosa": "0% se la parte storica non è formalmente bene culturale; ammissibilità procedurale possibile dopo vincolo e autorizzazione, contributo non garantito"
+      },
+      "sourceName": "SABAP Brindisi, Lecce e Taranto · Contributi artt. 31, 35, 36 e 37 D.Lgs. 42/2004",
+      "sourceUrl": "https://sabap-le.cultura.gov.it/servizi-al-cittadino/servizi-generali/contributi/",
+      "sourceType": "Fonte primaria",
+      "sourceDate": "Verificato il 9 agosto 2026",
+      "confidence": "Alta",
+      "targetProfileId": "proprietario-rurale-ginosa",
+      "profileScores": {
+        "studio-fauda": 32,
+        "digital-library": 28,
+        "nova": 10,
+        "piccolo-comune-alto-piemonte": 14,
+        "proprietario-rurale-ginosa": 86
+      },
+      "profileVerdicts": {
+        "studio-fauda": "OPPORTUNITÀ INDIRETTA · incarico specialistico",
+        "digital-library": "NON APPLICABILE COME PROPRIETARIO",
+        "nova": "NO-GO",
+        "piccolo-comune-alto-piemonte": "NON APPLICABILE A QUESTA PERSONA",
+        "proprietario-rurale-ginosa": "GO SOLO SE ESISTE UN VINCOLO CULTURALE FORMALE"
+      },
+      "profileAnalyses": {
+        "proprietario-rurale-ginosa": {
+          "eligibility": [
+            "Può presentare richiesta il proprietario, possessore o detentore del bene culturale: non è necessario essere un’azienda agricola.",
+            "La parte storica deve essere oggetto di accertamento formale dell’interesse culturale; essere semplicemente antica o rurale non basta.",
+            "La richiesta di ammissibilità al contributo va trasmessa insieme alla domanda di autorizzazione ai lavori ex art. 21, prima di iniziare l’intervento.",
+            "Il contributo in conto capitale è riconosciuto a consuntivo sui soli lavori ritenuti ammissibili e resta subordinato all’istruttoria e alle risorse disponibili."
+          ],
+          "advantages": [
+            "La persona fisica è una categoria ammessa e non deve trasformare il fondo in impresa agricola.",
+            "La procedura può concentrarsi sulla sola parte di effettivo valore culturale, separandola dalla casa ordinaria e dagli investimenti agricoli.",
+            "Sono previsti contributi in conto capitale e, con procedimento distinto, in conto interessi."
+          ],
+          "weaknesses": [
+            "Il profilo non dimostra alcun vincolo, datazione, progetto di restauro o capacità di anticipare le spese fino al consuntivo.",
+            "Il contributo non è automatico e non equivale a un bando con graduatoria e risorse già prenotate.",
+            "Gli interventi sulla parte abitativa non diventano ammissibili se non sono strettamente conservativi e riferiti al bene culturale riconosciuto."
+          ],
+          "redFlags": [
+            "Lavori iniziati o ultimati prima della domanda non sono ammessi alla procedura indicata dalla Soprintendenza.",
+            "Il concorso dello Stato comporta un accordo di accessibilità pubblica; la pagina territoriale indica almeno un giorno gratuito al mese per dieci anni, oltre agli eventi istituzionali.",
+            "Non presentare come ‘bene storico’ ciò che non è stato verificato documentalmente da un tecnico e dalla Soprintendenza."
+          ],
+          "nextSteps": [
+            "Recuperare titoli, planimetrie, fotografie storiche, datazione e precedenti autorizzazioni della parte annessa.",
+            "Chiedere un pre-inquadramento alla SABAP competente e incaricare un professionista qualificato per il rilievo e il progetto conservativo.",
+            "Verificare disponibilità finanziaria per anticipare i lavori e accettabilità delle condizioni di fruizione pubblica.",
+            "Presentare autorizzazione e richiesta di contributo prima di aprire il cantiere o affidare lavorazioni irreversibili."
+          ]
+        }
+      },
+      "eligibility": [
+        "Proprietario, possessore o detentore di bene culturale formalmente riconosciuto.",
+        "Autorizzazione della Soprintendenza e richiesta prima dell’inizio lavori."
+      ],
+      "advantages": [
+        "Non richiede la costituzione di un’impresa agricola."
+      ],
+      "weaknesses": [
+        "Contributo discrezionale e successivo alla verifica dei lavori."
+      ],
+      "redFlags": [
+        "La semplice vetustà del fabbricato non prova l’interesse culturale."
+      ],
+      "nextSteps": [
+        "Verificare il vincolo e contattare la SABAP territoriale."
+      ]
+    },
+    {
+      "id": "puglia-architettura-rurale-pnrr-2022-benchmark",
+      "level": "Regionale",
+      "kind": "Contributo",
+      "status": "Chiuso",
+      "participationMode": "Candidatura diretta",
+      "profileParticipationModes": {
+        "proprietario-rurale-ginosa": "Candidatura diretta"
+      },
+      "title": "Architettura e paesaggio rurale: edifici storici, pozzi e strutture tradizionali",
+      "authority": "Regione Puglia · PNRR Cultura",
+      "territory": "Puglia",
+      "theme": "Patrimonio architettonico rurale e restauro",
+      "deadline": "Avviso 2022 concluso · solo benchmark",
+      "daysLeft": -1500,
+      "value": "Dotazione regionale oltre € 56 mln · procedura conclusa",
+      "risk": "Basso",
+      "effort": "Benchmark · preparazione documentale per misure future",
+      "profileEfforts": {
+        "proprietario-rurale-ginosa": "Basso · 2–4 giorni per costruire un fascicolo di pre-ammissibilità"
+      },
+      "probability": "0%: avviso chiuso",
+      "sourceName": "Regione Puglia · Avviso architettura rurale · A.D. 40/2022",
+      "sourceUrl": "https://www.regione.puglia.it/web/turismo-e-cultura/-/architettura-rurale-al-via-gli-aiuti-per-il-recupero-e-la-valorizzazione-di-edifici-storici-rurali-e-per-la-tutela-del-paesaggio-rurale",
+      "sourceType": "Fonte primaria",
+      "sourceDate": "Avviso storico verificato il 9 agosto 2026",
+      "confidence": "Alta",
+      "targetProfileId": "proprietario-rurale-ginosa",
+      "profileScores": {
+        "studio-fauda": 38,
+        "digital-library": 22,
+        "nova": 12,
+        "piccolo-comune-alto-piemonte": 10,
+        "proprietario-rurale-ginosa": 94
+      },
+      "profileVerdicts": {
+        "proprietario-rurale-ginosa": "CHIUSO · benchmark prioritario per future misure rivolte ai privati"
+      },
+      "profileAnalyses": {
+        "proprietario-rurale-ginosa": {
+          "eligibility": [
+            "L’avviso 2022 ammetteva soggetti privati, comprese persone fisiche: non richiedeva in via generale un’azienda agricola.",
+            "Il perimetro comprendeva edifici storici rurali, fontane, pozzi e altre strutture tradizionali del paesaggio pugliese.",
+            "La procedura è conclusa: requisiti e importi non possono essere trasferiti automaticamente a un futuro avviso."
+          ],
+          "advantages": [
+            "È il precedente più vicino alla combinazione descritta: parte storica, pozzo e paesaggio rurale.",
+            "Mostra che esistono canali in cui il proprietario privato è il soggetto corretto, senza apertura artificiale di un’impresa."
+          ],
+          "weaknesses": [
+            "Non è possibile presentare domanda oggi.",
+            "Mancano dati per verificare se il fabbricato e il pozzo possiedono tipologia, datazione, stato legittimo e valore paesaggistico richiesti."
+          ],
+          "redFlags": [
+            "Non comunicare il precedente come finanziamento disponibile.",
+            "Non avviare lavori contando su una riapertura: un futuro avviso potrebbe escludere interventi già iniziati."
+          ],
+          "nextSteps": [
+            "Creare ora un fascicolo con proprietà, particelle, fotografie, datazione, PPTR, stato legittimo e stima dei lavori.",
+            "Monitorare Regione Puglia, BURP, CSR e MiC per misure analoghe rivolte a proprietari privati.",
+            "Tenere separato il progetto conservativo dall’abitazione ordinaria e dall’investimento agricolo produttivo."
+          ]
+        }
+      },
+      "eligibility": [
+        "Procedura chiusa; in origine erano ammesse anche persone fisiche."
+      ],
+      "advantages": [
+        "Precedente fortemente coerente con parte storica, pozzo e paesaggio rurale."
+      ],
+      "weaknesses": [
+        "Nessuna candidatura possibile oggi."
+      ],
+      "redFlags": [
+        "Non usare le regole 2022 come garanzia di una futura riapertura."
+      ],
+      "nextSteps": [
+        "Preparare documenti e monitorare misure analoghe."
+      ]
+    },
+    {
+      "id": "mit-g07134-novara-caserma",
+      "level": "Locale",
+      "kind": "Gara",
+      "status": "Aperto",
+      "participationMode": "Candidatura diretta",
+      "profileParticipationModes": {
+        "piccolo-comune-alto-piemonte": "Non applicabile"
+      },
+      "title": "PFTE, progetto esecutivo, CSP e opzione DL/CSE per la Caserma Aliano Bracci",
+      "authority": "Provveditorato Interregionale OO.PP. Piemonte, Valle d’Aosta e Liguria",
+      "territory": "Novara (NO)",
+      "theme": "Riqualificazione edilizia ed efficienza energetica",
+      "deadline": "26 agosto 2026 · ore 09:00",
+      "daysLeft": 18,
+      "value": "€ 217.883,20 base · € 409.217,56 complessivi",
+      "risk": "Medio",
+      "effort": "Alto · gate documentale entro 48 ore",
+      "probability": "15–30%, solo con referenze e gruppo di lavoro pienamente dimostrabili",
+      "sourceName": "Portale Appalti MIT · procedura G07134 · CIG BC79F3A91B",
+      "sourceUrl": "https://portaleappalti.mit.gov.it/PortaleAppalti/it/ppgare_bandi_lista.wp?actionPath=%2FExtStr2%2Fdo%2FFrontEnd%2FBandi%2Fview.action&codice=G07134&currentFrame=7",
+      "sourceType": "Fonte primaria",
+      "sourceDate": "Verificato l’8 agosto 2026",
+      "confidence": "Alta",
+      "targetProfileId": "studio-fauda",
+      "profileScores": {
+        "studio-fauda": 90,
+        "digital-library": 18,
+        "nova": 12,
+        "piccolo-comune-alto-piemonte": 8
+      },
+      "profileVerdicts": {
+        "studio-fauda": "GO CONDIZIONATO · gate documentale 48 ore",
+        "digital-library": "NO-GO",
+        "nova": "NO-GO",
+        "piccolo-comune-alto-piemonte": "NON APPLICABILE · il Comune non è operatore economico"
+      },
+      "eligibility": [
+        "Studio Fauda può concorrere come operatore economico o in RTP, ma il disciplinare deve confermare categorie, importi dei servizi analoghi e composizione minima del gruppo di lavoro.",
+        "La procedura comprende PFTE, progettazione esecutiva e CSP, con opzione per DL e CSE: requisiti e responsabilità vanno verificati anche sulle prestazioni opzionali.",
+        "Prima del GO servono evidenze nominative: abilitazioni, servizi analoghi, certificati di regolare esecuzione, coperture assicurative e disponibilità effettiva dei professionisti."
+      ],
+      "advantages": [
+        "Sede di esecuzione vicina e forte coerenza con edilizia pubblica, prevenzione incendi, sicurezza ed efficientamento energetico.",
+        "Valore e articolazione dei servizi sono compatibili con una candidatura strutturata dello studio, anche in RTP mirato."
+      ],
+      "weaknesses": [
+        "La scadenza lascia poco tempo per colmare lacune documentali o costruire un RTP non già disponibile.",
+        "Il profilo non contiene ancora fatturato verificato, matrice dei certificati, polizze e massimali: il punteggio tecnico non basta."
+      ],
+      "redFlags": [
+        "Non presentare offerta finché la matrice requisiti/evidenze non è completa e firmata internamente.",
+        "Il valore complessivo include opzioni: stimare responsabilità, ore e margine sull’intero perimetro, non solo sull’importo base."
+      ],
+      "nextSteps": [
+        "Scaricare disciplinare, capitolato, criteri OEPV e determinazione dei corrispettivi dalla scheda G07134.",
+        "Entro 48 ore mappare servizi di punta, categorie, importi, professionisti richiesti e quote dell’eventuale RTP.",
+        "Decidere GO/NO-GO dopo una stima ore-uomo, costo partner, ribasso sostenibile e carico delle prestazioni opzionali."
+      ]
+    },
+    {
+      "id": "ted-498709-2026-asti-monti",
+      "level": "Europeo",
+      "kind": "Gara",
+      "status": "Aperto",
+      "participationMode": "Candidatura diretta",
+      "profileParticipationModes": {
+        "piccolo-comune-alto-piemonte": "Non applicabile"
+      },
+      "title": "I.S. Monti: direzione lavori e CSE per adeguamento antincendio, restauro ed efficienza energetica",
+      "authority": "Agenzia del Demanio",
+      "territory": "Asti (AT)",
+      "theme": "Riqualificazione edilizia ed efficienza energetica",
+      "deadline": "7 settembre 2026",
+      "daysLeft": 30,
+      "value": "€ 494.390,00 stimati",
+      "risk": "Medio",
+      "effort": "Alto · 12–20 gg/uomo per l’offerta",
+      "probability": "12–25%, se i servizi di punta e il presidio DL/CSE sono già documentati",
+      "sourceName": "TED · avviso 498709-2026 · CIG BC70533D9C",
+      "sourceUrl": "https://ted.europa.eu/it/notice/-/detail/498709-2026",
+      "sourceType": "Fonte primaria",
+      "sourceDate": "Verificato l’8 agosto 2026",
+      "confidence": "Alta",
+      "targetProfileId": "studio-fauda",
+      "profileScores": {
+        "studio-fauda": 86,
+        "digital-library": 20,
+        "nova": 10,
+        "piccolo-comune-alto-piemonte": 8
+      },
+      "profileVerdicts": {
+        "studio-fauda": "GO CONDIZIONATO · verificare servizi di punta",
+        "digital-library": "NO-GO",
+        "nova": "NO-GO",
+        "piccolo-comune-alto-piemonte": "NON APPLICABILE · il Comune non è operatore economico"
+      },
+      "eligibility": [
+        "È una gara diretta per DL e CSE; il team deve coprire le abilitazioni richieste e dimostrare servizi analoghi nella misura indicata dai documenti di gara.",
+        "Restauro, antincendio ed efficientamento richiedono una lettura puntuale delle categorie e delle responsabilità professionali, con RTP se una componente non è coperta."
+      ],
+      "advantages": [
+        "Coerenza elevata con edilizia pubblica, direzione lavori, sicurezza, prevenzione incendi ed energia.",
+        "La sede piemontese riduce il costo logistico rispetto a gare nazionali equivalenti."
+      ],
+      "weaknesses": [
+        "La sola vicinanza non produce vantaggio competitivo se mancano referenze comparabili certificate.",
+        "DL e CSE generano esposizione operativa pluriennale: disponibilità del team e margine vanno misurati prima dell’offerta."
+      ],
+      "redFlags": [
+        "NO-GO se i servizi di punta non raggiungono le soglie o non sono comprovabili entro la scadenza.",
+        "Verificare durata, presenza in cantiere, penali, assicurazioni e compatibilità con il carico lavori già acquisito."
+      ],
+      "nextSteps": [
+        "Aprire il fascicolo dalla fonte TED e raggiungere la piattaforma di gara dell’Agenzia del Demanio.",
+        "Costruire una matrice tra prestazioni richieste, referenze, professionisti e documenti disponibili.",
+        "Simulare costo pieno di DL/CSE e decidere l’assetto singolo/RTP prima di investire nell’offerta tecnica."
+      ]
+    },
+    {
+      "id": "piemonte-citta-rigenerative-2026",
+      "level": "Regionale",
+      "kind": "Contributo",
+      "status": "Aperto",
+      "participationMode": "Opportunità commerciale indiretta",
+      "profileParticipationModes": {
+        "piccolo-comune-alto-piemonte": "Candidatura diretta"
+      },
+      "title": "Città rigenerative: spazio pubblico, mobilità sostenibile e qualità dell’aria",
+      "authority": "Regione Piemonte · PR FESR 2021–2027",
+      "territory": "Piemonte",
+      "theme": "Rigenerazione urbana",
+      "deadline": "30 ottobre 2026 · ore 12:00",
+      "daysLeft": 83,
+      "value": "€ 30.000.000 · contributo fino al 90% · interventi € 250.000–5.000.000",
+      "risk": "Alto",
+      "effort": "Commerciale · 3–6 gg/uomo per pre-qualifica ente",
+      "profileEfforts": {
+        "piccolo-comune-alto-piemonte": "Alto · 20–40 gg/uomo tra progetto, atti, dati ambientali e invio"
+      },
+      "probability": "20–40% di incarico tecnico solo con Comune eleggibile, PFTE e copertura già impostati",
+      "profileProbabilities": {
+        "piccolo-comune-alto-piemonte": "20–45% solo con Comune ammesso, PFTE approvato, area disponibile, cofinanziamento e invio tempestivo"
+      },
+      "sourceName": "Bandi Regione Piemonte · Città rigenerative",
+      "sourceUrl": "https://bandi.regione.piemonte.it/contributi-finanziamenti/citta-rigenerative-strategie-integrate-rigenerazione-urbana-mobilita-sostenibile-qualita-dellaria",
+      "sourceType": "Fonte primaria",
+      "sourceDate": "Verificato l’8 agosto 2026",
+      "confidence": "Alta",
+      "targetProfileId": "studio-fauda",
+      "profileScores": {
+        "studio-fauda": 92,
+        "digital-library": 42,
+        "nova": 30,
+        "piccolo-comune-alto-piemonte": 78
+      },
+      "profileVerdicts": {
+        "studio-fauda": "AZIONE COMMERCIALE · non candidabile direttamente",
+        "digital-library": "NO-GO come beneficiario",
+        "nova": "NO-GO come beneficiario",
+        "piccolo-comune-alto-piemonte": "GO SOLO SE AMMESSO · PFTE + 10% cofinanziamento"
+      },
+      "profileAnalyses": {
+        "piccolo-comune-alto-piemonte": {
+          "eligibility": [
+            "Il Comune è beneficiario diretto solo se incluso nelle zone di qualità dell’aria ammesse dall’avviso; la provincia di appartenenza non basta.",
+            "La domanda richiede PFTE approvato, disponibilità delle aree, copertura finanziaria, inserimento nella programmazione e piano quinquennale di gestione e monitoraggio.",
+            "Il contributo può arrivare al 90%: almeno il 10% e le spese non ammissibili devono risultare sostenibili nel bilancio del Comune reale."
+          ],
+          "advantages": [
+            "Intervento coerente con spazio pubblico, mobilità, adattamento climatico e rigenerazione dei centri minori.",
+            "Le spese tecniche sono ammissibili entro il limite previsto dall’avviso, riducendo il carico netto sul bilancio se il quadro economico è corretto."
+          ],
+          "weaknesses": [
+            "La persona non contiene ancora PFTE, area, dati ambientali, cofinanziamento né capacità di gestione: oggi non consente un GO definitivo.",
+            "Per un ufficio ridotto, progettazione, atti, affidamenti, monitoraggio e rendicontazione possono saturare la capacità amministrativa anche con un buon contributo."
+          ],
+          "redFlags": [
+            "NO-GO immediato se il Comune non è nell’elenco territoriale ammesso.",
+            "Lo sportello può esaurire le risorse prima della scadenza nominale: un PFTE da avviare ora è con ogni probabilità troppo tardi.",
+            "Non candidare opere sovradimensionate rispetto alla manutenzione quinquennale e alla cassa disponibile."
+          ],
+          "nextSteps": [
+            "Verificare Comune, popolazione, zona di qualità dell’aria e titolarità dell’area sulla fonte primaria.",
+            "Far validare a RUP e ragioneria PFTE, quadro economico, 10% minimo, anticipazioni di cassa e costi non ammissibili.",
+            "Procedere solo con cronoprogramma degli atti e data di invio compatibile con lo sportello."
+          ]
+        }
+      },
+      "eligibility": [
+        "Possono presentare domanda le amministrazioni comunali comprese nelle zone di qualità dell’aria IT0118, IT0119 e IT0120; Studio Fauda non è beneficiario diretto.",
+        "La domanda deve includere un PFTE approvato, relazione tecnico-economica, copertura finanziaria, disponibilità delle aree e inserimento nella programmazione delle opere pubbliche.",
+        "Gli interventi devono ridisegnare lo spazio pubblico vicino a poli attrattori, dimostrare il miglioramento ambientale e microclimatico e disporre di un piano quinquennale di gestione, manutenzione e monitoraggio."
+      ],
+      "advantages": [
+        "Forte allineamento con rigenerazione urbana, spazio pubblico, opere comunali e progettazione integrata.",
+        "Le spese tecniche per progettazione, direzione lavori, sicurezza, indagini e studi sono ammissibili fino al 25% dell’importo lavori; il contributo può arrivare al 90% dei costi ammissibili."
+      ],
+      "weaknesses": [
+        "Studio Fauda può ottenere un incarico, non il contributo: dipende da un Comune beneficiario e dalle regole di affidamento pubblico.",
+        "PFTE e indicatori quantitativi su traffico, PM10, NOx e CO₂ devono essere pronti già in domanda: un concept preliminare non è sufficiente."
+      ],
+      "redFlags": [
+        "La procedura è a sportello e può chiudere prima del 30 ottobre per esaurimento fondi: non usare la scadenza nominale come vero margine operativo.",
+        "Non investire in concept gratuiti per Comuni senza PFTE, area disponibile, mandato politico e almeno il 10% di cofinanziamento definito.",
+        "Separare l’assistenza alla candidatura dall’eventuale affidamento della progettazione, nel rispetto del Codice dei contratti."
+      ],
+      "nextSteps": [
+        "Entro 72 ore costruire una shortlist di Comuni eleggibili già clienti o con PFTE e intervento programmato.",
+        "Applicare cinque gate: Comune in elenco, PFTE approvabile, area disponibile per almeno 20 anni, cofinanziamento ≥10% e dati ambientali misurabili.",
+        "Concordare subito con gli enti che superano i gate il percorso di affidamento dei servizi tecnici e la data reale di invio allo sportello."
+      ]
+    },
+    {
+      "id": "piemonte-sport-energia-2026",
+      "level": "Regionale",
+      "kind": "Contributo",
+      "status": "Aperto",
+      "participationMode": "Opportunità commerciale indiretta",
+      "profileParticipationModes": {
+        "piccolo-comune-alto-piemonte": "Candidatura diretta"
+      },
+      "title": "Efficienza energetica e rinnovabili negli impianti sportivi pubblici",
+      "authority": "Regione Piemonte · PR FESR 2021–2027",
+      "territory": "Piemonte",
+      "theme": "Riqualificazione edilizia ed efficienza energetica",
+      "deadline": "30 ottobre 2026 · ore 12:00",
+      "daysLeft": 83,
+      "value": "€ 14.000.000 · contributo fino al 70%",
+      "risk": "Alto",
+      "effort": "Commerciale · 4–8 gg/uomo per ente pre-qualificato",
+      "profileEfforts": {
+        "piccolo-comune-alto-piemonte": "Alto · 15–30 gg/uomo più diagnosi EGE, progettazione e atti"
+      },
+      "probability": "25–45% di incarico con diagnosi EGE, consumi triennali e cofinanziamento già disponibili",
+      "profileProbabilities": {
+        "piccolo-comune-alto-piemonte": "30–55% solo con immobile ammissibile, diagnosi EGE, consumi triennali e 30% di copertura"
+      },
+      "sourceName": "Bandi Regione Piemonte · edifici e impianti sportivi",
+      "sourceUrl": "https://bandi.regione.piemonte.it/contributi-finanziamenti/bando-efficienza-energetica-e-fonti-rinnovabili-negli-edifici-strutture-e",
+      "sourceType": "Fonte primaria",
+      "sourceDate": "Verificato l’8 agosto 2026",
+      "confidence": "Alta",
+      "targetProfileId": "studio-fauda",
+      "profileScores": {
+        "studio-fauda": 93,
+        "digital-library": 28,
+        "nova": 18,
+        "piccolo-comune-alto-piemonte": 91
+      },
+      "profileVerdicts": {
+        "studio-fauda": "AZIONE COMMERCIALE · shortlist enti e impianti",
+        "digital-library": "NO-GO",
+        "nova": "NO-GO",
+        "piccolo-comune-alto-piemonte": "GO CONDIZIONATO · diagnosi EGE + 30% copertura"
+      },
+      "profileAnalyses": {
+        "piccolo-comune-alto-piemonte": {
+          "eligibility": [
+            "Il Comune può essere beneficiario diretto per un edificio o impianto sportivo pubblico a uso pubblico e destinato ad attività non professionali.",
+            "È obbligatoria una diagnosi energetica di EGE certificato UNI CEI 11339:2023, fondata su almeno tre anni di consumi reali e conforme alla UNI CEI EN 16247.",
+            "Il contributo copre fino al 70%: il bilancio deve sostenere almeno il 30%, le spese non ammissibili e le anticipazioni di cassa."
+          ],
+          "advantages": [
+            "Riduzione strutturale dei costi energetici di un bene comunale, con beneficio misurabile anche dopo la fine del progetto.",
+            "La combinazione di efficienza e rinnovabili è coerente con impianti sportivi energivori e patrimoni pubblici datati."
+          ],
+          "weaknesses": [
+            "La persona non dimostra proprietà, uso, consumi, diagnosi, progetto, copertura finanziaria né capacità di affidamento.",
+            "Il 30% a carico dell’ente può essere insostenibile per un piccolo Comune anche quando l’investimento è tecnicamente conveniente."
+          ],
+          "redFlags": [
+            "NO-GO se mancano tre anni completi di consumi o una diagnosi EGE conforme già disponibile in tempi utili.",
+            "Verificare cumulo con altri incentivi e doppio finanziamento prima di approvare il piano economico.",
+            "Non usare risparmi energetici teorici per giustificare una cassa che il Comune non possiede."
+          ],
+          "nextSteps": [
+            "Selezionare un solo impianto con proprietà e destinazione d’uso incontestabili e recuperare bollette/consumi del triennio.",
+            "Far stimare a EGE e progettista risparmi, costi, tempi, manutenzione e copertura comunale.",
+            "Portare a RUP e ragioneria una decisione GO/NO-GO con cronoprogramma di affidamenti e rendicontazione."
+          ]
+        }
+      },
+      "eligibility": [
+        "Beneficiari sono Comuni, Province, Città Metropolitana, Unioni di Comuni e Unioni montane del Piemonte; Studio Fauda opera solo come fornitore di servizi tecnici.",
+        "Gli immobili devono essere pubblici, a uso pubblico e destinati ad attività sportive non professionali; il contributo può coprire fino al 70% delle spese ammissibili.",
+        "È obbligatoria una diagnosi energetica redatta da EGE certificato UNI CEI 11339:2023, basata sui consumi reali di almeno un triennio e conforme alla UNI CEI EN 16247."
+      ],
+      "advantages": [
+        "Aderenza molto alta alle competenze su edifici pubblici, energia, impianti, sicurezza e progettazione.",
+        "Il bando finanzia operazioni realizzate tramite appalti pubblici e riconosce esplicitamente la diagnosi energetica tra le spese tecniche ammissibili."
+      ],
+      "weaknesses": [
+        "Le domande sono istruite in ordine di presentazione e lo sportello può chiudere prima del 30 ottobre: un progetto immaturo ha scarso valore commerciale.",
+        "Il 30% non coperto e le spese non ammissibili possono bloccare enti interessati ma senza capacità finanziaria."
+      ],
+      "redFlags": [
+        "NO-GO commerciale per enti senza disponibilità dell’immobile, consumi completi di tre anni, EGE incaricato e copertura del cofinanziamento.",
+        "Verificare cumulo con Conto Termico e rischio di doppio finanziamento prima di formulare il piano economico."
+      ],
+      "nextSteps": [
+        "Selezionare impianti con consumi elevati, proprietà chiara e diagnosi EGE già disponibile o completabile rapidamente.",
+        "Preparare una checklist unica per consumi triennali, requisiti tecnici, cofinanziamento, cronoprogramma e affidamento dei servizi.",
+        "Limitare l’attività gratuita alla pre-qualifica; formalizzare l’incarico prima della progettazione di dettaglio."
+      ]
+    },
+    {
+      "id": "piemonte-accordi-programma-2026-2028",
+      "level": "Regionale",
+      "kind": "Contributo",
+      "status": "Aperto",
+      "participationMode": "Opportunità commerciale indiretta",
+      "profileParticipationModes": {
+        "piccolo-comune-alto-piemonte": "Candidatura diretta"
+      },
+      "title": "Accordi di Programma 2026–2028 per opere pubbliche di sviluppo locale",
+      "authority": "Regione Piemonte · Fondo Sviluppo e Coesione",
+      "territory": "Piemonte",
+      "theme": "Sviluppo territoriale",
+      "deadline": "21 settembre 2026 · ore 12:00",
+      "daysLeft": 44,
+      "value": "€ 5.971.887,56 di dotazione",
+      "risk": "Medio",
+      "effort": "Commerciale · 4–7 gg/uomo per proposta",
+      "profileEfforts": {
+        "piccolo-comune-alto-piemonte": "Alto · 12–24 gg/uomo se il progetto è già approvato; molto superiore se immaturo"
+      },
+      "probability": "15–30% di incarico con Comune/Unione, livello progettuale approvato e opera già programmata",
+      "profileProbabilities": {
+        "piccolo-comune-alto-piemonte": "15–30% con una sola opera matura, programmata, sostenibile e documentabile"
+      },
+      "sourceName": "Bandi Regione Piemonte · Accordi di Programma 2026–2028",
+      "sourceUrl": "https://bandi.regione.piemonte.it/contributi-finanziamenti/avviso-gli-anni-2026-2028-finanziamento-accordi-programma",
+      "sourceType": "Fonte primaria",
+      "sourceDate": "Verificato l’8 agosto 2026",
+      "confidence": "Alta",
+      "targetProfileId": "studio-fauda",
+      "profileScores": {
+        "studio-fauda": 88,
+        "digital-library": 46,
+        "nova": 30,
+        "piccolo-comune-alto-piemonte": 84
+      },
+      "profileVerdicts": {
+        "studio-fauda": "AZIONE COMMERCIALE · solo opere già mature",
+        "digital-library": "APPROFONDIRE solo su patrimonio culturale",
+        "nova": "NO-GO come beneficiario",
+        "piccolo-comune-alto-piemonte": "GO CONDIZIONATO · una sola opera già matura"
+      },
+      "profileAnalyses": {
+        "piccolo-comune-alto-piemonte": {
+          "eligibility": [
+            "Comuni e Unioni di Comuni del Piemonte possono presentare una proposta; la persona rientra nella categoria astratta, ma va sostituita con l’ente reale.",
+            "L’opera deve essere coerente con gli obiettivi dell’avviso e sostenibile sul piano tecnico, fisico e finanziario.",
+            "Il livello progettuale già approvato e la cantierabilità incidono sul punteggio: una semplice idea non è competitiva."
+          ],
+          "advantages": [
+            "Perimetro ampio, adatto a opere prioritarie su viabilità, edifici pubblici, sicurezza, rigenerazione e sviluppo locale.",
+            "Può trasformare un intervento già nel DUP o nel programma triennale in una proposta finanziabile senza inventare un nuovo progetto."
+          ],
+          "weaknesses": [
+            "Dotazione contenuta rispetto alla platea potenziale e una sola proposta per ente: scegliere male l’opera brucia l’opportunità.",
+            "La persona non dimostra progetto approvato, copertura, autorizzazioni, RUP o capacità esecutiva."
+          ],
+          "redFlags": [
+            "NO-GO per opere nate dopo l’avviso e prive di localizzazione, quadro economico, proprietà o livello progettuale.",
+            "Non scegliere l’opera più visibile politicamente se un altro intervento è più cantierabile e sostenibile.",
+            "Verificare che manutenzione e spese future non creino un costo strutturale incompatibile col bilancio."
+          ],
+          "nextSteps": [
+            "Confrontare tutte le opere nel DUP e nel programma triennale con criteri, premialità e documenti richiesti.",
+            "Far scegliere formalmente una sola proposta a organo politico, RUP e responsabile finanziario sulla base di evidenze comparabili.",
+            "Procedere solo se progetto, copertura, autorizzazioni e cronoprogramma sono già dimostrabili entro la scadenza."
+          ]
+        }
+      },
+      "eligibility": [
+        "Possono presentare proposte Comuni e Unioni di Comuni del Piemonte; Studio Fauda non presenta direttamente.",
+        "Ciascun ente può presentare una sola proposta; le opere devono essere coerenti con gli obiettivi FSC e sostenibili sotto il profilo tecnico, fisico e finanziario.",
+        "La documentazione del livello di progettazione già approvato attribuisce punteggio di cantierabilità; urgenze, messa a norma, efficientamento, recupero e ristrutturazione possono generare ulteriori premialità."
+      ],
+      "advantages": [
+        "Perimetro ampio, compatibile con edilizia pubblica, viabilità, rigenerazione, sicurezza territoriale e sviluppo locale.",
+        "Può valorizzare il rapporto dello studio con enti piccoli e medi quando esiste già un progetto approvato da trasformare in proposta competitiva."
+      ],
+      "weaknesses": [
+        "Dotazione complessiva contenuta rispetto al numero potenziale di proposte: selettività probabile.",
+        "La finestra di 44 giorni è insufficiente per trasformare un’idea priva di localizzazione, quadro economico, livello progettuale e decisione amministrativa in proposta competitiva."
+      ],
+      "redFlags": [
+        "Non inseguire proposte nate solo dopo la pubblicazione dell’avviso: la cantierabilità documentata pesa in valutazione.",
+        "Evitare incarichi a successo non compatibili con le regole professionali e con l’equilibrio economico dello studio."
+      ],
+      "nextSteps": [
+        "Interrogare il portafoglio clienti per opere già nel DUP o nel programma triennale.",
+        "Valutare ogni proposta con quattro gate: unicità della candidatura dell’ente, maturità amministrativa, copertura finanziaria e livello progettuale approvato.",
+        "Produrre la relazione tecnica, fisica e finanziaria solo per gli enti che superano i gate e possono documentare le premialità dichiarate."
+      ]
+    },
+    {
+      "id": "mit-elenco-e00023",
+      "level": "Regionale",
+      "kind": "Qualificazione",
+      "status": "Aperto",
+      "participationMode": "Qualificazione operativa",
+      "profileParticipationModes": {
+        "piccolo-comune-alto-piemonte": "Non applicabile"
+      },
+      "title": "Elenco per servizi di ingegneria, architettura e altri servizi tecnici",
+      "authority": "Provveditorato Interregionale OO.PP. Piemonte, Valle d’Aosta e Liguria",
+      "territory": "Piemonte · Valle d’Aosta · Liguria",
+      "theme": "Sviluppo territoriale",
+      "deadline": "Iscrizione aperta · nessuna chiusura pubblicata",
+      "daysLeft": null,
+      "value": "Nessun affidamento immediato · abilita a future selezioni",
+      "risk": "Basso",
+      "effort": "Basso · 2–4 gg/uomo",
+      "probability": "Non è una gara: aumenta l’accessibilità agli inviti, senza garantire incarichi",
+      "sourceName": "Portale Appalti MIT · elenco E00023",
+      "sourceUrl": "https://portaleappalti.mit.gov.it/PortaleAppalti/it/ppgare_oper_ec_bandi_avvisi.wp?actionPath=%2FExtStr2%2Fdo%2FFrontEnd%2FBandi%2FviewIscrizione.action&codice=E00023&currentFrame=7",
+      "sourceType": "Fonte primaria",
+      "sourceDate": "Verificato l’8 agosto 2026",
+      "confidence": "Alta",
+      "targetProfileId": "studio-fauda",
+      "profileScores": {
+        "studio-fauda": 87,
+        "digital-library": 20,
+        "nova": 10,
+        "piccolo-comune-alto-piemonte": 6
+      },
+      "profileVerdicts": {
+        "studio-fauda": "ISCRIVERSI · priorità operativa",
+        "digital-library": "NON APPLICABILE",
+        "nova": "NON APPLICABILE",
+        "piccolo-comune-alto-piemonte": "NON APPLICABILE · elenco per operatori economici"
+      },
+      "eligibility": [
+        "L’avviso E00023 è aperto dal 10 giugno 2026 per operatori di servizi di ingegneria, architettura e altri servizi tecnici.",
+        "L’iscrizione richiede registrazione al portale, selezione delle categorie e caricamento delle dichiarazioni e dei documenti previsti dall’avviso."
+      ],
+      "advantages": [
+        "Costo di accesso contenuto e coerenza territoriale molto alta.",
+        "Riduce il rischio di non essere intercettati per futuri affidamenti e indagini di mercato del Provveditorato."
+      ],
+      "weaknesses": [
+        "L’iscrizione non equivale a una gara né produce fatturato immediato.",
+        "Categorie o documenti caricati in modo generico possono rendere lo studio invisibile o non qualificato per gli inviti pertinenti."
+      ],
+      "redFlags": [
+        "Verificare se Studio Fauda è già iscritto prima di creare una duplicazione.",
+        "Pianificare rinnovi e aggiornamenti: un elenco non mantenuto diventa una falsa copertura commerciale."
+      ],
+      "nextSteps": [
+        "Controllare registrazione, stato dell’iscrizione e categorie già attive sul portale.",
+        "Allineare categorie, referenze, professionisti e documenti alla matrice commerciale dello studio.",
+        "Assegnare un responsabile e una verifica trimestrale dell’elenco."
+      ]
+    },
+    {
+      "id": "mepa-servizi-ingegneria-civile",
+      "level": "Nazionale",
+      "kind": "Qualificazione",
+      "status": "Aperto",
+      "participationMode": "Qualificazione operativa",
+      "profileParticipationModes": {
+        "piccolo-comune-alto-piemonte": "Non applicabile"
+      },
+      "title": "MePA: servizi professionali di progettazione e verifica di opere di ingegneria civile",
+      "authority": "Consip · Acquisti in Rete PA",
+      "territory": "Italia",
+      "theme": "Sviluppo territoriale",
+      "deadline": "Abilitazione aperta · verificare la categoria attiva",
+      "daysLeft": null,
+      "value": "Nessun affidamento immediato · accesso a RdO e negoziazioni",
+      "risk": "Basso",
+      "effort": "Basso · 2–5 gg/uomo",
+      "probability": "Non è una gara: abilita alla domanda pubblica, ma serve presidio commerciale",
+      "sourceName": "Acquisti in Rete PA · categoria ingegneria civile",
+      "sourceUrl": "https://www.acquistinretepa.it/opencms/opencms/programma_approfondimenti_ingegneria_civile.html",
+      "sourceType": "Fonte primaria",
+      "sourceDate": "Verificato l’8 agosto 2026",
+      "confidence": "Alta",
+      "targetProfileId": "studio-fauda",
+      "profileScores": {
+        "studio-fauda": 82,
+        "digital-library": 24,
+        "nova": 12,
+        "piccolo-comune-alto-piemonte": 6
+      },
+      "profileVerdicts": {
+        "studio-fauda": "VERIFICARE / AGGIORNARE ABILITAZIONE",
+        "digital-library": "NON APPLICABILE",
+        "nova": "NON APPLICABILE",
+        "piccolo-comune-alto-piemonte": "NON APPLICABILE · il Comune acquista, non si abilita come fornitore"
+      },
+      "eligibility": [
+        "L’operatore deve essere registrato su Acquisti in Rete e abilitato alla categoria coerente con i servizi professionali effettivamente offerti.",
+        "Dichiarazioni, requisiti e catalogazione devono essere aggiornati secondo la documentazione vigente del bando MePA Servizi."
+      ],
+      "advantages": [
+        "Canale nazionale ricorrente per affidamenti e richieste di offerta della PA.",
+        "L’abilitazione valorizza il profilo tecnico dello studio anche fuori dal perimetro provinciale abituale."
+      ],
+      "weaknesses": [
+        "Elevata concorrenza e molte negoziazioni basate sul prezzo.",
+        "Senza alert, parole chiave e presidio delle richieste, l’abilitazione resta passiva e genera poco valore."
+      ],
+      "redFlags": [
+        "Non confondere l’abilitazione con un flusso automatico di incarichi.",
+        "Definire soglie minime di margine e territori servibili prima di rispondere alle RdO."
+      ],
+      "nextSteps": [
+        "Verificare lo stato attuale dell’abilitazione e la corrispondenza delle categorie.",
+        "Aggiornare anagrafica, professionisti, servizi, documenti e aree territoriali.",
+        "Creare una routine settimanale per selezionare RdO coerenti ed escludere quelle a margine insufficiente."
+      ]
+    },
+    {
+      "id": "csp-spazi-partecipazione-2026",
+      "level": "Regionale",
+      "kind": "Avviso",
+      "status": "Aperto",
+      "participationMode": "Candidatura diretta",
+      "profileParticipationModes": {
+        "nova": "Candidatura diretta",
+        "studio-fauda": "Non applicabile",
+        "digital-library": "Non applicabile",
+        "piccolo-comune-alto-piemonte": "Non applicabile"
+      },
+      "title": "Nuovi spazi di partecipazione attiva: pre-assessment e successivo sostegno",
+      "authority": "Fondazione Compagnia di San Paolo · capitale filantropico privato",
+      "territory": "Piemonte · Liguria · Valle d’Aosta",
+      "theme": "Partecipazione civica e cittadinanza europea",
+      "deadline": "22 settembre 2026",
+      "daysLeft": 44,
+      "value": "Prima fase di assessment; eventuale richiesta di contributo solo dopo esito positivo",
+      "risk": "Alto",
+      "effort": "Medio-alto · pre-assessment, video, titolarità dello spazio e assetto gestionale",
+      "profileEfforts": {
+        "nova": "Medio-alto · sostenibile solo se esiste già uno spazio preciso e documentato"
+      },
+      "probability": "0% senza disponibilità di uno spazio; non stimabile prima del pre-assessment",
+      "profileProbabilities": {
+        "nova": "0% nello stato documentale attuale; da stimare solo con spazio, territorio e modello gestionale verificati"
+      },
+      "sourceName": "Fondazione Compagnia di San Paolo · Linee Guida per nuovi spazi di partecipazione attiva",
+      "sourceUrl": "https://www.compagniadisanpaolo.it/it/contributi/linee-guida-per-nuovi-spazi-di-partecipazione-attiva/",
+      "sourceType": "Fonte primaria",
+      "sourceDate": "Verificato il 9 agosto 2026",
+      "confidence": "Alta",
+      "targetProfileId": "nova",
+      "profileScores": {
+        "studio-fauda": 18,
+        "digital-library": 24,
+        "nova": 84,
+        "piccolo-comune-alto-piemonte": 20,
+        "proprietario-rurale-ginosa": 8
+      },
+      "profileVerdicts": {
+        "studio-fauda": "NON APPLICABILE",
+        "digital-library": "NON APPLICABILE",
+        "nova": "NO-GO OGGI · manca uno spazio con titolo di gestione",
+        "piccolo-comune-alto-piemonte": "NON AMMESSO · enti pubblici esclusi",
+        "proprietario-rurale-ginosa": "NO-GO"
+      },
+      "eligibility": [
+        "Il proponente deve essere un ente non a scopo di lucro, anche in partenariato, ammissibile ai contributi della Fondazione.",
+        "Deve già avere la titolarità o co-titolarità di gestione di uno spazio preciso in Piemonte, Liguria o Valle d’Aosta; gli enti pubblici sono esclusi.",
+        "La candidatura iniziale non è una domanda di contributo: consente l’accesso a un assessment, dopo il quale potrà aprirsi una successiva richiesta di sostegno."
+      ],
+      "advantages": [
+        "La finalità su cittadinanza attiva, comunità e partecipazione è molto coerente con NOVA.",
+        "Il percorso valuta anche governance, sostenibilità, stakeholder e attivazione della comunità: può rafforzare un progetto organizzativo ancora giovane."
+      ],
+      "weaknesses": [
+        "Il profilo NOVA non documenta alcuno spazio, titolo di gestione o progetto territoriale nel Nord-Ovest.",
+        "Newsletter e community digitale non sostituiscono il requisito fisico e gestionale dello spazio.",
+        "L’eventuale contributo è successivo e non garantito: la prima fase assorbe lavoro senza certezza di finanziamento."
+      ],
+      "redFlags": [
+        "NO-GO immediato se lo spazio è solo un’idea o se manca un titolo di gestione già dimostrabile.",
+        "Non presentare l’assessment come finanziamento già disponibile.",
+        "Non forzare NOVA verso uno spazio fisico se questo non è coerente con la sua strategia reale."
+      ],
+      "nextSteps": [
+        "Verificare se NOVA gestisce o co-gestisce davvero uno spazio nel territorio ammesso.",
+        "Solo in caso positivo, controllare statuto, modello economico non profit, governance e documenti richiesti per il pre-assessment.",
+        "In assenza dello spazio, archiviare l’avviso senza investire ulteriori ore e mantenere attivo il monitoraggio filantropico."
+      ]
+    },
+    {
+      "id": "fondazione-crt-ordinarie-2026",
+      "level": "Regionale",
+      "kind": "Contributo",
+      "status": "Aperto",
+      "participationMode": "Candidatura diretta",
+      "profileParticipationModes": {
+        "nova": "Candidatura diretta",
+        "studio-fauda": "Non applicabile",
+        "proprietario-rurale-ginosa": "Non applicabile"
+      },
+      "title": "Ordinarie 2026: progetti di welfare, istruzione, cultura e sviluppo locale",
+      "authority": "Fondazione CRT · capitale filantropico privato",
+      "territory": "Progetti da realizzare in Piemonte o Valle d’Aosta",
+      "theme": "Politiche pubbliche e innovazione sociale",
+      "deadline": "15 ottobre 2026 · ore 15:00",
+      "daysLeft": 67,
+      "value": "Contributo determinato dalla Fondazione · cofinanziamento obbligatorio, senza soglia minima fissa",
+      "risk": "Alto",
+      "effort": "Alto · progetto, quadro economico, preventivi, documenti ente e cofinanziamento",
+      "profileEfforts": {
+        "nova": "Alto · 12–20 gg/uomo dopo il superamento dei gate giuridici e territoriali"
+      },
+      "probability": "0% se l’ente è nato dopo il 31 dicembre 2024 o assimilabile a soggetto politico",
+      "profileProbabilities": {
+        "nova": "0% finché data di costituzione, indipendenza politica, statuto e progetto territoriale non sono verificati"
+      },
+      "sourceName": "Fondazione CRT · Bando Ordinarie 2026 e Regolamento generale",
+      "sourceUrl": "https://www.fondazionecrt.it/wp-content/uploads/2026/01/bando-ordinarie-2026-def.pdf",
+      "sourceType": "Fonte primaria",
+      "sourceDate": "Allegati verificati il 9 agosto 2026",
+      "confidence": "Alta",
+      "targetProfileId": "nova",
+      "profileScores": {
+        "studio-fauda": 20,
+        "digital-library": 36,
+        "nova": 82,
+        "piccolo-comune-alto-piemonte": 58,
+        "proprietario-rurale-ginosa": 12
+      },
+      "profileVerdicts": {
+        "studio-fauda": "NON APPLICABILE COME IMPRESA",
+        "digital-library": "APPROFONDIRE SOLO SU PROGETTO TERRITORIALE",
+        "nova": "NO-GO FINCHÉ NON SUPERATI I GATE GIURIDICI",
+        "piccolo-comune-alto-piemonte": "APPROFONDIRE · una proposta locale coerente",
+        "proprietario-rurale-ginosa": "NO-GO"
+      },
+      "eligibility": [
+        "Il progetto deve realizzarsi in Piemonte o Valle d’Aosta, anche se il proponente ha sede altrove, e avere rilevanza almeno locale.",
+        "Sono esclusi i soggetti privati costituiti dopo il 31 dicembre 2024, gli enti con fini di lucro, i partiti e movimenti politici e le loro articolazioni.",
+        "Lo statuto deve rendere esplicite assenza di lucro e non distribuzione degli avanzi; una richiesta priva di cofinanziamento è inammissibile.",
+        "Servono relazione sull’attività 2025–2026, progetto, quadro economico dettagliato e preventivi di terzi."
+      ],
+      "advantages": [
+        "Le aree istruzione, sviluppo locale, cultura e volontariato possono ospitare un progetto civico ben circoscritto.",
+        "La seconda finestra lascia tempo per costruire un progetto locale con partner e budget verificabili."
+      ],
+      "weaknesses": [
+        "NOVA appare un’iniziativa recente: se l’associazione è stata formalmente costituita dopo il 31 dicembre 2024, la candidatura è esclusa.",
+        "Sede nazionale o community online non bastano: serve un progetto concreto nel territorio ammesso.",
+        "Bilanci, attività 2025, cofinanziamento, preventivi e capacità di rendicontazione non sono documentati nel profilo."
+      ],
+      "redFlags": [
+        "Verificare con particolare severità l’indipendenza formale da partiti e movimenti politici e l’assenza di condizionamenti statutari incompatibili.",
+        "Non spendere tempo sulla proposta finché data di costituzione e statuto non superano il controllo di ammissibilità.",
+        "Non confondere affinità con i temi civici e ammissibilità della forma organizzativa."
+      ],
+      "nextSteps": [
+        "Controllare atto costitutivo, statuto, data di registrazione e autonomia da soggetti politici.",
+        "Definire un progetto specifico in Piemonte o Valle d’Aosta, con destinatari, partner, risultati e cofinanziamento reale.",
+        "Solo dopo esito positivo dei gate, preparare quadro economico, preventivi e relazione sulle attività pregresse."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "eu-funding-tenders",
+      "scope": "Base comune",
+      "packIds": [],
+      "level": "UE",
+      "name": "Funding & Tenders Portal",
+      "covers": "Grant, call, premi e procurement gestiti dalle istituzioni UE",
+      "method": "Ricerca strutturata + lettura topic e allegati",
+      "status": "Fonte comune",
+      "type": "Istituzionale",
+      "capital": "Pubblico UE",
+      "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/home"
+    },
+    {
+      "id": "ted",
+      "scope": "Base comune",
+      "packIds": [],
+      "level": "UE",
+      "name": "TED",
+      "covers": "Appalti pubblici europei",
+      "method": "Search API ufficiale + avviso",
+      "status": "API disponibile",
+      "type": "Istituzionale",
+      "capital": "Procurement",
+      "url": "https://ted.europa.eu/"
+    },
+    {
+      "id": "incentivi",
+      "scope": "Base comune",
+      "packIds": [],
+      "level": "Italia",
+      "name": "Incentivi.gov.it",
+      "covers": "Catalogo degli incentivi delle amministrazioni italiane",
+      "method": "Catalogo + rinvio all’ente titolare",
+      "status": "Fonte comune",
+      "type": "Istituzionale",
+      "capital": "Pubblico nazionale",
+      "gate": "Il catalogo orienta; requisiti e scadenze si confermano sulla fonte dell’amministrazione titolare.",
+      "url": "https://www.incentivi.gov.it/it/catalogo"
+    },
+    {
+      "id": "anac-bdncp",
+      "scope": "Base comune",
+      "packIds": [],
+      "level": "Italia",
+      "name": "ANAC · BDNCP",
+      "covers": "Contratti pubblici nazionali",
+      "method": "Open data + pubblicità legale",
+      "status": "Fonte prioritaria",
+      "type": "Istituzionale",
+      "capital": "Procurement",
+      "url": "https://pubblicitalegale.anticorruzione.it/bandi"
+    },
+    {
+      "id": "gazzetta",
+      "scope": "Base comune",
+      "packIds": [],
+      "level": "Italia",
+      "name": "Gazzetta Ufficiale",
+      "covers": "Provvedimenti, avvisi e contratti",
+      "method": "Indice + testo ufficiale",
+      "status": "Fonte comune",
+      "type": "Istituzionale",
+      "capital": "Pubblico nazionale",
+      "url": "https://www.gazzettaufficiale.it/30giorni/contratti"
+    },
+    {
+      "id": "official-news",
+      "scope": "Base comune",
+      "packIds": [],
+      "level": "News",
+      "name": "News istituzionali e programmazione",
+      "covers": "Anticipazioni su opportunità future",
+      "method": "Alert separato + conferma successiva sulla fonte primaria",
+      "status": "Solo segnali",
+      "type": "Secondaria",
+      "capital": "Da classificare",
+      "gate": "Una notizia genera “In arrivo”, mai un falso bando aperto.",
+      "url": "https://commission.europa.eu/news-and-media/news_en"
+    },
+    {
+      "id": "mit-appalti",
+      "scope": "Specialistica",
+      "packIds": [
+        "engineering-procurement"
+      ],
+      "level": "Italia",
+      "name": "Portale Appalti MIT",
+      "covers": "Gare ed elenchi per servizi tecnici",
+      "method": "Avvisi, disciplinari e allegati",
+      "status": "Prioritaria per Studio Fauda",
+      "type": "Istituzionale",
+      "capital": "Procurement",
+      "url": "https://portaleappalti.mit.gov.it/PortaleAppalti/"
+    },
+    {
+      "id": "acquisti-rete",
+      "scope": "Specialistica",
+      "packIds": [
+        "engineering-procurement"
+      ],
+      "level": "Italia",
+      "name": "Acquisti in Rete PA",
+      "covers": "MePA, RdO e abilitazioni",
+      "method": "Categorie + presidio operativo",
+      "status": "Qualificazione",
+      "type": "Istituzionale",
+      "capital": "Procurement",
+      "url": "https://www.acquistinretepa.it/"
+    },
+    {
+      "id": "piemonte-bandi",
+      "scope": "Specialistica",
+      "packIds": [
+        "engineering-procurement",
+        "public-territorial"
+      ],
+      "level": "Piemonte",
+      "name": "Regione Piemonte · Bandi",
+      "covers": "Contributi, gare, delibere e programmazione",
+      "method": "Avviso + allegati + atti",
+      "status": "Prioritaria",
+      "type": "Istituzionale",
+      "capital": "Pubblico regionale",
+      "url": "https://bandi.regione.piemonte.it/"
+    },
+    {
+      "id": "province-alto-piemonte",
+      "scope": "Specialistica",
+      "packIds": [
+        "engineering-procurement",
+        "public-territorial"
+      ],
+      "level": "Locale",
+      "name": "Province BI · VC · NO",
+      "covers": "SUA, gare e trasparenza",
+      "method": "Portali territoriali dedicati",
+      "status": "Routing territoriale",
+      "type": "Istituzionale",
+      "capital": "Pubblico locale",
+      "url": "https://www.provincia.vercelli.it/it/page/appalti-e-contratti-18d4997a-833f-4cde-a22b-23a0b78dfd7e"
+    },
+    {
+      "id": "mic-pnrr",
+      "scope": "Specialistica",
+      "packIds": [
+        "culture-digital"
+      ],
+      "level": "Italia",
+      "name": "MiC · PNRR Cultura",
+      "covers": "Patrimonio, digitalizzazione e programmi culturali",
+      "method": "Avvisi, decreti e atti attuativi",
+      "status": "Prioritaria",
+      "type": "Istituzionale",
+      "capital": "Pubblico nazionale",
+      "url": "https://pnrr.cultura.gov.it/"
+    },
+    {
+      "id": "digital-europe",
+      "scope": "Specialistica",
+      "packIds": [
+        "culture-digital"
+      ],
+      "level": "UE",
+      "name": "Digital Europe",
+      "covers": "Capacità digitali, dati e deployment",
+      "method": "Programma + topic su Funding & Tenders",
+      "status": "Programma specialistico",
+      "type": "Istituzionale",
+      "capital": "Pubblico UE",
+      "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/programmes/digital"
+    },
+    {
+      "id": "horizon-europe",
+      "scope": "Specialistica",
+      "packIds": [
+        "culture-digital"
+      ],
+      "level": "UE",
+      "name": "Horizon Europe",
+      "covers": "Ricerca e innovazione collaborativa",
+      "method": "Work programme + topic + consorzio",
+      "status": "Programma specialistico",
+      "type": "Istituzionale",
+      "capital": "Pubblico UE",
+      "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/programmes/horizon"
+    },
+    {
+      "id": "csr-puglia",
+      "scope": "Specialistica",
+      "packIds": [
+        "agri-rural"
+      ],
+      "level": "Puglia",
+      "name": "CSR Puglia 2023–2027",
+      "covers": "PAC, investimenti agricoli e sviluppo rurale",
+      "method": "Bandi, BURP e allegati",
+      "status": "Prioritaria",
+      "type": "Istituzionale",
+      "capital": "Pubblico agricolo",
+      "url": "https://csr.regione.puglia.it/bandi"
+    },
+    {
+      "id": "puglia-cultura",
+      "scope": "Specialistica",
+      "packIds": [
+        "agri-rural"
+      ],
+      "level": "Puglia",
+      "name": "Regione Puglia · Turismo e Cultura",
+      "covers": "Patrimonio e architettura rurale privata",
+      "method": "Avvisi e atti ufficiali",
+      "status": "Prioritaria",
+      "type": "Istituzionale",
+      "capital": "Pubblico regionale",
+      "url": "https://www.regione.puglia.it/web/turismo-e-cultura"
+    },
+    {
+      "id": "sabap-taranto",
+      "scope": "Specialistica",
+      "packIds": [
+        "agri-rural"
+      ],
+      "level": "Taranto",
+      "name": "SABAP Brindisi, Lecce e Taranto",
+      "covers": "Autorizzazioni e contributi per beni culturali privati",
+      "method": "Procedimento + verifica del vincolo",
+      "status": "Fonte primaria",
+      "type": "Istituzionale",
+      "capital": "Pubblico nazionale",
+      "url": "https://sabap-le.cultura.gov.it/servizi-al-cittadino/servizi-generali/contributi/"
+    },
+    {
+      "id": "runts",
+      "scope": "Specialistica",
+      "packIds": [
+        "civic-nonprofit"
+      ],
+      "level": "Italia",
+      "name": "RUNTS",
+      "covers": "Qualifica e dati degli enti del Terzo settore",
+      "method": "Verifica anagrafica e sezione di iscrizione",
+      "status": "Gate giuridico",
+      "type": "Istituzionale",
+      "capital": "Abilitante",
+      "url": "https://servizi.lavoro.gov.it/runts/it-it/Ricerca-enti"
+    },
+    {
+      "id": "eu-ngo",
+      "scope": "Specialistica",
+      "packIds": [
+        "civic-nonprofit"
+      ],
+      "level": "UE",
+      "name": "Commissione europea · funding per ONG",
+      "covers": "Programmi accessibili a ONG e società civile",
+      "method": "Routing verso programmi e topic ufficiali",
+      "status": "Mappata",
+      "type": "Istituzionale",
+      "capital": "Pubblico UE",
+      "url": "https://commission.europa.eu/funding-and-tenders/how-apply/eligibility-who-can-get-funding/funding-opportunities-ngos_en"
+    },
+    {
+      "id": "five-per-thousand",
+      "scope": "Specialistica",
+      "packIds": [
+        "civic-nonprofit",
+        "private-philanthropy"
+      ],
+      "level": "Italia",
+      "name": "Agenzia Entrate · 5 per mille",
+      "covers": "Raccolta ricorrente per enti ammessi",
+      "method": "Accreditamento + campagna",
+      "status": "Canale continuativo",
+      "type": "Istituzionale",
+      "capital": "Fiscal giving",
+      "gate": "Dal 2026 la posizione RUNTS è decisiva per gli ETS interessati.",
+      "url": "https://www.agenziaentrate.gov.it/portale/area-tematica-5x1000"
+    },
+    {
+      "id": "acri",
+      "scope": "Specialistica",
+      "packIds": [
+        "private-philanthropy"
+      ],
+      "level": "Italia",
+      "name": "ACRI · mappa delle Fondazioni",
+      "covers": "84 fondazioni di origine bancaria e relativi territori",
+      "method": "Indice di routing; verifica finale sul sito della singola fondazione",
+      "status": "Mappa nazionale",
+      "type": "Filantropica",
+      "capital": "Privato filantropico",
+      "gate": "ACRI non sostituisce il bando: ogni fondazione decide territorio, temi e modalità.",
+      "url": "https://www.acri.it/fondazioni/"
+    },
+    {
+      "id": "cariplo",
+      "scope": "Specialistica",
+      "packIds": [
+        "private-philanthropy"
+      ],
+      "level": "Lombardia",
+      "name": "Fondazione Cariplo · Bandi",
+      "covers": "Cultura, ambiente, sociale, ricerca e capacity building",
+      "method": "Bandi + criteri di ammissibilità + rendicontazione",
+      "status": "Monitoraggio profilato",
+      "type": "Filantropica",
+      "capital": "Privato filantropico",
+      "url": "https://www.fondazionecariplo.it/contributi/bandi/"
+    },
+    {
+      "id": "csp",
+      "scope": "Specialistica",
+      "packIds": [
+        "private-philanthropy"
+      ],
+      "level": "Nord-Ovest",
+      "name": "Fondazione Compagnia di San Paolo",
+      "covers": "Cultura, persone, pianeta e partecipazione",
+      "method": "Bandi, linee guida, scadenze e ROL",
+      "status": "Monitoraggio profilato",
+      "type": "Filantropica",
+      "capital": "Privato filantropico",
+      "url": "https://www.compagniadisanpaolo.it/it/cosa-facciamo/contributi/"
+    },
+    {
+      "id": "crt",
+      "scope": "Specialistica",
+      "packIds": [
+        "private-philanthropy"
+      ],
+      "level": "Piemonte · VdA",
+      "name": "Fondazione CRT · Progetti e bandi",
+      "covers": "Welfare, istruzione, cultura, sviluppo locale e matching",
+      "method": "Bando + regolamento + territorio del progetto",
+      "status": "Monitoraggio profilato",
+      "type": "Filantropica",
+      "capital": "Privato filantropico",
+      "url": "https://www.fondazionecrt.it/progetti-e-bandi/"
+    },
+    {
+      "id": "con-il-sud",
+      "scope": "Specialistica",
+      "packIds": [
+        "private-philanthropy",
+        "civic-nonprofit"
+      ],
+      "level": "Sud Italia",
+      "name": "Fondazione Con il Sud",
+      "covers": "Terzo settore, volontariato, beni comuni e coesione",
+      "method": "Bandi, iniziative a richiesta e partnership",
+      "status": "Routing territoriale",
+      "type": "Filantropica",
+      "capital": "Privato filantropico",
+      "url": "https://www.fondazioneconilsud.it/bandi/"
+    },
+    {
+      "id": "fondazione-tim",
+      "scope": "Specialistica",
+      "packIds": [
+        "private-philanthropy"
+      ],
+      "level": "Italia",
+      "name": "Fondazione TIM",
+      "covers": "Salute, inclusione, ricerca, cultura e istruzione",
+      "method": "Bandi e open call corporate",
+      "status": "Monitoraggio ricorrente",
+      "type": "Corporate",
+      "capital": "Corporate giving",
+      "url": "https://www.fondazionetim.it/bandi"
+    }
+  ]
+};
+
+const CSS = `@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;900&display=swap');
+
+.cb-app {
+  --ink: #0F0F12;
+  --ink-soft: #2A2A30;
+  --paper: #FFFFFF;
+  --panel: #F1F1F4;
+  --line: #DFDFE4;
+  --muted: #6B6B73;
+  --blue: #3D5CFF;
+  --green: #00A971;
+  --yellow: #F4EC6F;
+  --red: #E01B4F;
+  --lime: #D4FF3D;
+  --magenta: #FF3DAE;
+  font-family: 'Archivo', system-ui, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  display: flex;
+  min-height: 640px;
+  height: 100%;
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.cb-app * { box-sizing: border-box; }
+
+.cb-rail {
+  width: 200px;
+  flex-shrink: 0;
+  background: var(--ink);
+  color: #EDEBE2;
+  display: flex;
+  flex-direction: column;
+  padding: 22px 16px;
+}
+.cb-brand { display: flex; gap: 10px; align-items: center; margin-bottom: 28px; }
+.cb-brand-text { display: flex; flex-direction: column; line-height: 1.3; }
+.cb-brand-text strong { font-family: 'Archivo', sans-serif; font-weight: 900; font-size: 17px; letter-spacing: -0.01em; color: #fff; }
+.cb-brand-text small { font-size: 10.5px; color: #9A9789; }
+
+.cb-nav { display: flex; flex-direction: column; gap: 2px; }
+.cb-navbtn {
+  text-align: left;
+  background: none; border: none; color: #C7C4B6;
+  font-family: inherit; font-size: 13.5px; font-weight: 500;
+  padding: 9px 10px; border-radius: 6px; cursor: pointer;
+}
+.cb-navbtn:hover { background: #232320; color: #fff; }
+.cb-navbtn.active { background: var(--lime); color: var(--ink); font-weight: 700; }
+
+.cb-rail-foot { margin-top: auto; font-size: 10.5px; color: #7A7768; line-height: 1.5; }
+
+.cb-main { flex: 1; display: flex; flex-direction: column; min-width: 0; overflow: hidden; }
+
+.cb-topbar { border-bottom: 1px solid var(--line); padding: 14px 22px; background: var(--paper); }
+.cb-profiles-row { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; }
+.cb-profchip {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--panel); border: 1px solid var(--line);
+  border-radius: 999px; padding: 5px 12px 5px 5px; cursor: pointer;
+  font-family: inherit; font-size: 12.5px; color: var(--ink-soft); white-space: nowrap;
+}
+.cb-profchip.active { background: var(--ink); border-color: var(--ink); color: #fff; }
+.cb-profchip-avatar {
+  font-family: 'Archivo', sans-serif; font-weight: 700; font-weight: 600; font-size: 10.5px;
+  background: #fff; color: var(--ink);
+  width: 22px; height: 22px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.cb-profchip.active .cb-profchip-avatar { background: var(--lime); color: var(--ink); }
+.cb-profchip-avatar.big { width: 40px; height: 40px; font-size: 13px; background: var(--ink); color: var(--lime); flex-shrink: 0; }
+
+.cb-view { flex: 1; overflow-y: auto; padding: 20px 22px 40px; }
+
+.cb-toolbar { display: flex; gap: 12px; align-items: flex-end; flex-wrap: wrap; margin-bottom: 10px; }
+.cb-field { display: flex; flex-direction: column; gap: 4px; }
+.cb-field-grow { flex: 1; min-width: 240px; }
+.cb-field label { font-size: 10.5px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.03em; }
+.cb-search {
+  display: flex; align-items: center; gap: 8px;
+  background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; color: var(--muted);
+}
+.cb-search input { border: none; outline: none; font-family: inherit; font-size: 13px; flex: 1; color: var(--ink); background: transparent; }
+.cb-field select {
+  border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; font-family: inherit; font-size: 12.5px; background: #fff; color: var(--ink-soft);
+}
+.cb-search-btn { height: 37px; align-self: flex-end; }
+.cb-checkbox { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); white-space: nowrap; align-self: center; margin-bottom: 2px; }
+
+.cb-source-eval { margin-top: 12px; background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+.cb-source-eval h4 { display: flex; align-items: center; gap: 6px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.03em; margin: 0 0 8px; color: var(--ink-soft); }
+.cb-source-eval dl { margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 14px; }
+.cb-source-eval dl > div { display: flex; flex-direction: column; gap: 2px; }
+.cb-source-eval dt { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.02em; }
+.cb-source-eval dd { font-size: 12.5px; color: var(--ink); margin: 0; }
+
+.cb-profile-edit-btn { margin-left: auto; background: none; border: 1px solid var(--line); border-radius: 7px; padding: 6px 10px; font-family: inherit; font-size: 11.5px; font-weight: 600; color: var(--ink-soft); cursor: pointer; }
+.cb-profile-edit-btn:hover { border-color: var(--ink); }
+.cb-profile-edited-tag { font-size: 10px; color: var(--muted); font-style: italic; margin: -6px 0 10px; }
+.cb-edit-form { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+.cb-edit-form label { display: flex; flex-direction: column; gap: 3px; font-size: 10.5px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.02em; }
+.cb-edit-form input, .cb-edit-form textarea {
+  font-family: inherit; font-size: 12.5px; font-weight: 400; text-transform: none; letter-spacing: normal; color: var(--ink);
+  border: 1px solid var(--line); border-radius: 7px; padding: 7px 9px;
+}
+.cb-edit-form textarea { min-height: 54px; resize: vertical; }
+.cb-edit-form-actions { display: flex; gap: 8px; }
+
+.cb-context-line { font-size: 12px; color: var(--muted); margin: 4px 0 16px; }
+.cb-context-line strong { color: var(--ink); }
+
+.cb-opp-list { display: flex; flex-direction: column; gap: 10px; }
+.cb-opp-card {
+  display: flex; gap: 16px; text-align: left;
+  background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px;
+  cursor: pointer; font-family: inherit;
+}
+.cb-opp-card:hover { border-color: var(--ink); }
+.cb-opp-card.dismissed { opacity: 0.55; }
+.cb-opp-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.cb-opp-tags { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.cb-opp-status { font-size: 11px; color: var(--muted); font-weight: 500; }
+.cb-dismissed-tag { display: inline-flex; align-items: center; gap: 4px; font-size: 10.5px; color: var(--muted); }
+.cb-opp-card h3 { font-family: 'Archivo', sans-serif; font-size: 16.5px; font-weight: 700; margin: 0; line-height: 1.25; color: var(--ink); letter-spacing: -0.01em; }
+.cb-opp-meta { font-size: 12px; color: var(--muted); margin: 0; }
+
+.cb-gauge {
+  flex-shrink: 0; width: 68px; height: 68px; border-radius: 50%;
+  border: 3px solid var(--line);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  font-family: 'Archivo', sans-serif; font-weight: 700;
+}
+.cb-gauge-num { font-size: 19px; font-weight: 600; line-height: 1; }
+.cb-gauge-unit { font-size: 8px; color: var(--muted); margin-top: 2px; text-transform: lowercase; }
+.cb-gauge-empty .cb-gauge-num { color: var(--muted); }
+
+.cb-pill { display: inline-flex; align-items: center; border-radius: 999px; font-weight: 600; white-space: nowrap; }
+.cb-pill-sm { font-size: 10.5px; padding: 3px 9px; }
+.cb-pill-md { font-size: 12px; padding: 5px 11px; }
+
+.cb-empty { padding: 40px; text-align: center; color: var(--muted); font-size: 13px; }
+
+.cb-profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.cb-profile-card { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 18px; }
+.cb-profile-head { display: flex; gap: 12px; align-items: center; margin-bottom: 10px; }
+.cb-profile-head h3 { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 16px; margin: 0 0 2px; letter-spacing: -0.01em; }
+.cb-profile-head p { font-size: 12px; color: var(--muted); margin: 0; }
+.cb-profile-hq { font-size: 11.5px; color: var(--muted); margin: 0 0 10px; font-family: 'Archivo', sans-serif; font-weight: 700; }
+.cb-chip-wrap { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.cb-chip { font-size: 10.5px; background: var(--panel); border: 1px solid var(--line); padding: 3px 9px; border-radius: 999px; color: var(--ink-soft); }
+.cb-evidence { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.cb-evidence h4 { display: flex; align-items: center; gap: 5px; font-size: 11px; margin: 0 0 6px; color: #00693F; text-transform: uppercase; letter-spacing: 0.03em; }
+.cb-evidence h4.warn { color: #8a6d00; }
+.cb-evidence ul { margin: 0; padding-left: 16px; font-size: 11.5px; color: var(--ink-soft); line-height: 1.5; }
+.cb-profile-note { font-size: 11.5px; color: var(--muted); font-style: italic; border-top: 1px solid var(--line); padding-top: 10px; margin: 0; }
+
+.cb-source-list { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: #fff; }
+.cb-source-row { display: grid; grid-template-columns: 2.2fr 0.9fr 1.4fr 1.6fr 0.4fr; gap: 10px; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--line); font-size: 12.5px; }
+.cb-source-row > span { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+.cb-source-row:last-child { border-bottom: none; }
+.cb-source-head { background: var(--panel); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.03em; color: var(--muted); }
+.cb-source-name { display: flex; flex-direction: column; gap: 2px; font-weight: 600; }
+.cb-source-name small { font-weight: 400; color: var(--muted); font-size: 11px; }
+.cb-source-method { color: var(--muted); }
+.cb-source-link { color: var(--ink); display: flex; }
+
+.cb-research-sources { margin-top: 16px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px; }
+.cb-research-sources h4 { margin: 0 0 4px; font-size: 13px; font-weight: 700; }
+.cb-research-sources p { margin: 0 0 10px; font-size: 11.5px; }
+.cb-research-sources ul { margin: 0; padding-left: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; }
+.cb-research-sources li { font-size: 12px; }
+.cb-research-sources a { color: var(--blue); }
+
+.cb-overlay {
+  position: absolute; inset: 0; background: rgba(20,20,16,0.45);
+  display: flex; justify-content: flex-end; z-index: 20;
+}
+.cb-drawer {
+  width: min(480px, 92%); background: var(--paper); height: 100%; overflow-y: auto;
+  padding: 24px; position: relative; box-shadow: -8px 0 24px rgba(0,0,0,0.12);
+}
+.cb-drawer-close { position: absolute; top: 18px; right: 18px; background: none; border: none; cursor: pointer; color: var(--muted); }
+.cb-drawer-head h2 { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 21px; margin: 10px 0 4px; line-height: 1.25; padding-right: 24px; letter-spacing: -0.01em; }
+.cb-drawer-score { display: flex; align-items: center; gap: 14px; margin-top: 14px; padding: 12px; background: #fff; border: 1px solid var(--line); border-radius: 10px; }
+.cb-muted { color: var(--muted); font-size: 12px; margin: 6px 0 0; }
+.cb-drawer-noanalysis { margin-top: 16px; }
+
+.cb-drawer-body { margin-top: 20px; display: flex; flex-direction: column; gap: 16px; }
+.cb-section h4 { display: flex; align-items: center; gap: 6px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.03em; margin: 0 0 8px; color: var(--ink-soft); }
+.cb-section h4.pos { color: #00693F; }
+.cb-section h4.warn { color: #8a6d00; }
+.cb-section h4.neg { color: #E01B4F; }
+.cb-section ul { margin: 0; padding-left: 18px; font-size: 13px; line-height: 1.55; color: var(--ink-soft); }
+.cb-section li { margin-bottom: 5px; }
+
+.cb-drawer-foot { margin-top: 24px; border-top: 1px solid var(--line); padding-top: 16px; display: flex; flex-direction: column; gap: 10px; }
+.cb-btn-outline, .cb-btn-dark, .cb-btn-ghost {
+  font-family: inherit; font-size: 12.5px; font-weight: 600; border-radius: 8px; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 6px; padding: 9px 14px; width: fit-content; text-decoration: none;
+}
+.cb-btn-outline { background: #fff; border: 1px solid var(--ink); color: var(--ink); }
+.cb-btn-dark { background: var(--ink); border: 1px solid var(--ink); color: var(--lime); }
+.cb-btn-ghost { background: none; border: none; color: var(--muted); }
+.cb-dismiss-box { display: flex; flex-direction: column; gap: 8px; }
+.cb-dismiss-box textarea {
+  font-family: inherit; font-size: 12.5px; border: 1px solid var(--line); border-radius: 8px; padding: 10px; resize: vertical; min-height: 60px;
+}
+.cb-dismiss-box > div { display: flex; gap: 8px; }
+.cb-dismiss-note { display: flex; flex-direction: column; gap: 8px; font-size: 12px; color: var(--muted); background: var(--panel); border-radius: 8px; padding: 10px 12px; }
+
+@media (max-width: 720px) {
+  .cb-app { flex-direction: column; }
+  .cb-rail { width: 100%; flex-direction: row; align-items: center; padding: 12px 14px; }
+  .cb-rail-foot { display: none; }
+  .cb-nav { flex-direction: row; margin-left: auto; }
+  .cb-profile-grid { grid-template-columns: 1fr; }
+  .cb-source-row { grid-template-columns: 1.6fr 0.8fr 1fr; }
+  .cb-source-row span:nth-child(4) { display: none; }
+  .cb-drawer { width: 100%; }
+}
+`;
+
+// Palette B — contrasto fluo. Ogni combinazione bg/fg è scelta per un contrasto
+// leggibile: sfondi chiari e vivaci con testo scuro, sfondi scuri con testo lime/bianco.
+const TONE_STYLES = {
+  positive:    { bg: "#00F5A0", fg: "#003D28", label: "GO" },
+  conditional: { bg: "#F4EC6F", fg: "#4A3D00", label: "GO condizionato" },
+  investigate: { bg: "#DCE2FF", fg: "#1F2A66", label: "Da approfondire" },
+  indirect:    { bg: "#3D5CFF", fg: "#FFFFFF", label: "Indiretta" },
+  negative:    { bg: "#E01B4F", fg: "#FFFFFF", label: "NO-GO" },
+  neutral:     { bg: "#EDEDF1", fg: "#46464D", label: "Non applicabile" },
+  closed:      { bg: "#0F0F12", fg: "#D4FF3D", label: "Chiuso" },
+};
+
+function classifyVerdict(v) {
+  if (!v) return "neutral";
+  const u = v.toUpperCase();
+  if (u.includes("NON APPLICABILE") || u.includes("NON AMMESSO")) return "neutral";
+  if (u.includes("CHIUSO")) return "closed";
+  if (u.includes("NO-GO")) return "negative";
+  if (u.includes("GO CONDIZIONATO") || u.includes("GO SOLO")) return "conditional";
+  if (u.includes("APPROFONDIRE") || u.includes("VERIFICARE")) return "investigate";
+  if (u.includes("OPPORTUNITÀ INDIRETTA") || u.includes("AZIONE COMMERCIALE")) return "indirect";
+  if (u.includes("ISCRIVERSI") || u.startsWith("GO")) return "positive";
+  return "neutral";
+}
+
+// Restituisce un'etichetta sempre esplicita sul significato del dato:
+// per i bandi aperti indica i giorni alla scadenza della sottomissione;
+// per i bandi "in arrivo" indica la stima dei giorni alla pubblicazione.
+function urgencyOf(status, daysLeft, daysToPublication) {
+  if (status === "Aperto") {
+    if (daysLeft === null || daysLeft === undefined) return { label: "Scadenza non indicata", tone: "neutral" };
+    if (daysLeft < 0) return { label: "Termine superato", tone: "closed" };
+    if (daysLeft === 0) return { label: "Scade oggi", tone: "negative" };
+    const tone = daysLeft <= 15 ? "negative" : daysLeft <= 30 ? "conditional" : "neutral";
+    return { label: "Scade tra " + daysLeft + " giorni", tone };
+  }
+  if (status === "In arrivo") {
+    if (daysToPublication === null || daysToPublication === undefined) {
+      return { label: "Pubblicazione non ancora nota", tone: "neutral" };
+    }
+    return { label: "Pubblicazione stimata tra " + daysToPublication + " giorni", tone: "investigate" };
+  }
+  return null;
+}
+
+function Pill({ children, tone = "neutral", size = "sm" }) {
+  const t = TONE_STYLES[tone] || TONE_STYLES.neutral;
+  return (
+    <span
+      className={"cb-pill cb-pill-" + size}
+      style={{ background: t.bg, color: t.fg }}
+    >
+      {children}
+    </span>
+  );
+}
+
+function ScoreGauge({ score }) {
+  if (score === null || score === undefined) {
+    return (
+      <div className="cb-gauge cb-gauge-empty">
+        <span className="cb-gauge-num">—</span>
+        <span className="cb-gauge-unit">n/d</span>
+      </div>
+    );
+  }
+  const tone = score >= 60 ? "positive" : score >= 30 ? "conditional" : "negative";
+  const t = TONE_STYLES[tone];
+  return (
+    <div className="cb-gauge" style={{ borderColor: t.bg }}>
+      <span className="cb-gauge-num" style={{ color: tone === "conditional" ? "#8a6d00" : tone === "positive" ? "#00693F" : t.bg }}>
+        {score}
+      </span>
+      <span className="cb-gauge-unit">% compat.</span>
+    </div>
+  );
+}
+
+function IconCheck() {
+  return (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+      <path d="M20 6 9 17l-5-5" />
+    </svg>
+  );
+}
+function IconWarn() {
+  return (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+      <path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" />
+    </svg>
+  );
+}
+function IconFlag() {
+  return (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+      <path d="M4 22V4M4 4h13l-2 4 2 4H4" />
+    </svg>
+  );
+}
+function IconArrow() {
+  return (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+      <path d="M5 12h14M13 6l6 6-6 6" />
+    </svg>
+  );
+}
+function IconSearch() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+      <circle cx="11" cy="11" r="7" />
+      <path d="m21 21-4.3-4.3" />
+    </svg>
+  );
+}
+function IconX() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+      <path d="M18 6 6 18M6 6l12 12" />
+    </svg>
+  );
+}
+function IconExternal() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+      <path d="M7 17 17 7M8 7h9v9" />
+    </svg>
+  );
+}
+function IconArchive() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+      <path d="M3 4h18v4H3zM5 8v11h14V8M10 13h4" />
+    </svg>
+  );
+}
+function IconUndo() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+      <path d="M3 10h10a5 5 0 0 1 0 10H8M3 10l5-5M3 10l5 5" />
+    </svg>
+  );
+}
+
+const NAV_ITEMS = [
+  { id: "opportunities", label: "Opportunità" },
+  { id: "profiles", label: "Profili" },
+  { id: "sources", label: "Fonti" },
+];
+
+// Come richiesto, l'ambito pertinente non è più un elenco fisso per profilo:
+// si ricava automaticamente dai temi dichiarati (e dal tipo di soggetto), così
+// resta corretto anche quando i temi di un profilo cambiano o se ne aggiungono di nuovi.
+// packOverrides (per ora impostati qui, in futuro modificabili dal profilo) permettono
+// di correggere a mano i casi in cui il criterio automatico sbaglia.
+const PACK_KEYWORDS = {
+  "engineering-procurement": ["idrogeologico", "rigenerazione urbana", "riqualificazione edilizia", "edilizia scolastica", "ponti e viabilità", "efficienza energetica"],
+  "public-territorial": ["sviluppo territoriale", "rigenerazione urbana"],
+  "culture-digital": ["turismo culturale", "patrimonio", "restauro", "accessibilità e partecipazione culturale", "patrimonio culturale digitale", "competenze digitali", "ricerca e innovazione", "infrastrutture dati", "metadatazione"],
+  "agri-rural": ["agricoltura", "olivicoltura", "frutteti", "risorsa idrica", "pozzi", "irrigazione", "paesaggio rurale", "biodiversità", "agroforestazione"],
+  "civic-nonprofit": ["partecipazione civica", "cittadinanza europea", "giovani, comunità", "politiche pubbliche", "innovazione sociale", "informazione, dati", "alfabetizzazione mediatica", "comunicazione e cultura digitale"],
+  "private-philanthropy": [],
+};
+
+// Eccezioni segnalate esplicitamente: per il Proprietario rurale l'ambito "Cultura e
+// digitale" emergerebbe dai temi (patrimonio architettonico, turismo culturale), ma va
+// tenuto in stand-by su indicazione diretta finché non si decide come gestirlo.
+const DEFAULT_PACK_OVERRIDES = {
+  "proprietario-rurale-ginosa": { remove: ["culture-digital"] },
+};
+
+function detectRelevantPacks(profile) {
+  const themes = (profile.themes || []).map((t) => t.toLowerCase());
+  const orgType = (profile.organizationType || "").toLowerCase();
+  const packs = new Set();
+
+  for (const [pack, keywords] of Object.entries(PACK_KEYWORDS)) {
+    if (keywords.some((kw) => themes.some((t) => t.includes(kw)))) packs.add(pack);
+  }
+  if (/comune|ente pubblico|istituto centrale|pubblica amministrazione/.test(orgType)) packs.add("public-territorial");
+  if (/associazione|no.?profit|terzo settore|community/.test(orgType)) { packs.add("civic-nonprofit"); packs.add("private-philanthropy"); }
+
+  const overrides = { ...(DEFAULT_PACK_OVERRIDES[profile.id] || {}), ...(profile.packOverrides || {}) };
+  (overrides.add || []).forEach((p) => packs.add(p));
+  (overrides.remove || []).forEach((p) => packs.delete(p));
+
+  return Array.from(packs);
+}
+
+const PACK_LABELS = {
+  "engineering-procurement": "Ingegneria e appalti",
+  "public-territorial": "Enti pubblici e territorio",
+  "agri-rural": "Agricoltura e ruralità",
+  "culture-digital": "Cultura e digitale",
+  "civic-nonprofit": "Terzo settore",
+  "private-philanthropy": "Fondazioni e filantropia",
+};
+
+export default function CercaBandiPrototipo() {
+  const [view, setView] = React.useState("opportunities");
+  const [profileId, setProfileId] = React.useState(DATA.profiles[0].id);
+  const [query, setQuery] = React.useState("");
+  const [pendingQuery, setPendingQuery] = React.useState("");
+  const [levelFilter, setLevelFilter] = React.useState("Tutti");
+  const [statusFilter, setStatusFilter] = React.useState("Tutti");
+  const [showIrrelevant, setShowIrrelevant] = React.useState(false);
+  const [showAllSources, setShowAllSources] = React.useState(false);
+  const [selectedOppId, setSelectedOppId] = React.useState(null);
+  const [dismissed, setDismissed] = React.useState({});
+  const [dismissDraft, setDismissDraft] = React.useState("");
+  const [showDismissBox, setShowDismissBox] = React.useState(false);
+  const [storageReady, setStorageReady] = React.useState(false);
+  const [profileEdits, setProfileEdits] = React.useState({});
+  const [editingProfileId, setEditingProfileId] = React.useState(null);
+  const [editDraft, setEditDraft] = React.useState(null);
+
+  React.useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await window.storage.get("dismissed", false);
+        if (!cancelled && res && res.value) setDismissed(JSON.parse(res.value));
+      } catch (e) {
+        // prima esecuzione, nessun dato salvato: va bene così
+      }
+      try {
+        const res2 = await window.storage.get("profileEdits", false);
+        if (!cancelled && res2 && res2.value) setProfileEdits(JSON.parse(res2.value));
+      } catch (e) {
+        // prima esecuzione, nessun dato salvato: va bene così
+      }
+      if (!cancelled) setStorageReady(true);
+    })();
+    return () => { cancelled = true; };
+  }, []);
+
+  async function persistProfileEdits(next) {
+    setProfileEdits(next);
+    try {
+      await window.storage.set("profileEdits", JSON.stringify(next), false);
+    } catch (e) {
+      // se il salvataggio fallisce, lo stato locale resta comunque aggiornato
+    }
+  }
+
+  function startEditProfile(p) {
+    const eff = { ...p, ...(profileEdits[p.id] || {}) };
+    setEditDraft({
+      headquarters: eff.headquarters || "",
+      turnover: eff.turnover || "",
+      minLeadDays: eff.minLeadDays ?? "",
+      notes: eff.notes || "",
+      evidenceReady: (eff.evidenceReady || []).join("\n"),
+      evidenceMissing: (eff.evidenceMissing || []).join("\n"),
+    });
+    setEditingProfileId(p.id);
+  }
+
+  function saveEditProfile(id) {
+    const parsed = {
+      headquarters: editDraft.headquarters,
+      turnover: editDraft.turnover,
+      minLeadDays: editDraft.minLeadDays === "" ? undefined : Number(editDraft.minLeadDays),
+      notes: editDraft.notes,
+      evidenceReady: editDraft.evidenceReady.split("\n").map((s) => s.trim()).filter(Boolean),
+      evidenceMissing: editDraft.evidenceMissing.split("\n").map((s) => s.trim()).filter(Boolean),
+      updatedAt: new Date().toLocaleDateString("it-IT"),
+    };
+    const next = { ...profileEdits, [id]: parsed };
+    persistProfileEdits(next);
+    setEditingProfileId(null);
+    setEditDraft(null);
+  }
+
+  function resetProfile(id) {
+    const next = { ...profileEdits };
+    delete next[id];
+    persistProfileEdits(next);
+  }
+
+  async function persistDismissed(next) {
+    setDismissed(next);
+    try {
+      await window.storage.set("dismissed", JSON.stringify(next), false);
+    } catch (e) {
+      // se il salvataggio fallisce, lo stato locale resta comunque aggiornato
+    }
+  }
+
+  function dismissOpportunity(id, reason) {
+    const next = {
+      ...dismissed,
+      [id]: { reason: reason && reason.trim() ? reason.trim() : "Nessun motivo indicato", date: new Date().toLocaleDateString("it-IT") },
+    };
+    persistDismissed(next);
+    setShowDismissBox(false);
+    setDismissDraft("");
+  }
+  function restoreOpportunity(id) {
+    const next = { ...dismissed };
+    delete next[id];
+    persistDismissed(next);
+  }
+
+  const profile = DATA.profiles.find((p) => p.id === profileId);
+  const levels = ["Tutti", ...Array.from(new Set(DATA.opportunities.map((o) => o.level)))];
+  const statuses = ["Tutti", "Aperto", "Chiuso"];
+
+  const filteredOpportunities = React.useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return DATA.opportunities
+      .filter((o) => {
+        if (levelFilter !== "Tutti" && o.level !== levelFilter) return false;
+        if (statusFilter !== "Tutti" && o.status !== statusFilter) return false;
+        const hasScore = o.profileScores && Object.prototype.hasOwnProperty.call(o.profileScores, profileId);
+        if (!showIrrelevant && !hasScore) return false;
+        if (q) {
+          const hay = [o.title, o.authority, o.theme, o.territory].filter(Boolean).join(" ").toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        return true;
+      })
+      .sort((a, b) => {
+        const sa = a.profileScores && a.profileScores[profileId] !== undefined ? a.profileScores[profileId] : -1;
+        const sb = b.profileScores && b.profileScores[profileId] !== undefined ? b.profileScores[profileId] : -1;
+        return sb - sa;
+      });
+  }, [levelFilter, statusFilter, showIrrelevant, query, profileId]);
+
+  const selectedOpp = selectedOppId ? DATA.opportunities.find((o) => o.id === selectedOppId) : null;
+  const analysis = selectedOpp && selectedOpp.profileAnalyses ? selectedOpp.profileAnalyses[profileId] : null;
+  const score = selectedOpp && selectedOpp.profileScores ? selectedOpp.profileScores[profileId] : undefined;
+  const verdict = selectedOpp && selectedOpp.profileVerdicts ? selectedOpp.profileVerdicts[profileId] : undefined;
+
+  return (
+    <div className="cb-app">
+      <style>{CSS}</style>
+
+      <aside className="cb-rail">
+        <div className="cb-brand">
+          <div className="cb-brand-text">
+            <strong>cercabandi</strong>
+            <small>Prototipo · studiofauda</small>
+          </div>
+        </div>
+        <nav className="cb-nav">
+          {NAV_ITEMS.map((item) => (
+            <button
+              key={item.id}
+              className={"cb-navbtn" + (view === item.id ? " active" : "")}
+              onClick={() => setView(item.id)}
+            >
+              {item.label}
+            </button>
+          ))}
+        </nav>
+        <div className="cb-rail-foot">
+          Dati reali del 14 set. 2026 · in memoria di sessione
+        </div>
+      </aside>
+
+      <main className="cb-main">
+        <header className="cb-topbar">
+          <div className="cb-profiles-row">
+            {DATA.profiles.map((p) => (
+              <button
+                key={p.id}
+                className={"cb-profchip" + (p.id === profileId ? " active" : "")}
+                onClick={() => setProfileId(p.id)}
+                title={p.organizationType}
+              >
+                <span className="cb-profchip-avatar">{p.shortName}</span>
+                <span className="cb-profchip-name">{p.name}</span>
+              </button>
+            ))}
+          </div>
+        </header>
+
+        {view === "opportunities" && (
+          <section className="cb-view">
+            <div className="cb-toolbar">
+              <div className="cb-field cb-field-grow">
+                <label>Cerca</label>
+                <div className="cb-search">
+                  <IconSearch />
+                  <input
+                    placeholder={'Titolo, tema, territorio… (es. "ponti in Piemonte")'}
+                    value={pendingQuery}
+                    onChange={(e) => setPendingQuery(e.target.value)}
+                    onKeyDown={(e) => { if (e.key === "Enter") setQuery(pendingQuery); }}
+                  />
+                </div>
+              </div>
+              <div className="cb-field">
+                <label>Livello</label>
+                <select value={levelFilter} onChange={(e) => setLevelFilter(e.target.value)}>
+                  {levels.map((l) => <option key={l} value={l}>{l}</option>)}
+                </select>
+              </div>
+              <div className="cb-field">
+                <label>Stato</label>
+                <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
+                  {statuses.map((s) => <option key={s} value={s}>{s}</option>)}
+                </select>
+              </div>
+              <button type="button" className="cb-btn-dark cb-search-btn" onClick={() => setQuery(pendingQuery)}><IconSearch /> Cerca</button>
+              <label className="cb-checkbox">
+                <input type="checkbox" checked={showIrrelevant} onChange={(e) => setShowIrrelevant(e.target.checked)} />
+                Includi bandi non pertinenti per questo profilo
+              </label>
+            </div>
+
+            <p className="cb-context-line">
+              Punteggio e verdetto calcolati per <strong>{profile.name}</strong> · {filteredOpportunities.length} opportunità
+            </p>
+
+            <div className="cb-opp-list">
+              {filteredOpportunities.map((o) => {
+                const s = o.profileScores ? o.profileScores[profileId] : undefined;
+                const v = o.profileVerdicts ? o.profileVerdicts[profileId] : undefined;
+                const tone = classifyVerdict(v);
+                const urgency = urgencyOf(o.status, o.daysLeft, o.daysToPublication);
+                const isDismissed = !!dismissed[o.id];
+                return (
+                  <button
+                    key={o.id}
+                    className={"cb-opp-card" + (isDismissed ? " dismissed" : "")}
+                    onClick={() => { setSelectedOppId(o.id); setShowDismissBox(false); }}
+                  >
+                    <ScoreGauge score={s} />
+                    <div className="cb-opp-body">
+                      <div className="cb-opp-tags">
+                        <Pill tone="neutral">{o.level}</Pill>
+                        <span className="cb-opp-status">{o.status}</span>
+                        {urgency && <Pill tone={urgency.tone}>{urgency.label}</Pill>}
+                        {isDismissed && <span className="cb-dismissed-tag"><IconArchive /> scartato</span>}
+                      </div>
+                      <h3>{o.title}</h3>
+                      <p className="cb-opp-meta">{o.authority} · {o.territory}</p>
+                      {v && <Pill tone={tone} size="md">{v}</Pill>}
+                    </div>
+                  </button>
+                );
+              })}
+              {filteredOpportunities.length === 0 && (
+                <div className="cb-empty">Nessuna opportunità corrisponde ai filtri attuali per questo profilo.</div>
+              )}
+            </div>
+          </section>
+        )}
+
+        {view === "profiles" && (
+          <section className="cb-view">
+            <div className="cb-profile-grid">
+              {DATA.profiles.map((base) => {
+                const edit = profileEdits[base.id];
+                const p = { ...base, ...edit };
+                const isEditing = editingProfileId === base.id;
+                return (
+                  <div key={p.id} className="cb-profile-card">
+                    <div className="cb-profile-head">
+                      <span className="cb-profchip-avatar big">{p.shortName}</span>
+                      <div>
+                        <h3>{p.name}</h3>
+                        <p>{p.organizationType}</p>
+                      </div>
+                      {!isEditing && (
+                        <button className="cb-profile-edit-btn" onClick={() => startEditProfile(base)}>Modifica</button>
+                      )}
+                    </div>
+                    {edit && !isEditing && (
+                      <p className="cb-profile-edited-tag">Aggiornato il {edit.updatedAt} · <a href="#" onClick={(e) => { e.preventDefault(); resetProfile(base.id); }}>ripristina originale</a></p>
+                    )}
+
+                    {isEditing ? (
+                      <div className="cb-edit-form">
+                        <label>Sede
+                          <input value={editDraft.headquarters} onChange={(e) => setEditDraft({ ...editDraft, headquarters: e.target.value })} />
+                        </label>
+                        <label>Fatturato / capacità economica
+                          <input value={editDraft.turnover} onChange={(e) => setEditDraft({ ...editDraft, turnover: e.target.value })} />
+                        </label>
+                        <label>Preavviso minimo (giorni)
+                          <input type="number" value={editDraft.minLeadDays} onChange={(e) => setEditDraft({ ...editDraft, minLeadDays: e.target.value })} />
+                        </label>
+                        <label>Pronto (una voce per riga)
+                          <textarea value={editDraft.evidenceReady} onChange={(e) => setEditDraft({ ...editDraft, evidenceReady: e.target.value })} />
+                        </label>
+                        <label>Manca (una voce per riga)
+                          <textarea value={editDraft.evidenceMissing} onChange={(e) => setEditDraft({ ...editDraft, evidenceMissing: e.target.value })} />
+                        </label>
+                        <label>Note
+                          <textarea value={editDraft.notes} onChange={(e) => setEditDraft({ ...editDraft, notes: e.target.value })} />
+                        </label>
+                        <div className="cb-edit-form-actions">
+                          <button className="cb-btn-ghost" onClick={() => { setEditingProfileId(null); setEditDraft(null); }}>Annulla</button>
+                          <button className="cb-btn-dark" onClick={() => saveEditProfile(base.id)}>Salva profilo</button>
+                        </div>
+                      </div>
+                    ) : (
+                      <>
+                        <p className="cb-profile-hq">{p.headquarters}</p>
+                        <div className="cb-chip-wrap">
+                          {p.themes.slice(0, 4).map((t) => <span key={t} className="cb-chip">{t}</span>)}
+                        </div>
+                        <div className="cb-evidence">
+                          <div>
+                            <h4><IconCheck /> Pronto</h4>
+                            <ul>{p.evidenceReady.map((e) => <li key={e}>{e}</li>)}</ul>
+                          </div>
+                          <div>
+                            <h4 className="warn"><IconWarn /> Manca</h4>
+                            <ul>{p.evidenceMissing.map((e) => <li key={e}>{e}</li>)}</ul>
+                          </div>
+                        </div>
+                        <p className="cb-profile-note">{p.notes}</p>
+                      </>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        )}
+
+        {view === "sources" && (
+          <section className="cb-view">
+            {(() => {
+              const relevantPacks = detectRelevantPacks(profile);
+              const isRelevant = (s) => s.scope === "Base comune" || (s.packIds || []).some((id) => relevantPacks.includes(id));
+              const visibleSources = showAllSources ? DATA.sources : DATA.sources.filter(isRelevant);
+              return (
+                <>
+                  <div className="cb-toolbar">
+                    <p className="cb-context-line" style={{ margin: 0 }}>
+                      <strong>{visibleSources.length}</strong> fonti {showAllSources ? "monitorate in totale" : <>pertinenti per <strong>{profile.name}</strong> (su {DATA.sources.length} monitorate)</>}
+                    </p>
+                    <label className="cb-checkbox" style={{ marginLeft: "auto" }}>
+                      <input type="checkbox" checked={showAllSources} onChange={(e) => setShowAllSources(e.target.checked)} />
+                      Mostra tutte le fonti monitorate
+                    </label>
+                  </div>
+
+                  <div className="cb-source-list">
+                    <div className="cb-source-row cb-source-head">
+                      <span>Fonte</span><span>Livello</span><span>Ambito</span><span>Metodo</span><span></span>
+                    </div>
+                    {visibleSources.map((s) => (
+                      <div key={s.id} className="cb-source-row">
+                        <span className="cb-source-name">{s.name}<small>{s.covers}</small></span>
+                        <span><Pill tone="neutral">{s.level}</Pill></span>
+                        <span>
+                          {s.scope === "Base comune"
+                            ? <Pill tone="neutral">Comune a tutti</Pill>
+                            : (s.packIds || []).map((id) => <Pill key={id} tone={relevantPacks.includes(id) ? "indirect" : "neutral"}>{PACK_LABELS[id] || id}</Pill>)}
+                        </span>
+                        <span className="cb-source-method">{s.method}</span>
+                        <a href={s.url} target="_blank" rel="noreferrer" className="cb-source-link"><IconExternal /></a>
+                      </div>
+                    ))}
+                  </div>
+
+                  {profile.researchSources && profile.researchSources.length > 0 && (
+                    <div className="cb-research-sources">
+                      <h4>Fonti già consultate nella ricerca per {profile.name}</h4>
+                      <p className="cb-muted">Link specifici usati per costruire e verificare questo profilo, oltre alle fonti generali monitorate qui sopra.</p>
+                      <ul>
+                        {profile.researchSources.map((rs) => (
+                          <li key={rs.url}><a href={rs.url} target="_blank" rel="noreferrer">{rs.label}</a></li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </>
+              );
+            })()}
+          </section>
+        )}
+      </main>
+
+      {selectedOpp && (
+        <div className="cb-overlay" onClick={() => setSelectedOppId(null)}>
+          <div className="cb-drawer" onClick={(e) => e.stopPropagation()}>
+            <button className="cb-drawer-close" onClick={() => setSelectedOppId(null)}><IconX /></button>
+            <div className="cb-drawer-head">
+              <div className="cb-opp-tags">
+                <Pill tone="neutral">{selectedOpp.level}</Pill>
+                <span className="cb-opp-status">{selectedOpp.status}</span>
+                {(() => {
+                  const u = urgencyOf(selectedOpp.status, selectedOpp.daysLeft, selectedOpp.daysToPublication);
+                  return u && <Pill tone={u.tone}>{u.label}</Pill>;
+                })()}
+              </div>
+              <h2>{selectedOpp.title}</h2>
+              <p className="cb-opp-meta">{selectedOpp.authority} · {selectedOpp.territory}</p>
+              <div className="cb-drawer-score">
+                <ScoreGauge score={score} />
+                <div>
+                  {verdict ? <Pill tone={classifyVerdict(verdict)} size="md">{verdict}</Pill> : <span className="cb-muted">Nessun verdetto per questo profilo</span>}
+                  <p className="cb-muted">valutazione per {profile.name}</p>
+                </div>
+              </div>
+              <div className="cb-source-eval">
+                <h4><IconCheck /> Fonte e affidabilità</h4>
+                <dl>
+                  <div><dt>Fonte</dt><dd>{selectedOpp.sourceName || "—"}</dd></div>
+                  <div><dt>Tipo</dt><dd>{selectedOpp.sourceType || "—"}</dd></div>
+                  <div><dt>Affidabilità</dt><dd><Pill tone={selectedOpp.confidence === "Alta" ? "positive" : selectedOpp.confidence === "Media" ? "conditional" : "negative"}>{selectedOpp.confidence || "Non indicata"}</Pill></dd></div>
+                  <div><dt>Verificata il</dt><dd>{selectedOpp.sourceDate || "—"}</dd></div>
+                </dl>
+              </div>
+            </div>
+
+            {!analysis && (
+              <p className="cb-muted cb-drawer-noanalysis">
+                Non è disponibile un'analisi dedicata di questa opportunità per {profile.name}: probabilmente non è il profilo target di questo bando.
+              </p>
+            )}
+
+            {analysis && (
+              <div className="cb-drawer-body">
+                {analysis.eligibility && analysis.eligibility.length > 0 && (
+                  <div className="cb-section">
+                    <h4><IconCheck /> Ammissibilità</h4>
+                    <ul>{analysis.eligibility.map((t, i) => <li key={i}>{t}</li>)}</ul>
+                  </div>
+                )}
+                {analysis.advantages && analysis.advantages.length > 0 && (
+                  <div className="cb-section">
+                    <h4 className="pos"><IconCheck /> Vantaggi</h4>
+                    <ul>{analysis.advantages.map((t, i) => <li key={i}>{t}</li>)}</ul>
+                  </div>
+                )}
+                {analysis.weaknesses && analysis.weaknesses.length > 0 && (
+                  <div className="cb-section">
+                    <h4 className="warn"><IconWarn /> Punti deboli</h4>
+                    <ul>{analysis.weaknesses.map((t, i) => <li key={i}>{t}</li>)}</ul>
+                  </div>
+                )}
+                {analysis.redFlags && analysis.redFlags.length > 0 && (
+                  <div className="cb-section">
+                    <h4 className="neg"><IconFlag /> Red flag</h4>
+                    <ul>{analysis.redFlags.map((t, i) => <li key={i}>{t}</li>)}</ul>
+                  </div>
+                )}
+                {analysis.nextSteps && analysis.nextSteps.length > 0 && (
+                  <div className="cb-section">
+                    <h4><IconArrow /> Prossimi passi</h4>
+                    <ul>{analysis.nextSteps.map((t, i) => <li key={i}>{t}</li>)}</ul>
+                  </div>
+                )}
+              </div>
+            )}
+
+            <div className="cb-drawer-foot">
+              <a href={selectedOpp.sourceUrl} target="_blank" rel="noreferrer" className="cb-btn-outline">
+                <IconExternal /> Vai alla fonte
+              </a>
+              {dismissed[selectedOpp.id] ? (
+                <div className="cb-dismiss-note">
+                  <span><IconArchive /> Scartato il {dismissed[selectedOpp.id].date}: {dismissed[selectedOpp.id].reason}</span>
+                  <button className="cb-btn-outline" onClick={() => restoreOpportunity(selectedOpp.id)}><IconUndo /> Ripristina</button>
+                </div>
+              ) : showDismissBox ? (
+                <div className="cb-dismiss-box">
+                  <textarea
+                    placeholder="Perché lo scarti? (es. requisiti non compatibili, priorità bassa…)"
+                    value={dismissDraft}
+                    onChange={(e) => setDismissDraft(e.target.value)}
+                  />
+                  <div>
+                    <button className="cb-btn-ghost" onClick={() => setShowDismissBox(false)}>Annulla</button>
+                    <button className="cb-btn-dark" onClick={() => dismissOpportunity(selectedOpp.id, dismissDraft)}>Conferma</button>
+                  </div>
+                </div>
+              ) : (
+                <button className="cb-btn-outline" onClick={() => setShowDismissBox(true)}><IconArchive /> Scarta con motivo</button>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

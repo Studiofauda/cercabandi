@@ -1,0 +1,10 @@
+node_modules/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+.vercel/
+
+# Chiavi e segreti: non devono mai finire su GitHub
+.env
+.env*.local

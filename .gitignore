@@ -4,6 +4,7 @@ out/
 next-env.d.ts
 *.tsbuildinfo
 .vercel/
+.claude/settings.local.json
 
 # Chiavi e segreti: non devono mai finire su GitHub
 .env

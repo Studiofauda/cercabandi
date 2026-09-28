@@ -18,6 +18,10 @@ import type {
   Profile,
 } from "./types";
 import { determineRole } from "./scoring";
+import { EXPENSE_CATEGORIES } from "./types";
+
+/** Voci di spesa in forma leggibile, per i motivi mostrati all'utente. */
+const spese = (list: ExpenseCategory[]) => list.map((c) => EXPENSE_CATEGORIES[c]).join(", ");
 
 export type CombinationLevel =
   /** Le spese non si sovrappongono e nessun vincolo noto lo impedisce: da verificare sui testi. */
@@ -140,12 +144,12 @@ export function analyzePair(
   if (overlap.length > 0) {
     level = "da-verificare";
     reasons.push(
-      `Entrambi finanziano ${overlap.length === 1 ? "la voce" : "le voci"} ${overlap.join(", ")}: ${overlap.length === 1 ? "questa spesa va imputata" : "queste spese vanno imputate"} a un solo bando.`
+      `Entrambi finanziano ${overlap.length === 1 ? "la voce" : "le voci"} ${spese(overlap)}: ${overlap.length === 1 ? "questa spesa va imputata" : "queste spese vanno imputate"} a un solo bando.`
     );
   }
 
   reasons.push(
-    `Le spese separabili sono ${onlyA.join(", ")} da un lato e ${onlyB.join(", ")} dall'altro.`
+    `Le spese separabili sono ${spese(onlyA)} da un lato e ${spese(onlyB)} dall'altro.`
   );
 
   // --- Vincoli sui fondi europei ------------------------------------------
@@ -232,8 +236,8 @@ export function describeCombination(
 
   if (finding.splitProposal) {
     lines.push(
-      `  · ${a.title}: ${(finding.splitProposal[a.id] || []).join(", ") || "—"}`,
-      `  · ${b.title}: ${(finding.splitProposal[b.id] || []).join(", ") || "—"}`
+      `  · ${a.title}: ${spese(finding.splitProposal[a.id] || []) || "—"}`,
+      `  · ${b.title}: ${spese(finding.splitProposal[b.id] || []) || "—"}`
     );
   }
   finding.reasons.forEach((r) => lines.push(`  · ${r}`));

@@ -130,19 +130,22 @@ export type BeneficiaryRole =
  * Categorie di spesa finanziabili. Servono a capire se due bandi coprono voci diverse
  * dello stesso progetto (cumulabili) o la stessa voce (doppio finanziamento, vietato).
  */
-export type ExpenseCategory =
-  | "progettazione"
-  | "direzione-lavori"
-  | "opere-strutturali"
-  | "efficientamento-energetico"
-  | "impianti"
-  | "restauro"
-  | "arredi-attrezzature"
-  | "digitalizzazione"
-  | "formazione"
-  | "personale"
-  | "comunicazione"
-  | "studi-indagini";
+export const EXPENSE_CATEGORIES = {
+  progettazione: "progettazione",
+  "direzione-lavori": "direzione lavori",
+  "opere-strutturali": "opere strutturali",
+  "efficientamento-energetico": "efficientamento energetico",
+  impianti: "impianti",
+  restauro: "restauro",
+  "arredi-attrezzature": "arredi e attrezzature",
+  digitalizzazione: "digitalizzazione",
+  formazione: "formazione",
+  personale: "personale",
+  comunicazione: "comunicazione",
+  "studi-indagini": "studi e indagini",
+} as const;
+
+export type ExpenseCategory = keyof typeof EXPENSE_CATEGORIES;
 
 /**
  * Competenze tecniche: il profilo dichiara quelle che ha, il bando indica quelle richieste.

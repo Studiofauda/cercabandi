@@ -1,4 +1,4 @@
-import type { ExpenseCategory, PackId, SubjectType } from "@/core/types";
+import { EXPENSE_CATEGORIES, type ExpenseCategory, type PackId, type SubjectType } from "@/core/types";
 
 /** Nomi leggibili dei valori del modello dati, per l'interfaccia. */
 
@@ -21,20 +21,10 @@ export const SUBJECT_LABELS: Record<SubjectType, string> = {
   "persona-fisica": "Persone fisiche",
 };
 
-export const EXPENSE_LABELS: Record<ExpenseCategory, string> = {
-  progettazione: "Progettazione",
-  "direzione-lavori": "Direzione lavori",
-  "opere-strutturali": "Opere strutturali",
-  "efficientamento-energetico": "Efficientamento energetico",
-  impianti: "Impianti",
-  restauro: "Restauro",
-  "arredi-attrezzature": "Arredi e attrezzature",
-  digitalizzazione: "Digitalizzazione",
-  formazione: "Formazione",
-  personale: "Personale",
-  comunicazione: "Comunicazione",
-  "studi-indagini": "Studi e indagini",
-};
+/** Stesse voci del nucleo, con l'iniziale maiuscola per le etichette dell'interfaccia. */
+export const EXPENSE_LABELS = Object.fromEntries(
+  Object.entries(EXPENSE_CATEGORIES).map(([k, v]) => [k, v.charAt(0).toUpperCase() + v.slice(1)])
+) as Record<ExpenseCategory, string>;
 
 export const labelList = <K extends string>(labels: Record<K, string>, values: K[] | undefined) =>
   values?.length ? values.map((v) => labels[v] ?? v).join(", ") : "";

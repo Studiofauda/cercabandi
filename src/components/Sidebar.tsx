@@ -7,6 +7,7 @@ const NAV = [
   { href: "/opportunita", label: "Opportunità" },
   { href: "/profili", label: "Profili" },
   { href: "/simulazione", label: "Simulazione" },
+  { href: "/cumulabilita", label: "Cumulabilità" },
   { href: "/fonti", label: "Fonti" },
 ];
 

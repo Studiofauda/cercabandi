@@ -1,12 +1,21 @@
 import Link from "next/link";
-import { TECHNICAL_SKILLS, type Evaluation, type Opportunity, type Profile, type ScoreBreakdown, type Source, type TechnicalSkill } from "@/core/types";
+import { TECHNICAL_SKILLS, type Evaluation, type ExpenseCategory, type Opportunity, type Profile, type ScoreBreakdown, type Source, type TechnicalSkill } from "@/core/types";
 import type { OpportunityRow } from "@/lib/db/mappers";
 import type { AssessmentNoteRow, DismissalRow } from "@/lib/db/queries";
 import { Pill, VERDICT_TONE, type Tone } from "@/components/Pill";
 import { ScoreRange } from "@/components/ScoreRange";
 import { date, daysUntil, euro, pct } from "@/lib/format";
 import { EXPENSE_LABELS, PACK_LABELS, SUBJECT_LABELS, labelList } from "@/lib/labels";
-import { dismissOpportunity, markVerified, restoreOpportunity, saveAssessmentNote, saveRequiredSkills } from "./actions";
+import type { CombinationFinding } from "@/core/combinations";
+import { CombinationCard, COMBINATION_DISCLAIMER } from "@/components/CombinationCard";
+import {
+  dismissOpportunity,
+  markVerified,
+  restoreOpportunity,
+  saveAssessmentNote,
+  saveCumulabilityData,
+  saveRequiredSkills,
+} from "./actions";
 
 const ROLE_LABEL = {
   "beneficiario-diretto": "Candidatura diretta",
@@ -33,7 +42,13 @@ export function DetailPanel({
   selfHref,
   error,
   now,
+  combinations,
+  allOpportunities,
+  hrefFor,
 }: {
+  combinations: CombinationFinding[];
+  allOpportunities: Map<string, Opportunity>;
+  hrefFor: (id: string) => string;
   opportunity: Opportunity;
   row: OpportunityRow;
   evaluation: Evaluation;
@@ -225,6 +240,55 @@ export function DetailPanel({
           </div>
         </Section>
 
+        {/* Cumulabilità */}
+        <Section title="Combinabile con…">
+          <p className="mb-2 text-[11px] text-muted">{COMBINATION_DISCLAIMER}</p>
+          {combinations.length === 0 ? (
+            <p className="text-xs text-muted">Nessun altro bando accessibile a questo profilo sugli stessi ambiti.</p>
+          ) : (
+            <div className="flex flex-col gap-2">
+              {combinations.map((f) => (
+                <CombinationCard key={f.opportunityIds.join("+")} finding={f} opportunities={allOpportunities} hrefFor={hrefFor} focusId={o.id} />
+              ))}
+            </div>
+          )}
+
+          <details className="mt-3 rounded-control bg-panel px-3 py-2" open={!o.expenseCategories?.length}>
+            <summary className="cursor-pointer text-xs font-semibold">Dati per la cumulabilità di questo bando</summary>
+            <form action={saveCumulabilityData} className="mt-2 flex flex-col gap-2.5">
+              {hidden}
+              <div>
+                <span className="text-xs font-semibold">Voci di spesa finanziate</span>
+                <div className="mt-1 grid gap-x-3 gap-y-1 sm:grid-cols-2">
+                  {(Object.entries(EXPENSE_LABELS) as [ExpenseCategory, string][]).map(([value, label]) => (
+                    <label key={value} className="flex items-center gap-1.5 text-[12.5px]">
+                      <input type="checkbox" name="expense" value={value} defaultChecked={o.expenseCategories?.includes(value)} />
+                      {label}
+                    </label>
+                  ))}
+                </div>
+              </div>
+              <div className="grid gap-2 sm:grid-cols-3">
+                <label className="flex flex-col gap-1 text-xs">
+                  <span className="font-semibold">Origine dei fondi</span>
+                  <select name="funding_source" defaultValue={o.fundingSource ?? ""} className="rounded-control border border-line bg-paper px-2 py-1.5">
+                    <option value="">Non indicata</option>
+                    <option value="UE">UE</option>
+                    <option value="Nazionale">Nazionale</option>
+                    <option value="Regionale">Regionale</option>
+                    <option value="Privato">Privato</option>
+                  </select>
+                </label>
+                <TriStateSelect name="cumulabile" label="Il bando si dichiara cumulabile?" value={o.cumulabile} />
+                <TriStateSelect name="cofin_altri" label="Cofinanziamento da altri fondi?" value={o.cofinanziamentoDaAltriFondi} />
+              </div>
+              <button className="self-end rounded-control border border-line bg-paper px-3 py-1.5 text-xs font-semibold hover:border-ink">
+                Salva dati di cumulabilità
+              </button>
+            </form>
+          </details>
+        </Section>
+
         {/* Analisi qualitativa */}
         <Section title="Analisi del team">
           <form action={saveAssessmentNote} className="flex flex-col gap-2.5">
@@ -274,6 +338,19 @@ export function DetailPanel({
         </Section>
       </aside>
     </div>
+  );
+}
+
+function TriStateSelect({ name, label, value }: { name: string; label: string; value?: boolean }) {
+  return (
+    <label className="flex flex-col gap-1 text-xs">
+      <span className="font-semibold">{label}</span>
+      <select name={name} defaultValue={value === true ? "si" : value === false ? "no" : ""} className="rounded-control border border-line bg-paper px-2 py-1.5">
+        <option value="">Non verificato</option>
+        <option value="si">Sì</option>
+        <option value="no">No</option>
+      </select>
+    </label>
   );
 }
 

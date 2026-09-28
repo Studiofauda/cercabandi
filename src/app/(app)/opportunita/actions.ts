@@ -82,6 +82,24 @@ export async function saveRequiredSkills(formData: FormData) {
   back(formData, error ? "Competenze non salvate: controlla di avere i permessi di modifica e che il database sia aggiornato." : undefined);
 }
 
+const triState = (v: string) => (v === "si" ? true : v === "no" ? false : null);
+
+/** Dati che servono al calcolo della cumulabilità, letti sui testi ufficiali. */
+export async function saveCumulabilityData(formData: FormData) {
+  const supabase = await createClient();
+  const expenses = formData.getAll("expense").map(String);
+  const { error } = await supabase
+    .from("opportunities")
+    .update({
+      expense_categories: expenses.length ? expenses : null,
+      funding_source: field(formData, "funding_source") || null,
+      cumulabile: triState(field(formData, "cumulabile")),
+      cofinanziamento_da_altri_fondi: triState(field(formData, "cofin_altri")),
+    })
+    .eq("id", field(formData, "opportunityId"));
+  back(formData, error ? "Dati non salvati: controlla di avere i permessi di modifica." : undefined);
+}
+
 /** Toglie l'etichetta «da verificare» dopo il controllo sui testi ufficiali. */
 export async function markVerified(formData: FormData) {
   const supabase = await createClient();

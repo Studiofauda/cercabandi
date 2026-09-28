@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { findCombinations } from "@/core/combinations";
 import { evaluate } from "@/core/scoring";
 import type { Evaluation, Opportunity, Profile } from "@/core/types";
 import { getAssessmentNote, getDismissals, getOpportunities, getProfiles, getSources } from "@/lib/db/queries";
@@ -63,6 +64,13 @@ export default async function OpportunitaPage({ searchParams }: { searchParams: 
 
   const selected = evaluated.find(({ o }) => o.id === bando);
   const note = selected ? await getAssessmentNote(selected.o.id, profile.id) : null;
+  const allOpportunities = new Map(evaluated.map(({ o }) => [o.id, o]));
+  // Anche le combinazioni da escludere: nel dettaglio serve sapere perché due bandi non stanno insieme.
+  const combinations = selected
+    ? findCombinations(profile, [...allOpportunities.values()], { includeRejected: true }).filter((f) =>
+        f.opportunityIds.includes(selected.o.id)
+      )
+    : [];
 
   return (
     <div className="mx-auto max-w-4xl">
@@ -112,6 +120,9 @@ export default async function OpportunitaPage({ searchParams }: { searchParams: 
           selfHref={href({ ...base, bando: selected.o.id })}
           error={errore}
           now={now}
+          combinations={combinations}
+          allOpportunities={allOpportunities}
+          hrefFor={(id) => href({ ...base, bando: id })}
         />
       )}
     </div>

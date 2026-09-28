@@ -6,7 +6,7 @@
  * Dalle risposte si ricavano i temi, e dai temi gli ambiti e quindi le fonti pertinenti.
  */
 
-import { TECHNICAL_SKILLS, type PackId, type SubjectType } from "./types";
+import { REGIONI_ITALIANE, TECHNICAL_SKILLS, type PackId, type SubjectType } from "./types";
 
 export type QuestionKind = "single" | "multi" | "number" | "text" | "boolean";
 
@@ -202,6 +202,14 @@ const PATH_IMPRESA: Question[] = [
     prompt: "Lavorate abitualmente per enti pubblici come partner tecnico?",
     help: "Se sì, vi segnaleremo anche i bandi destinati agli enti, indicandoli come possibile incarico tecnico invece che come candidatura diretta.",
     required: true,
+  },
+  {
+    id: "regioniOperative",
+    kind: "multi",
+    prompt: "In quali regioni lavorate abitualmente?",
+    help: "Alle gare d'appalto si può partecipare ovunque: le gare in queste regioni ricevono il punteggio territoriale pieno, le altre un punteggio ridotto, senza essere escluse.",
+    paramKey: "regioniOperative",
+    options: REGIONI_ITALIANE.map((r) => ({ value: r, label: r })),
   },
   {
     id: "interesseReplicabilita",

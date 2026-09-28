@@ -8,6 +8,7 @@ import type {
   ExpenseCategory,
   FundingSource,
   Opportunity,
+  OpportunityKind,
   OpportunityLevel,
   OpportunityStatus,
   PackId,
@@ -29,6 +30,8 @@ export interface OpportunityRow {
   authority: string;
   level: string;
   status: string;
+  /** Assente finché la migrazione sul tipo di bando non è stata eseguita. */
+  kind?: string;
   theme: string;
   territory: string;
   eligible_subject_types: string[];
@@ -105,6 +108,7 @@ export function toOpportunity(r: OpportunityRow): Opportunity {
     authority: r.authority,
     level: r.level as OpportunityLevel,
     status: r.status as OpportunityStatus,
+    kind: (r.kind ?? "contributo") as OpportunityKind,
     theme: r.theme,
     territory: r.territory,
     eligibleSubjectTypes: r.eligible_subject_types as SubjectType[],

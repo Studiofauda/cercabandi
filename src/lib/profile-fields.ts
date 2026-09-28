@@ -30,6 +30,7 @@ const LABELS: Record<string, string> = {
   polizzeMassimali: "Massimale polizza (€)",
   personaleTecnico: "Personale tecnico (persone)",
   competenze: "Competenze tecniche interne",
+  regioniOperative: "Regioni in cui operate",
   produzioneStandard: "Produzione standard (€)",
   superficie: "Superficie del fondo (ettari)",
 };

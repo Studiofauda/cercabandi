@@ -91,6 +91,7 @@ export async function saveCumulabilityData(formData: FormData) {
   const { error } = await supabase
     .from("opportunities")
     .update({
+      ...(field(formData, "kind") ? { kind: field(formData, "kind") } : {}),
       expense_categories: expenses.length ? expenses : null,
       funding_source: field(formData, "funding_source") || null,
       cumulabile: triState(field(formData, "cumulabile")),

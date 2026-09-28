@@ -23,6 +23,12 @@ const ROLE_LABEL = {
   "partner-di-progetto": "Partner di progetto",
 } as const;
 
+const KIND_LABEL = {
+  contributo: "Contributo o finanziamento",
+  gara: "Gara d'appalto (territorio non vincolante)",
+  qualificazione: "Qualificazione (elenco, abilitazione)",
+} as const;
+
 const RELIABILITY_TONE: Record<Source["reliability"], Tone> = {
   Ufficiale: "go",
   Istituzionale: "investigate",
@@ -160,6 +166,7 @@ export function DetailPanel({
         {/* Dati del bando */}
         <Section title="Dati del bando">
           <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 text-[13px]">
+            <Row label="Tipo" value={KIND_LABEL[o.kind ?? "contributo"]} />
             <Row label="Scadenza" value={o.deadline ? date(o.deadline) : "Non indicata"} />
             <Row label="Dotazione totale" value={euro(o.budgetTotale)} />
             <Row label="Contributo massimo" value={euro(o.contributoMax)} />
@@ -254,9 +261,19 @@ export function DetailPanel({
           )}
 
           <details className="mt-3 rounded-control bg-panel px-3 py-2" open={!o.expenseCategories?.length}>
-            <summary className="cursor-pointer text-xs font-semibold">Dati per la cumulabilità di questo bando</summary>
+            <summary className="cursor-pointer text-xs font-semibold">Tipo di bando e dati per la cumulabilità</summary>
             <form action={saveCumulabilityData} className="mt-2 flex flex-col gap-2.5">
               {hidden}
+              <label className="flex flex-col gap-1 text-xs">
+                <span className="font-semibold">Tipo di bando</span>
+                <select name="kind" defaultValue={o.kind ?? "contributo"} className="rounded-control border border-line bg-paper px-2 py-1.5">
+                  {Object.entries(KIND_LABEL).map(([value, label]) => (
+                    <option key={value} value={value}>
+                      {label}
+                    </option>
+                  ))}
+                </select>
+              </label>
               <div>
                 <span className="text-xs font-semibold">Voci di spesa finanziate</span>
                 <div className="mt-1 grid gap-x-3 gap-y-1 sm:grid-cols-2">

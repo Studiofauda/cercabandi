@@ -44,6 +44,12 @@ const TECHNICAL_COFINANCING_FACTOR = 0.8;
  */
 const ESTIMATED_UNCERTAINTY_FACTOR = 0.5;
 
+/**
+ * Punteggio territoriale di una gara fuori dalle regioni in cui il profilo opera: si può
+ * partecipare, ma è più onerosa (trasferte, conoscenza del territorio, sopralluoghi).
+ */
+const PROCUREMENT_OUTSIDE_TERRITORY_SCORE = 60;
+
 /** Ampiezza dell'intervallo (in punti) generata da un criterio del tutto incerto, a peso pieno. */
 const UNCERTAINTY_SPREAD = 40;
 
@@ -59,6 +65,7 @@ const FIELD_LABELS: Record<string, string> = {
   rupDisponibile: "RUP interno",
   personaleTecnico: "Personale tecnico",
   competenze: "Competenze tecniche",
+  regioniOperative: "Regioni in cui opera",
   preavvisoMinimoGiorni: "Preavviso minimo",
   contributoMax: "Importo del contributo",
   deadline: "Scadenza",
@@ -157,8 +164,9 @@ export function computeWeights(opportunity: Opportunity, daysLeft: number | null
     w.capacitaOrganizzativa += 1;
     w.capacitaEconomica += 1;
   }
-  if (opportunity.level === "Regionale" || opportunity.level === "Locale") {
-    // Sui bandi locali la coerenza territoriale è spesso un requisito, non una preferenza.
+  if ((opportunity.level === "Regionale" || opportunity.level === "Locale") && !isProcurement(opportunity)) {
+    // Sui contributi locali la coerenza territoriale è spesso un requisito, non una
+    // preferenza. Nelle gare non lo è: il peso resta quello base.
     w.territorio += 2;
   }
   if (daysLeft !== null && daysLeft <= 30) {
@@ -204,6 +212,7 @@ function scoreTerritorio(profile: Profile, opportunity: Opportunity): ScoreBreak
   if (opportunity.level === "Europeo" || opportunity.level === "Nazionale") {
     return { criterion, weight: 0, score: 100, note: "Ambito non vincolato al territorio" };
   }
+  if (isProcurement(opportunity)) return scoreTerritorioGara(profile, territory);
   if (!regione) {
     return {
       criterion,
@@ -220,6 +229,47 @@ function scoreTerritorio(profile: Profile, opportunity: Opportunity): ScoreBreak
     score: match ? 100 : 0,
     note: match ? `Territorio compatibile (${regione})` : `Bando riservato ad altro territorio`,
     uncertainParams: uncertain(criterion, "regione", paramStatus(profile.params.regione)),
+  };
+}
+
+/** Gare d'appalto e qualificazioni: il territorio orienta, non esclude. */
+function isProcurement(opportunity: Opportunity): boolean {
+  return opportunity.kind === "gara" || opportunity.kind === "qualificazione";
+}
+
+/**
+ * In una gara può partecipare un operatore di qualsiasi regione: il territorio misura
+ * quanto la gara è vicina a dove il profilo lavora, e non blocca mai. Riferimento: le
+ * regioni in cui il profilo opera; se non indicate, la sua regione.
+ */
+function scoreTerritorioGara(profile: Profile, territory: string): ScoreBreakdown {
+  const criterion = "Coerenza territoriale";
+  const operative = profile.params.regioniOperative;
+  const list = (operative?.value as string[] | null | undefined)?.filter(Boolean);
+  const regione = profile.params.regione?.value as string | undefined;
+  const reference = list?.length ? list : regione ? [regione] : [];
+  const key = list?.length ? "regioniOperative" : "regione";
+
+  if (!reference.length) {
+    return {
+      criterion,
+      weight: 0,
+      score: 50,
+      note: "Regioni in cui il profilo opera non indicate",
+      nonBlocking: true,
+      uncertainParams: uncertain(criterion, "regioniOperative", "mancante"),
+    };
+  }
+  const match = reference.find((r) => territory.includes(r.toLowerCase()));
+  return {
+    criterion,
+    weight: 0,
+    score: match ? 100 : PROCUREMENT_OUTSIDE_TERRITORY_SCORE,
+    note: match
+      ? `Gara in una regione in cui il profilo opera (${match})`
+      : "Gara fuori dalle regioni in cui il profilo opera: partecipazione possibile, ma più onerosa",
+    nonBlocking: true,
+    uncertainParams: uncertain(criterion, key, paramStatus(key === "regioniOperative" ? operative : profile.params.regione)),
   };
 }
 

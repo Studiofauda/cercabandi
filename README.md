@@ -90,6 +90,14 @@ richiedono. Non blocca mai (`nonBlocking`): una competenza mancante si copre con
 partner o un raggruppamento. Per enti pubblici e persone fisiche non si applica, perché
 le competenze sono quelle dei professionisti da incaricare.
 
+**Territorio: contributi e gare.** Ogni bando ha un tipo (`kind`: contributo, gara,
+qualificazione). Nei contributi locali il territorio è un requisito: fuori regione il
+criterio vale 0 e può bloccare. Nelle gare e nelle qualificazioni può partecipare un
+operatore di qualsiasi regione: il criterio non blocca mai, vale 100 nelle regioni in cui il
+profilo opera (`params.regioniOperative`, chiesto nell'intervista alle imprese; in mancanza
+si usa la regione) e un valore ridotto altrove, e non riceve il peso aggiuntivo dei bandi
+locali.
+
 **Profilo reale o modello.** Nell'intervista la domanda `isTemplate` è una scelta tra
 "soggetto reale" e "modello di categoria"; `isTemplateFromAnswers()` la traduce nel campo
 del profilo.
@@ -127,6 +135,8 @@ Sono numeri scelti come punto di partenza ragionevole, da rivedere con dati real
   bandi che richiedono cofinanziamento.
 - `ESTIMATED_UNCERTAINTY_FACTOR = 0.5` — quanto allarga l'intervallo un dato stimato,
   rispetto a uno mancante.
+- `PROCUREMENT_OUTSIDE_TERRITORY_SCORE = 60` — punteggio territoriale di una gara fuori
+  dalle regioni in cui il profilo opera.
 - `UNCERTAINTY_SPREAD = 40` — ampiezza dell'intervallo generata da un criterio del tutto
   incerto, a peso pieno.
 - Pesi base in `computeWeights()` (soglie demografiche e competenze pesano 2 quando presenti).

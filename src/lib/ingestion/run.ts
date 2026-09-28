@@ -51,6 +51,7 @@ function toRow(c: AnacCandidate, workspaceId: string, sourceId: string | null, t
     workspace_id: workspaceId,
     external_code: c.externalCode,
     origin: "anac",
+    kind: "gara",
     title: c.title,
     authority: c.authority,
     // Gare pubblicate da un ente del territorio: il criterio territoriale confronta la regione.

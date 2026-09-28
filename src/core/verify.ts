@@ -321,3 +321,31 @@ for (const v of variantiCompetenze) {
 }
 const evalComuneGara = evaluate(piccoloComune, { ...garaServiziTecnici, eligibleSubjectTypes: ["ente-pubblico"] }, now);
 console.log(`  Piccolo Comune (stesso bando) -> ${evalComuneGara.score} · ${evalComuneGara.breakdown.find((b) => b.criterion === "Competenze tecniche")?.note}`);
+
+// ---------------------------------------------------------------------------
+// Territorio nelle gare: orienta, non esclude
+// ---------------------------------------------------------------------------
+
+const garaLazio: Opportunity = {
+  ...garaServiziTecnici,
+  id: "gara-lazio",
+  title: "Progettazione di un edificio scolastico a Civitavecchia",
+  authority: "Comune di Civitavecchia",
+  territory: "Civitavecchia (RM) · Lazio",
+  kind: "gara",
+  competenzeRichieste: [],
+};
+const contributoLazio: Opportunity = { ...garaLazio, id: "contributo-lazio", kind: "contributo", eligibleSubjectTypes: ["impresa"] };
+
+console.log("\n=== Territorio: gara e contributo nel Lazio per Studio Fauda (Piemonte) ===");
+const territorio = [
+  { label: "gara, regioni operative non indicate", o: garaLazio, params: {} },
+  { label: "gara, opera in Piemonte e Liguria", o: garaLazio, params: { regioniOperative: param(["Piemonte", "Liguria"]) } },
+  { label: "gara, opera anche nel Lazio", o: garaLazio, params: { regioniOperative: param(["Piemonte", "Lazio"]) } },
+  { label: "contributo regionale del Lazio", o: contributoLazio, params: {} },
+];
+for (const t of territorio) {
+  const e = evaluate({ ...studioFauda, params: { ...studioFauda.params, ...t.params } }, t.o, now);
+  const c = e.breakdown.find((b) => b.criterion === "Coerenza territoriale")!;
+  console.log(`  ${t.label.padEnd(38)} -> ${String(e.score).padStart(3)} · ${e.verdict.padEnd(10)} ${c.note}`);
+}

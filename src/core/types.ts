@@ -53,6 +53,11 @@ export interface ProfileParams {
   regione?: ParamValue<string>;
   provincia?: ParamValue<string>;
   comune?: ParamValue<string>;
+  /**
+   * Regioni in cui il soggetto lavora abitualmente. Per le gare d'appalto sostituisce la
+   * regione come riferimento territoriale; se manca, si usa la regione.
+   */
+  regioniOperative?: ParamValue<string[]>;
   abitanti?: ParamValue<number>;
   /** Classificazioni che spesso sono requisito di ammissibilità: montano, area interna, ecc. */
   classificazioni?: ParamValue<string[]>;
@@ -113,6 +118,20 @@ export interface Profile {
 // ---------------------------------------------------------------------------
 
 export type OpportunityStatus = "Aperto" | "In arrivo" | "Chiuso";
+
+/**
+ * Natura del bando. Conta per il territorio: un contributo regionale è riservato agli enti
+ * di quella regione, mentre a una gara d'appalto può partecipare un operatore di qualsiasi
+ * regione. Se non indicata, il bando è trattato come contributo.
+ */
+export type OpportunityKind = "contributo" | "gara" | "qualificazione";
+
+/** Le venti regioni, con i nomi brevi usati nei profili e nei filtri. */
+export const REGIONI_ITALIANE = [
+  "Abruzzo", "Basilicata", "Calabria", "Campania", "Emilia-Romagna", "Friuli-Venezia Giulia",
+  "Lazio", "Liguria", "Lombardia", "Marche", "Molise", "Piemonte", "Puglia", "Sardegna",
+  "Sicilia", "Toscana", "Trentino-Alto Adige", "Umbria", "Valle d'Aosta", "Veneto",
+] as const;
 export type OpportunityLevel = "Europeo" | "Nazionale" | "Regionale" | "Locale";
 
 /**
@@ -181,6 +200,8 @@ export interface Opportunity {
   authority: string;
   level: OpportunityLevel;
   status: OpportunityStatus;
+  /** Contributo, gara d'appalto o qualificazione (elenchi, abilitazioni). */
+  kind?: OpportunityKind;
   theme: string;
   territory: string;
 

@@ -14,15 +14,29 @@ const list = (v: FormDataEntryValue | null) =>
     .filter(Boolean);
 
 const amount = (v: FormDataEntryValue | null) => {
-  const n = Number(String(v ?? "").trim());
-  return String(v ?? "").trim() && Number.isFinite(n) ? n : null;
+  const raw = String(v ?? "").trim();
+  const n = Number(raw);
+  return raw && Number.isFinite(n) ? n : null;
 };
 
-export async function saveAnacFilters(formData: FormData) {
+/** Esegue il controllo ANAC per un profilo e porta alle Novità con l'esito. */
+async function run(profileId: string): Promise<string> {
+  const supabase = await createClient();
+  try {
+    const summary = await runAnac(supabase, await getWorkspaceId(), profileId);
+    revalidatePath("/novita");
+    revalidatePath("/opportunita");
+    return `/novita?profilo=${profileId}&controllo=${summary.runId}`;
+  } catch (e) {
+    return `/fonti/anac?profilo=${profileId}&errore=${encodeURIComponent(e instanceof Error ? e.message : "controllo")}`;
+  }
+}
+
+export async function saveAnacFilters(profileId: string, formData: FormData) {
   const cpv = [...new Set([...formData.getAll("cpv").map(String), ...list(formData.get("cpv_altri"))])]
     .map((c) => c.replace(/[^0-9-]/g, ""))
     .filter((c) => c.replace(/-/g, "").length >= 3);
-  if (!cpv.length) redirect("/fonti/anac?errore=cpv");
+  if (!cpv.length) redirect(`/fonti/anac?profilo=${profileId}&errore=cpv`);
 
   const filters: AnacFilters = {
     cpv,
@@ -30,30 +44,29 @@ export async function saveAnacFilters(formData: FormData) {
     tipologie: formData.getAll("tipologie").map(String),
     importoMin: amount(formData.get("importo_min")),
     importoMax: amount(formData.get("importo_max")),
+    includi: list(formData.get("includi")),
     escludi: list(formData.get("escludi")),
+    ricerca: String(formData.get("ricerca") ?? "").trim(),
     soloAperti: formData.get("solo_aperti") === "on",
     giorniIndietro: Math.min(60, Math.max(1, Number(formData.get("giorni_indietro")) || 7)),
   };
 
   const supabase = await createClient();
-  const { error } = await supabase
-    .from("connector_settings")
-    .upsert({ workspace_id: await getWorkspaceId(), connector: "anac", filters, updated_at: new Date().toISOString() });
+  const { error } = await supabase.from("connector_settings").upsert({
+    workspace_id: await getWorkspaceId(),
+    connector: "anac",
+    profile_id: profileId,
+    filters,
+    updated_at: new Date().toISOString(),
+  });
   revalidatePath("/fonti/anac");
-  redirect(`/fonti/anac?${error ? "errore=salvataggio" : "salvato=1"}`);
+  if (error) redirect(`/fonti/anac?profilo=${profileId}&errore=salvataggio`);
+
+  if (formData.get("intent") === "controlla") redirect(await run(profileId));
+  redirect(`/fonti/anac?profilo=${profileId}&salvato=1`);
 }
 
-/** «Controlla ora»: il controllo gira con i permessi dell'utente collegato. */
-export async function runAnacNow() {
-  const supabase = await createClient();
-  let target = "/novita";
-  try {
-    const summary = await runAnac(supabase, await getWorkspaceId());
-    target = `/novita?controllo=${summary.runId}`;
-  } catch (e) {
-    target = `/fonti/anac?errore=${encodeURIComponent(e instanceof Error ? e.message : "controllo")}`;
-  }
-  revalidatePath("/novita");
-  revalidatePath("/opportunita");
-  redirect(target);
+/** «Controlla ora» con i filtri già salvati: gira con i permessi dell'utente collegato. */
+export async function runAnacNow(profileId: string) {
+  redirect(await run(profileId));
 }

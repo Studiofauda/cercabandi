@@ -105,6 +105,7 @@ export async function getScenarios(profileId: string, opportunityId: string) {
 export interface IngestionRunRow {
   id: string;
   connector: string;
+  profile_id: string | null;
   status: "in-corso" | "completato" | "errore";
   window_from: string | null;
   window_to: string | null;
@@ -117,20 +118,23 @@ export interface IngestionRunRow {
   finished_at: string | null;
 }
 
-export async function getConnectorFilters(connector: string) {
+/** Filtri di un lettore per un profilo (ogni profilo ha la sua ricerca). */
+export async function getConnectorFilters(connector: string, profileId: string) {
   const supabase = await createClient();
-  const { data } = await supabase.from("connector_settings").select("filters, updated_at").eq("connector", connector).maybeSingle();
+  const { data } = await supabase
+    .from("connector_settings")
+    .select("filters, updated_at")
+    .eq("connector", connector)
+    .eq("profile_id", profileId)
+    .maybeSingle();
   return data as { filters: Record<string, unknown>; updated_at: string } | null;
 }
 
-export async function getRuns(connector: string, limit = 10) {
+export async function getRuns(connector: string, limit = 10, profileId?: string) {
   const supabase = await createClient();
-  const { data, error } = await supabase
-    .from("ingestion_runs")
-    .select("*")
-    .eq("connector", connector)
-    .order("started_at", { ascending: false })
-    .limit(limit);
+  let query = supabase.from("ingestion_runs").select("*").eq("connector", connector);
+  if (profileId) query = query.eq("profile_id", profileId);
+  const { data, error } = await query.order("started_at", { ascending: false }).limit(limit);
   // Prima della migrazione la tabella non esiste: nessun controllo da mostrare.
   if (error) return [];
   return data as IngestionRunRow[];

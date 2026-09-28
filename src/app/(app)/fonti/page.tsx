@@ -47,14 +47,15 @@ export default async function FontiPage({ searchParams }: { searchParams: Promis
         <div className="mt-2 flex flex-wrap items-center justify-between gap-3">
           <div className="text-[13px]">
             <strong>ANAC · Pubblicità legale</strong> <Pill tone="go">attivo</Pill>
+            <span className="ml-1 text-xs text-muted">una ricerca per ogni profilo</span>
             <p className="text-xs text-muted">
               {lastAnac
                 ? `Ultimo controllo ${date(lastAnac.started_at)}: ${lastAnac.inserted} nuovi, ${lastAnac.updated} aggiornati`
                 : "Nessun controllo ancora eseguito"}
             </p>
           </div>
-          <Link href="/fonti/anac" className="rounded-control bg-ink px-3 py-1.5 text-xs font-semibold text-lime">
-            Filtri e controllo →
+          <Link href={`/fonti/anac${profile ? `?profilo=${profile.id}` : ""}`} className="rounded-control bg-ink px-3 py-1.5 text-xs font-semibold text-lime">
+            Ricerche per profilo →
           </Link>
         </div>
         <p className="mt-2 text-[11px] text-muted">TED e Funding & Tenders arrivano con la prossima tappa. Le altre fonti si consultano dai link qui sotto.</p>

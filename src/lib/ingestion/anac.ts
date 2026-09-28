@@ -26,8 +26,12 @@ export interface AnacFilters {
   tipologie: string[];
   importoMin: number | null;
   importoMax: number | null;
+  /** Parole o radici di cui almeno una deve comparire nel titolo o nella descrizione. */
+  includi: string[];
   /** Parole che, se presenti nel titolo o nella descrizione, escludono l'avviso. */
   escludi: string[];
+  /** La richiesta scritta a parole da cui sono stati ricavati i filtri, se c'è. */
+  ricerca: string;
   soloAperti: boolean;
   /** Quanti giorni indietro guardare al primo controllo. */
   giorniIndietro: number;
@@ -39,7 +43,9 @@ export const DEFAULT_ANAC_FILTERS: AnacFilters = {
   tipologie: ["BANDI", "INDAGINI_DI_MERCATO_SOTTO_SOGLIA"],
   importoMin: null,
   importoMax: null,
+  includi: [],
   escludi: [],
+  ricerca: "",
   soloAperti: true,
   giorniIndietro: 7,
 };
@@ -158,6 +164,18 @@ function normalizeNotice(n: Json): AnacCandidate | null {
   };
 }
 
+/**
+ * Una parola o radice compare nel testo? Le radici corte (4 lettere o meno, es. «nido»,
+ * «rsa») devono essere parole intere, per non trovarle dentro altre parole.
+ */
+export function textHas(text: string, word: string): boolean {
+  const w = word.trim().toLowerCase();
+  if (!w) return false;
+  const escaped = w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  if (w.length <= 4) return new RegExp(`\\b${escaped}\\b`, "i").test(text);
+  return text.toLowerCase().includes(w);
+}
+
 /** Motivo per cui un avviso non passa i filtri, oppure null se passa. */
 export function rejectReason(c: AnacCandidate, f: AnacFilters, today: string): string | null {
   if (f.tipologie.length && !f.tipologie.includes(c.tipologia)) return "tipologia";
@@ -167,8 +185,9 @@ export function rejectReason(c: AnacCandidate, f: AnacFilters, today: string): s
     return "regione";
   if (f.importoMin !== null && c.amount !== null && c.amount < f.importoMin) return "importo";
   if (f.importoMax !== null && c.amount !== null && c.amount > f.importoMax) return "importo";
-  const text = `${c.title} ${c.description}`.toLowerCase();
-  if (f.escludi.some((w) => w.trim() && text.includes(w.trim().toLowerCase()))) return "parole escluse";
+  const text = `${c.title} ${c.description}`;
+  if (f.includi.length && !f.includi.some((w) => textHas(text, w))) return "parole chiave";
+  if (f.escludi.some((w) => textHas(text, w))) return "parole escluse";
   return null;
 }
 

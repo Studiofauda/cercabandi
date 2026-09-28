@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { DIGEST_THRESHOLD, evaluate } from "@/core/scoring";
 import { getDismissals, getOpportunities, getProfiles, getRuns } from "@/lib/db/queries";
-import { date } from "@/lib/format";
+import { date, dateTime } from "@/lib/format";
 import { OpportunityCard, ProfileChips } from "@/components/OpportunityCard";
 
 const ORIGIN_LABEL: Record<string, string> = { anac: "ANAC", ted: "TED", sedia: "Funding & Tenders" };
@@ -17,9 +17,10 @@ export default async function NovitaPage({
 }) {
   const { profilo, giorni, controllo } = await searchParams;
   const days = Math.min(90, Math.max(1, Number(giorni) || 14));
-  const [profiles, opportunities, runs] = await Promise.all([getProfiles(), getOpportunities(), getRuns("anac", 1)]);
+  const [profiles, opportunities] = await Promise.all([getProfiles(), getOpportunities()]);
   const profile = profiles.find((p) => p.profile.id === profilo)?.profile ?? profiles[0]?.profile;
   if (!profile) return <p className="text-muted">Serve almeno un profilo.</p>;
+  const runs = await getRuns("anac", 1, profile.id);
 
   const since = Date.now() - days * 86_400_000;
   const now = new Date();
@@ -40,8 +41,8 @@ export default async function NovitaPage({
 
       <div className="mt-5 flex flex-wrap items-baseline justify-between gap-2">
         <h1 className="text-[21px] font-bold tracking-[-0.01em]">Novità</h1>
-        <Link href="/fonti/anac" className="text-xs underline">
-          Filtri e controllo delle fonti
+        <Link href={`/fonti/anac?profilo=${profile.id}`} className="rounded-control bg-ink px-3 py-1.5 text-xs font-semibold text-lime">
+          Ricerca e controllo per {profile.shortName} →
         </Link>
       </div>
       <p className="mt-1 text-xs text-muted">
@@ -50,14 +51,35 @@ export default async function NovitaPage({
       </p>
 
       {controllo && lastRun && lastRun.id === controllo && (
-        <p className="mt-3 rounded-control bg-go/20 px-3 py-2 text-xs text-go-ink">
-          Controllo ANAC completato: letti {lastRun.found} avvisi, {lastRun.inserted} bandi nuovi, {lastRun.updated} aggiornati.
-          {lastRun.message ? ` ${lastRun.message}.` : ""}
-        </p>
+        <div role="status" className={`mt-3 rounded-card border-2 px-4 py-3 text-[13px] ${lastRun.status === "completato" ? "border-green bg-go/15" : "border-red bg-nogo/10"}`}>
+          <p className="font-bold">
+            {lastRun.status === "completato" ? "✓ Controllo ANAC eseguito" : "✗ Controllo ANAC non riuscito"} per {profile.name} · {dateTime(lastRun.started_at)}
+          </p>
+          {lastRun.status === "completato" ? (
+            <>
+              <p className="mt-1">
+                Letti <strong>{lastRun.found}</strong> avvisi pubblicati dal {date(lastRun.window_from)} al {date(lastRun.window_to)}:{" "}
+                <strong>{lastRun.inserted} bandi nuovi</strong>, {lastRun.updated} aggiornati, {lastRun.skipped} già presenti.
+              </p>
+              {lastRun.message && <p className="mt-0.5 text-xs text-muted">{lastRun.message}.</p>}
+              {lastRun.inserted + lastRun.updated === 0 && (
+                <p className="mt-1 text-xs">
+                  Nessun bando nuovo con questi filtri nel periodo. Puoi allargarli (più regioni, più giorni, meno parole chiave) da{" "}
+                  <Link href={`/fonti/anac?profilo=${profile.id}`} className="underline">
+                    Fonti → ANAC
+                  </Link>
+                  .
+                </p>
+              )}
+            </>
+          ) : (
+            <p className="mt-1 text-xs">{lastRun.message}</p>
+          )}
+        </div>
       )}
       {!controllo && lastRun && (
         <p className="mt-2 text-[11px] text-muted">
-          Ultimo controllo ANAC: {date(lastRun.started_at)} ({lastRun.status}).
+          Ultimo controllo ANAC per {profile.name}: {dateTime(lastRun.started_at)} ({lastRun.status}, {lastRun.inserted} nuovi).
         </p>
       )}
 
@@ -72,7 +94,7 @@ export default async function NovitaPage({
       {fresh.length === 0 ? (
         <p className="mt-6 text-muted">
           Nessun bando nuovo in questo periodo. Puoi lanciare un controllo da{" "}
-          <Link href="/fonti/anac" className="underline">
+          <Link href={`/fonti/anac?profilo=${profile.id}`} className="underline">
             Fonti → ANAC
           </Link>
           .

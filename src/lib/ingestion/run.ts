@@ -21,6 +21,15 @@ export interface RunSummary {
 }
 
 const DAY = 86_400_000;
+
+/** Impronta dei filtri: se cambia, il controllo ricerca di nuovo tutto il periodo iniziale. */
+function filtersHash(f: AnacFilters): string {
+  const { ricerca: _ricerca, ...rest } = f;
+  const text = JSON.stringify(rest, Object.keys(rest).sort());
+  let h = 5381;
+  for (let i = 0; i < text.length; i++) h = ((h << 5) + h + text.charCodeAt(i)) | 0;
+  return (h >>> 0).toString(36);
+}
 const iso = (d: Date) => d.toISOString().slice(0, 10);
 
 function toRow(c: AnacCandidate, workspaceId: string, sourceId: string | null, today: string) {
@@ -67,34 +76,46 @@ function toRow(c: AnacCandidate, workspaceId: string, sourceId: string | null, t
 /** Campi confrontati per capire se un bando già noto è cambiato. */
 const WATCHED = ["title", "deadline", "budget_totale", "status", "source_url"] as const;
 
-export async function runAnac(supabase: SupabaseClient, workspaceId: string): Promise<RunSummary> {
+export async function runAnac(supabase: SupabaseClient, workspaceId: string, profileId: string): Promise<RunSummary> {
   const { data: settings } = await supabase
     .from("connector_settings")
     .select("filters, enabled")
     .eq("workspace_id", workspaceId)
     .eq("connector", "anac")
+    .eq("profile_id", profileId)
     .maybeSingle();
   const filters: AnacFilters = { ...DEFAULT_ANAC_FILTERS, ...((settings?.filters as Partial<AnacFilters>) ?? {}) };
+  const hash = filtersHash(filters);
 
-  // Finestra: dall'ultimo controllo riuscito (con un giorno di sovrapposizione), altrimenti
-  // gli ultimi N giorni indicati nei filtri.
+  // Finestra: dall'ultimo controllo riuscito con gli stessi filtri (con un giorno di
+  // sovrapposizione). Se i filtri sono cambiati, o è il primo controllo, gli ultimi N
+  // giorni indicati: altrimenti cambiando regione non si vedrebbero i bandi dei giorni prima.
   const { data: last } = await supabase
     .from("ingestion_runs")
-    .select("window_to")
+    .select("window_to, filters_hash")
     .eq("workspace_id", workspaceId)
     .eq("connector", "anac")
+    .eq("profile_id", profileId)
     .eq("status", "completato")
     .order("started_at", { ascending: false })
     .limit(1)
     .maybeSingle();
   const to = new Date();
-  const from = last?.window_to
-    ? new Date(new Date(last.window_to).getTime() - DAY)
-    : new Date(to.getTime() - filters.giorniIndietro * DAY);
+  const from =
+    last?.window_to && last.filters_hash === hash
+      ? new Date(new Date(last.window_to).getTime() - DAY)
+      : new Date(to.getTime() - filters.giorniIndietro * DAY);
 
   const { data: run, error: runError } = await supabase
     .from("ingestion_runs")
-    .insert({ workspace_id: workspaceId, connector: "anac", window_from: iso(from), window_to: iso(to) })
+    .insert({
+      workspace_id: workspaceId,
+      connector: "anac",
+      profile_id: profileId,
+      filters_hash: hash,
+      window_from: iso(from),
+      window_to: iso(to),
+    })
     .select("id")
     .single();
   if (runError || !run) throw new Error("Controllo non avviato: servono i permessi di modifica.");

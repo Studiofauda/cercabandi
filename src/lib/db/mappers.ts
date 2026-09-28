@@ -53,6 +53,8 @@ export interface OpportunityRow {
   verified_at: string | null;
   needs_review: boolean;
   review_notes: string | null;
+  /** Assente finché la migrazione sul controllo delle fonti non è stata eseguita. */
+  origin?: string;
   created_at: string;
   updated_at: string;
 }

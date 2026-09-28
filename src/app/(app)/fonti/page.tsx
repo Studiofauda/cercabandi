@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Source } from "@/core/types";
-import { getProfiles, getSources } from "@/lib/db/queries";
+import { getProfiles, getRuns, getSources } from "@/lib/db/queries";
 import { PACK_LABELS } from "@/lib/labels";
 import { date } from "@/lib/format";
 import { Pill, type Tone } from "@/components/Pill";
@@ -17,7 +17,8 @@ const RELIABILITY_ORDER: Record<Source["reliability"], number> = { Ufficiale: 0,
 
 export default async function FontiPage({ searchParams }: { searchParams: Promise<{ profilo?: string }> }) {
   const { profilo } = await searchParams;
-  const [sources, profiles] = await Promise.all([getSources(), getProfiles()]);
+  const [sources, profiles, runs] = await Promise.all([getSources(), getProfiles(), getRuns("anac", 1)]);
+  const lastAnac = runs[0];
   const profile = profiles.find((p) => p.profile.id === profilo)?.profile;
 
   // Una fonte è pertinente se è di base comune o condivide almeno un ambito con il profilo.
@@ -41,7 +42,25 @@ export default async function FontiPage({ searchParams }: { searchParams: Promis
         </p>
       </div>
 
-      <div className="mt-3 flex flex-wrap gap-2 text-xs">
+      <section className="mt-4 rounded-card border border-ink bg-panel px-4 py-3">
+        <h2 className="text-[11px] font-semibold tracking-[0.03em] text-muted uppercase">Controllo automatico</h2>
+        <div className="mt-2 flex flex-wrap items-center justify-between gap-3">
+          <div className="text-[13px]">
+            <strong>ANAC · Pubblicità legale</strong> <Pill tone="go">attivo</Pill>
+            <p className="text-xs text-muted">
+              {lastAnac
+                ? `Ultimo controllo ${date(lastAnac.started_at)}: ${lastAnac.inserted} nuovi, ${lastAnac.updated} aggiornati`
+                : "Nessun controllo ancora eseguito"}
+            </p>
+          </div>
+          <Link href="/fonti/anac" className="rounded-control bg-ink px-3 py-1.5 text-xs font-semibold text-lime">
+            Filtri e controllo →
+          </Link>
+        </div>
+        <p className="mt-2 text-[11px] text-muted">TED e Funding & Tenders arrivano con la prossima tappa. Le altre fonti si consultano dai link qui sotto.</p>
+      </section>
+
+      <div className="mt-4 flex flex-wrap gap-2 text-xs">
         <Link href="/fonti" className={`rounded-full border px-3 py-1 font-semibold ${!profile ? "border-ink bg-ink text-paper" : "border-line"}`}>
           Tutte
         </Link>
@@ -99,7 +118,7 @@ export default async function FontiPage({ searchParams }: { searchParams: Promis
       </ul>
 
       <p className="mt-3 text-xs text-muted">
-        Il controllo automatico delle fonti (API, feed, lettura dei portali) è previsto nella Fase 2.
+        Metodo di accesso e vincoli d&apos;uso di ogni fonte sono documentati in docs/censimento-fonti.md.
       </p>
     </div>
   );

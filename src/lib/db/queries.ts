@@ -102,6 +102,40 @@ export async function getScenarios(profileId: string, opportunityId: string) {
   return data as ScenarioRow[];
 }
 
+export interface IngestionRunRow {
+  id: string;
+  connector: string;
+  status: "in-corso" | "completato" | "errore";
+  window_from: string | null;
+  window_to: string | null;
+  found: number;
+  inserted: number;
+  updated: number;
+  skipped: number;
+  message: string | null;
+  started_at: string;
+  finished_at: string | null;
+}
+
+export async function getConnectorFilters(connector: string) {
+  const supabase = await createClient();
+  const { data } = await supabase.from("connector_settings").select("filters, updated_at").eq("connector", connector).maybeSingle();
+  return data as { filters: Record<string, unknown>; updated_at: string } | null;
+}
+
+export async function getRuns(connector: string, limit = 10) {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("ingestion_runs")
+    .select("*")
+    .eq("connector", connector)
+    .order("started_at", { ascending: false })
+    .limit(limit);
+  // Prima della migrazione la tabella non esiste: nessun controllo da mostrare.
+  if (error) return [];
+  return data as IngestionRunRow[];
+}
+
 export async function getSources() {
   const supabase = await createClient();
   const { data, error } = await supabase.from("sources").select("*").order("scope").order("name");

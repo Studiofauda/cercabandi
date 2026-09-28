@@ -2,7 +2,7 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
 /** Pagine raggiungibili senza essere collegati. */
-const PUBLIC_PATHS = ["/login", "/auth/"];
+const PUBLIC_PATHS = ["/login", "/auth/", "/api/cron/"];
 
 /**
  * Eseguito prima di ogni pagina: rinnova la sessione di Supabase (che ha una durata

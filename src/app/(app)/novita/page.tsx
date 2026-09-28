@@ -79,7 +79,7 @@ export default async function NovitaPage({
       )}
       {!controllo && lastRun && (
         <p className="mt-2 text-[11px] text-muted">
-          Ultimo controllo ANAC per {profile.name}: {dateTime(lastRun.started_at)} ({lastRun.status}, {lastRun.inserted} nuovi).
+          Ultimo controllo ANAC per {profile.name}: {dateTime(lastRun.started_at)}, {lastRun.triggered_by ? "manuale" : "automatico"} ({lastRun.status}, {lastRun.inserted} nuovi).
         </p>
       )}
 

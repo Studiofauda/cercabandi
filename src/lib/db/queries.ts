@@ -114,6 +114,8 @@ export interface IngestionRunRow {
   updated: number;
   skipped: number;
   message: string | null;
+  /** Vuoto per i controlli automatici del mattino (nessun utente collegato). */
+  triggered_by: string | null;
   started_at: string;
   finished_at: string | null;
 }

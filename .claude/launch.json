@@ -12,7 +12,7 @@
       "runtimeExecutable": "cmd",
       "runtimeArgs": [
         "/c",
-        "set NEXT_PUBLIC_SUPABASE_URL=https://anteprima.supabase.co&& set NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_finta&& npx next dev -p 3100"
+        "set NEXT_PUBLIC_SUPABASE_URL=https://anteprima.supabase.co&& set NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_finta&& set CRON_SECRET=prova-solo-locale&& set SUPABASE_SECRET_KEY=&& npx next dev -p 3100"
       ],
       "port": 3100
     }

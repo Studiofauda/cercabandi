@@ -45,7 +45,8 @@ export default async function AnacPage({
       </Link>
       <h1 className="mt-2 text-[21px] font-bold tracking-[-0.01em]">Ricerca su ANAC · Pubblicità legale</h1>
       <p className="mt-1 text-xs text-muted">
-        Raccoglie gli avvisi di tutte le stazioni appaltanti italiane, compresi MIT e Province. Ogni profilo ha la sua ricerca.
+        Raccoglie gli avvisi di tutte le stazioni appaltanti italiane, compresi MIT e Province. Ogni profilo ha la sua ricerca: le ricerche salvate
+        vengono controllate da sole ogni mattina verso le 7, e si possono lanciare in qualsiasi momento con i bottoni qui sotto.
       </p>
 
       {/* 1. Per quale profilo */}
@@ -229,6 +230,7 @@ export default async function AnacPage({
                 <div className="flex flex-wrap items-baseline gap-x-2">
                   <Pill tone={r.status === "completato" ? "go" : r.status === "errore" ? "nogo" : "neutral"}>{r.status}</Pill>
                   <strong>{dateTime(r.started_at)}</strong>
+                  <span className="text-muted">{r.triggered_by ? "manuale" : "automatico"}</span>
                   <span className="text-muted">
                     avvisi pubblicati dal {date(r.window_from)} al {date(r.window_to)}
                   </span>

@@ -50,8 +50,9 @@ export default async function FontiPage({ searchParams }: { searchParams: Promis
             <span className="ml-1 text-xs text-muted">una ricerca per ogni profilo</span>
             <p className="text-xs text-muted">
               {lastAnac
-                ? `Ultimo controllo ${date(lastAnac.started_at)}: ${lastAnac.inserted} nuovi, ${lastAnac.updated} aggiornati`
+                ? `Ultimo controllo ${date(lastAnac.started_at)} (${lastAnac.triggered_by ? "manuale" : "automatico"}): ${lastAnac.inserted} nuovi, ${lastAnac.updated} aggiornati`
                 : "Nessun controllo ancora eseguito"}
+              {" · controllo automatico ogni mattina verso le 7"}
             </p>
           </div>
           <Link href={`/fonti/anac${profile ? `?profilo=${profile.id}` : ""}`} className="rounded-control bg-ink px-3 py-1.5 text-xs font-semibold text-lime">

@@ -205,6 +205,13 @@ const PATH_IMPRESA: Question[] = [
     paramKey: "fatturatoAnnuo",
   },
   {
+    id: "personaleTecnico",
+    kind: "number",
+    prompt: "Quante persone con competenze tecniche lavorano stabilmente con voi?",
+    help: "Interni e collaboratori continuativi. Serve a valutare se riuscite a seguire una candidatura e il progetto che ne segue.",
+    paramKey: "personaleTecnico",
+  },
+  {
     id: "certificazioni",
     kind: "multi",
     prompt: "Quali certificazioni o qualificazioni possedete?",
@@ -274,6 +281,13 @@ const PATH_ASSOCIAZIONE: Question[] = [
     kind: "boolean",
     prompt: "Vi interessano anche i bandi di fondazioni private e filantropiche?",
     help: "Oltre ai fondi pubblici e ai programmi europei.",
+  },
+  {
+    id: "personaleTecnico",
+    kind: "number",
+    prompt: "Quante persone, tra dipendenti e volontari stabili, possono seguire la progettazione e la rendicontazione?",
+    help: "Serve a valutare se riuscite a gestire una candidatura e il progetto che ne segue.",
+    paramKey: "personaleTecnico",
   },
   {
     id: "capacitaCofinanziamento",

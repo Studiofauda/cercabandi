@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { DIGEST_THRESHOLD, evaluate } from "@/core/scoring";
-import { getDismissals, getOpportunities, getProfiles, getRuns } from "@/lib/db/queries";
+import { getDismissals, getLatestRuns, getOpportunities, getProfiles, getRun } from "@/lib/db/queries";
 import { date, dateTime } from "@/lib/format";
 import { OpportunityCard, ProfileChips } from "@/components/OpportunityCard";
 
@@ -20,7 +20,7 @@ export default async function NovitaPage({
   const [profiles, opportunities] = await Promise.all([getProfiles(), getOpportunities()]);
   const profile = profiles.find((p) => p.profile.id === profilo)?.profile ?? profiles[0]?.profile;
   if (!profile) return <p className="text-muted">Serve almeno un profilo.</p>;
-  const runs = await getRuns("anac", 1, profile.id);
+  const [latest, requested] = await Promise.all([getLatestRuns(profile.id, 1), controllo ? getRun(controllo) : Promise.resolve(null)]);
 
   const since = Date.now() - days * 86_400_000;
   const now = new Date();
@@ -32,7 +32,8 @@ export default async function NovitaPage({
     .filter(({ e }) => e.verdict !== "Non applicabile")
     .sort((a, b) => b.e.score - a.e.score);
   const aboveThreshold = fresh.filter(({ e }) => e.score >= DIGEST_THRESHOLD).length;
-  const lastRun = runs[0];
+  const lastRun = requested ?? latest[0];
+  const sourceName = (c?: string) => ORIGIN_LABEL[c ?? ""] ?? "fonte";
   const base = (p: string) => `/novita?profilo=${p}&giorni=${days}`;
 
   return (
@@ -41,9 +42,14 @@ export default async function NovitaPage({
 
       <div className="mt-5 flex flex-wrap items-baseline justify-between gap-2">
         <h1 className="text-[21px] font-bold tracking-[-0.01em]">Novità</h1>
-        <Link href={`/fonti/anac?profilo=${profile.id}`} className="rounded-control bg-ink px-3 py-1.5 text-xs font-semibold text-lime">
-          Ricerca e controllo per {profile.shortName} →
-        </Link>
+        <span className="flex gap-2">
+          <Link href={`/fonti/anac?profilo=${profile.id}`} className="rounded-control bg-ink px-3 py-1.5 text-xs font-semibold text-lime">
+            Ricerca ANAC →
+          </Link>
+          <Link href={`/fonti/sedia?profilo=${profile.id}`} className="rounded-control bg-ink px-3 py-1.5 text-xs font-semibold text-lime">
+            Ricerca bandi UE →
+          </Link>
+        </span>
       </div>
       <p className="mt-1 text-xs text-muted">
         Bandi trovati dai controlli automatici negli ultimi {days} giorni · {fresh.length} pertinenti per{" "}
@@ -53,20 +59,20 @@ export default async function NovitaPage({
       {controllo && lastRun && lastRun.id === controllo && (
         <div role="status" className={`mt-3 rounded-card border-2 px-4 py-3 text-[13px] ${lastRun.status === "completato" ? "border-green bg-go/15" : "border-red bg-nogo/10"}`}>
           <p className="font-bold">
-            {lastRun.status === "completato" ? "✓ Controllo ANAC eseguito" : "✗ Controllo ANAC non riuscito"} per {profile.name} · {dateTime(lastRun.started_at)}
+            {lastRun.status === "completato" ? `✓ Controllo ${sourceName(lastRun.connector)} eseguito` : `✗ Controllo ${sourceName(lastRun.connector)} non riuscito`} per {profile.name} · {dateTime(lastRun.started_at)}
           </p>
           {lastRun.status === "completato" ? (
             <>
               <p className="mt-1">
-                Letti <strong>{lastRun.found}</strong> avvisi pubblicati dal {date(lastRun.window_from)} al {date(lastRun.window_to)}:{" "}
+                Letti <strong>{lastRun.found}</strong> {lastRun.window_from ? `avvisi pubblicati dal ${date(lastRun.window_from)} al ${date(lastRun.window_to)}` : "bandi aperti o in arrivo"}:{" "}
                 <strong>{lastRun.inserted} bandi nuovi</strong>, {lastRun.updated} aggiornati, {lastRun.skipped} già presenti.
               </p>
               {lastRun.message && <p className="mt-0.5 text-xs text-muted">{lastRun.message}.</p>}
               {lastRun.inserted + lastRun.updated === 0 && (
                 <p className="mt-1 text-xs">
                   Nessun bando nuovo con questi filtri nel periodo. Puoi allargarli (più regioni, più giorni, meno parole chiave) da{" "}
-                  <Link href={`/fonti/anac?profilo=${profile.id}`} className="underline">
-                    Fonti → ANAC
+                  <Link href={`/fonti/${lastRun.connector}?profilo=${profile.id}`} className="underline">
+                    Fonti → {sourceName(lastRun.connector)}
                   </Link>
                   .
                 </p>
@@ -79,7 +85,7 @@ export default async function NovitaPage({
       )}
       {!controllo && lastRun && (
         <p className="mt-2 text-[11px] text-muted">
-          Ultimo controllo ANAC per {profile.name}: {dateTime(lastRun.started_at)}, {lastRun.triggered_by ? "manuale" : "automatico"} ({lastRun.status}, {lastRun.inserted} nuovi).
+          Ultimo controllo per {profile.name}: {sourceName(lastRun.connector)}, {dateTime(lastRun.started_at)}, {lastRun.triggered_by ? "manuale" : "automatico"} ({lastRun.status}, {lastRun.inserted} nuovi).
         </p>
       )}
 

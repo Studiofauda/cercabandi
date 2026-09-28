@@ -142,6 +142,25 @@ export async function getRuns(connector: string, limit = 10, profileId?: string)
   return data as IngestionRunRow[];
 }
 
+export async function getRun(id: string) {
+  const supabase = await createClient();
+  const { data } = await supabase.from("ingestion_runs").select("*").eq("id", id).maybeSingle();
+  return (data as IngestionRunRow | null) ?? null;
+}
+
+/** Ultimi controlli di un profilo, di qualsiasi fonte. */
+export async function getLatestRuns(profileId: string, limit = 5) {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("ingestion_runs")
+    .select("*")
+    .eq("profile_id", profileId)
+    .order("started_at", { ascending: false })
+    .limit(limit);
+  if (error) return [];
+  return data as IngestionRunRow[];
+}
+
 export async function getSources() {
   const supabase = await createClient();
   const { data, error } = await supabase.from("sources").select("*").order("scope").order("name");

@@ -172,8 +172,10 @@ export function textHas(text: string, word: string): boolean {
   const w = word.trim().toLowerCase();
   if (!w) return false;
   const escaped = w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  if (w.length <= 4) return new RegExp(`\\b${escaped}\\b`, "i").test(text);
-  return text.toLowerCase().includes(w);
+  // La radice deve stare all'inizio di una parola («cultur» non deve trovare «agriculture»);
+  // le radici corte (4 lettere o meno) devono essere parole intere.
+  const end = w.length <= 4 ? "(?![\\p{L}\\p{N}])" : "";
+  return new RegExp(`(?<![\\p{L}\\p{N}])${escaped}${end}`, "iu").test(text);
 }
 
 /** Motivo per cui un avviso non passa i filtri, oppure null se passa. */

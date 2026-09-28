@@ -1,10 +1,11 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
-import { runAnac } from "@/lib/ingestion/run";
+import { RUNNERS, type Connector } from "@/lib/ingestion/run";
 
 /**
  * Controllo automatico delle fonti, chiamato ogni mattina da Vercel (vedi vercel.json).
- * Esegue la ricerca ANAC di ogni profilo che ne ha una salvata e attiva.
+ * Esegue le ricerche salvate e attive di ogni profilo, per tutte le fonti (ANAC,
+ * Funding & Tenders).
  *
  * Protezione: Vercel invia «Authorization: Bearer <CRON_SECRET>»; senza la parola d'ordine
  * giusta la richiesta viene rifiutata. La risposta contiene solo conteggi.
@@ -31,8 +32,8 @@ export async function GET(request: NextRequest) {
 
   const { data: searches, error } = await supabase
     .from("connector_settings")
-    .select("workspace_id, profile_id")
-    .eq("connector", "anac")
+    .select("workspace_id, profile_id, connector")
+    .in("connector", Object.keys(RUNNERS))
     .eq("enabled", true);
   if (error) {
     // Il messaggio di Supabase non contiene la chiave: serve a capire se è sbagliata
@@ -47,18 +48,18 @@ export async function GET(request: NextRequest) {
   }
 
   const started = Date.now();
-  const results: Array<{ profile: string; inserted?: number; updated?: number; error?: string; rinviato?: boolean }> = [];
+  const results: Array<{ connector: string; profile: string; inserted?: number; updated?: number; error?: string; rinviato?: boolean }> = [];
   for (const s of searches ?? []) {
     if (Date.now() - started > TIME_BUDGET_MS) {
-      results.push({ profile: s.profile_id, rinviato: true });
+      results.push({ connector: s.connector, profile: s.profile_id, rinviato: true });
       continue;
     }
     try {
-      const r = await runAnac(supabase, s.workspace_id, s.profile_id);
-      results.push({ profile: s.profile_id, inserted: r.inserted, updated: r.updated });
+      const r = await RUNNERS[s.connector as Connector](supabase, s.workspace_id, s.profile_id);
+      results.push({ connector: s.connector, profile: s.profile_id, inserted: r.inserted, updated: r.updated });
     } catch (e) {
-      // Un profilo con un errore non ferma gli altri; l'errore resta nel registro dei controlli.
-      results.push({ profile: s.profile_id, error: e instanceof Error ? e.message : "errore" });
+      // Una ricerca con un errore non ferma le altre; l'errore resta nel registro dei controlli.
+      results.push({ connector: s.connector, profile: s.profile_id, error: e instanceof Error ? e.message : "errore" });
     }
   }
   return NextResponse.json({ ricerche: results.length, risultati: results });

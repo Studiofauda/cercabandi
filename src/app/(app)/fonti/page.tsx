@@ -17,8 +17,9 @@ const RELIABILITY_ORDER: Record<Source["reliability"], number> = { Ufficiale: 0,
 
 export default async function FontiPage({ searchParams }: { searchParams: Promise<{ profilo?: string }> }) {
   const { profilo } = await searchParams;
-  const [sources, profiles, runs] = await Promise.all([getSources(), getProfiles(), getRuns("anac", 1)]);
-  const lastAnac = runs[0];
+  const [sources, profiles, anacRuns, sediaRuns] = await Promise.all([getSources(), getProfiles(), getRuns("anac", 1), getRuns("sedia", 1)]);
+  const lastAnac = anacRuns[0];
+  const lastSedia = sediaRuns[0];
   const profile = profiles.find((p) => p.profile.id === profilo)?.profile;
 
   // Una fonte è pertinente se è di base comune o condivide almeno un ambito con il profilo.
@@ -44,22 +45,29 @@ export default async function FontiPage({ searchParams }: { searchParams: Promis
 
       <section className="mt-4 rounded-card border border-ink bg-panel px-4 py-3">
         <h2 className="text-[11px] font-semibold tracking-[0.03em] text-muted uppercase">Controllo automatico</h2>
-        <div className="mt-2 flex flex-wrap items-center justify-between gap-3">
-          <div className="text-[13px]">
-            <strong>ANAC · Pubblicità legale</strong> <Pill tone="go">attivo</Pill>
-            <span className="ml-1 text-xs text-muted">una ricerca per ogni profilo</span>
-            <p className="text-xs text-muted">
-              {lastAnac
-                ? `Ultimo controllo ${date(lastAnac.started_at)} (${lastAnac.triggered_by ? "manuale" : "automatico"}): ${lastAnac.inserted} nuovi, ${lastAnac.updated} aggiornati`
-                : "Nessun controllo ancora eseguito"}
-              {" · controllo automatico ogni mattina verso le 7"}
-            </p>
+        {[
+          { key: "anac", name: "ANAC · Pubblicità legale", what: "gare d'appalto di tutte le stazioni appaltanti italiane", last: lastAnac },
+          { key: "sedia", name: "Funding & Tenders", what: "contributi europei diretti (Horizon, LIFE, Erasmus+, CERV…)", last: lastSedia },
+        ].map((c) => (
+          <div key={c.key} className="mt-2 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-2 first-of-type:border-t-0">
+            <div className="text-[13px]">
+              <strong>{c.name}</strong> <Pill tone="go">attivo</Pill>
+              <span className="ml-1 text-xs text-muted">{c.what}</span>
+              <p className="text-xs text-muted">
+                {c.last
+                  ? `Ultimo controllo ${date(c.last.started_at)} (${c.last.triggered_by ? "manuale" : "automatico"}): ${c.last.inserted} nuovi, ${c.last.updated} aggiornati`
+                  : "Nessun controllo ancora eseguito"}
+              </p>
+            </div>
+            <Link href={`/fonti/${c.key}${profile ? `?profilo=${profile.id}` : ""}`} className="rounded-control bg-ink px-3 py-1.5 text-xs font-semibold text-lime">
+              Ricerche per profilo →
+            </Link>
           </div>
-          <Link href={`/fonti/anac${profile ? `?profilo=${profile.id}` : ""}`} className="rounded-control bg-ink px-3 py-1.5 text-xs font-semibold text-lime">
-            Ricerche per profilo →
-          </Link>
-        </div>
-        <p className="mt-2 text-[11px] text-muted">TED e Funding & Tenders arrivano con la prossima tappa. Le altre fonti si consultano dai link qui sotto.</p>
+        ))}
+        <p className="mt-2 text-[11px] text-muted">
+          Le ricerche salvate vengono controllate da sole ogni mattina verso le 7. Le altre fonti si consultano dai link qui sotto; TED è in pausa (le gare
+          italiane arrivano già da ANAC).
+        </p>
       </section>
 
       <div className="mt-4 flex flex-wrap gap-2 text-xs">

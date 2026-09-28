@@ -98,6 +98,9 @@ export function DetailPanel({
             <ScoreRange evaluation={e} />
           </div>
           {blocking && <p className="mt-2 text-[13px] font-semibold text-red">Non ammissibile: {blocking.note}</p>}
+          <Link href={`/simulazione?profilo=${profile.id}&bando=${o.id}`} className="mt-2 inline-block text-xs font-semibold underline">
+            Cosa cambierebbe se… →
+          </Link>
         </section>
 
         {/* Scomposizione */}

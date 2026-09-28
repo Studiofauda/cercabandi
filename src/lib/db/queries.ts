@@ -82,6 +82,26 @@ export async function getAssessmentNote(opportunityId: string, profileId: string
   return data as AssessmentNoteRow | null;
 }
 
+export interface ScenarioRow {
+  id: string;
+  label: string;
+  params: Record<string, unknown>;
+  created_at: string;
+}
+
+/** Varianti salvate per una coppia profilo × bando. */
+export async function getScenarios(profileId: string, opportunityId: string) {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("scenarios")
+    .select("id, label, params, created_at")
+    .eq("profile_id", profileId)
+    .eq("opportunity_id", opportunityId)
+    .order("created_at");
+  if (error) throw new Error(`Lettura simulazioni non riuscita: ${error.message}`);
+  return data as ScenarioRow[];
+}
+
 export async function getSources() {
   const supabase = await createClient();
   const { data, error } = await supabase.from("sources").select("*").order("scope").order("name");

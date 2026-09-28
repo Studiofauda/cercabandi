@@ -46,6 +46,9 @@ export default async function ProfiloPage({
         <Link href={`/opportunita?profilo=${p.id}`} className="rounded-control border border-line px-3 py-1.5 text-xs font-semibold hover:border-ink">
           Vedi i bandi per questo profilo
         </Link>
+        <Link href={`/simulazione?profilo=${p.id}`} className="rounded-control border border-line px-3 py-1.5 text-xs font-semibold hover:border-ink">
+          Simula varianti
+        </Link>
         <Link href={`/profili/${p.id}/intervista`} className="rounded-control border border-line px-3 py-1.5 text-xs font-semibold hover:border-ink">
           Rifai l&apos;intervista
         </Link>

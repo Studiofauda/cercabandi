@@ -11,6 +11,14 @@ const PUBLIC_PATHS = ["/login", "/auth/"];
 export async function proxy(request: NextRequest) {
   let response = NextResponse.next({ request });
 
+  const configError = checkConfig();
+  if (configError) {
+    return new NextResponse(`Configurazione di Cerca Bandi incompleta: ${configError}`, {
+      status: 500,
+      headers: { "content-type": "text/plain; charset=utf-8" },
+    });
+  }
+
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
@@ -41,6 +49,27 @@ export async function proxy(request: NextRequest) {
   }
 
   return response;
+}
+
+/**
+ * Controlla che le variabili d'ambiente di Supabase ci siano e abbiano la forma giusta,
+ * così un errore di configurazione si capisce subito. Non mostra mai i valori.
+ */
+function checkConfig(): string | null {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+  if (!url) return "manca la variabile NEXT_PUBLIC_SUPABASE_URL.";
+  if (!key) return "manca la variabile NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY.";
+  if (!/^https:\/\/[a-z0-9-]+\.supabase\.co\/?$/.test(url.trim())) {
+    return "NEXT_PUBLIC_SUPABASE_URL non ha la forma https://<codice>.supabase.co (controlla spazi, virgolette o parti in più).";
+  }
+  if (url !== url.trim() || key !== key.trim()) {
+    return "una delle variabili contiene spazi all'inizio o alla fine.";
+  }
+  if (key.startsWith("sb_secret_")) {
+    return "NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY contiene la chiave SEGRETA: sostituiscila subito con la publishable key.";
+  }
+  return null;
 }
 
 export const config = {

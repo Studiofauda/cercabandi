@@ -20,6 +20,13 @@ export async function getProfiles() {
   return (data as ProfileRow[]).map((row) => ({ profile: toProfile(row), row }));
 }
 
+export async function getProfile(id: string) {
+  const supabase = await createClient();
+  const { data, error } = await supabase.from("profiles").select("*").eq("id", id).maybeSingle();
+  if (error) throw new Error(`Lettura profilo non riuscita: ${error.message}`);
+  return data ? { profile: toProfile(data as ProfileRow), row: data as ProfileRow } : null;
+}
+
 export async function getOpportunities() {
   const supabase = await createClient();
   const { data, error } = await supabase.from("opportunities").select("*");

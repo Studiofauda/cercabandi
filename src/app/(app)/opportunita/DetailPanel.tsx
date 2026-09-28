@@ -124,7 +124,7 @@ export function DetailPanel({
                 <li key={`${p.criterion}-${p.key}`} className="flex flex-wrap items-baseline gap-x-2">
                   <Pill tone={p.status === "stimato" ? "cond" : "neutral"}>{p.status}</Pill>
                   {p.subject === "profilo" ? (
-                    <Link href={`/profili?profilo=${profile.id}&campo=${p.key}`} className="font-semibold underline">
+                    <Link href={`/profili/${profile.id}?campo=${p.key}#campo-${p.key}`} className="font-semibold underline">
                       {p.label}
                     </Link>
                   ) : (

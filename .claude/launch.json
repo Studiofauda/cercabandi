@@ -6,6 +6,15 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
       "port": 3000
+    },
+    {
+      "name": "cercabandi-anteprima-grafica",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": [
+        "/c",
+        "set NEXT_PUBLIC_SUPABASE_URL=https://anteprima.supabase.co&& set NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_finta&& npx next dev -p 3100"
+      ],
+      "port": 3100
     }
   ]
 }

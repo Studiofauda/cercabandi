@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Archivo } from "next/font/google";
-import { Sidebar } from "@/components/Sidebar";
 import "./globals.css";
 
 // Archivo sostituisce Neue Haas Grotesk Display Pro finché non c'è il font licenziato:
@@ -19,12 +18,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="it" className={archivo.variable}>
-      <body className="font-sans antialiased">
-        <div className="flex min-h-screen flex-col md:flex-row">
-          <Sidebar />
-          <main className="min-w-0 flex-1 px-4 py-5 md:px-[22px]">{children}</main>
-        </div>
-      </body>
+      <body className="font-sans antialiased">{children}</body>
     </html>
   );
 }

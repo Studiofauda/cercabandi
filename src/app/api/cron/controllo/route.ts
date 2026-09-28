@@ -34,7 +34,17 @@ export async function GET(request: NextRequest) {
     .select("workspace_id, profile_id")
     .eq("connector", "anac")
     .eq("enabled", true);
-  if (error) return NextResponse.json({ error: "lettura delle ricerche non riuscita" }, { status: 500 });
+  if (error) {
+    // Il messaggio di Supabase non contiene la chiave: serve a capire se è sbagliata
+    // (es. «Invalid API key») o se mancano i permessi sulle tabelle («permission denied»).
+    const key = process.env.SUPABASE_SECRET_KEY ?? "";
+    const kind = key.startsWith("sb_secret_") ? "chiave segreta" : key.startsWith("sb_publishable_") ? "chiave PUBBLICABILE (serve quella segreta)" : "chiave di formato non riconosciuto";
+    console.error("Controllo automatico: lettura delle ricerche non riuscita", error.code, error.message);
+    return NextResponse.json(
+      { error: "lettura delle ricerche non riuscita", dettaglio: error.message, codice: error.code, chiave: kind },
+      { status: 500 }
+    );
+  }
 
   const started = Date.now();
   const results: Array<{ profile: string; inserted?: number; updated?: number; error?: string; rinviato?: boolean }> = [];

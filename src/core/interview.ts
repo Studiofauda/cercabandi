@@ -6,7 +6,7 @@
  * Dalle risposte si ricavano i temi, e dai temi gli ambiti e quindi le fonti pertinenti.
  */
 
-import type { PackId, SubjectType } from "./types";
+import { TECHNICAL_SKILLS, type PackId, type SubjectType } from "./types";
 
 export type QuestionKind = "single" | "multi" | "number" | "text" | "boolean";
 
@@ -32,6 +32,18 @@ export interface Question {
 }
 
 export type Answers = Record<string, unknown>;
+
+/** Domanda sulle competenze tecniche interne, confrontate con quelle richieste dai bandi. */
+function competenzeQuestion(prompt: string): Question {
+  return {
+    id: "competenze",
+    kind: "multi",
+    prompt,
+    help: "Le confrontiamo con le competenze richieste da ciascun bando: quelle mancanti riducono il punteggio e si possono coprire con un partner.",
+    paramKey: "competenze",
+    options: Object.entries(TECHNICAL_SKILLS).map(([value, label]) => ({ value, label })),
+  };
+}
 
 // ---------------------------------------------------------------------------
 // Passo 0 — comune a tutti: stabilisce il percorso
@@ -211,6 +223,7 @@ const PATH_IMPRESA: Question[] = [
     help: "Interni e collaboratori continuativi. Serve a valutare se riuscite a seguire una candidatura e il progetto che ne segue.",
     paramKey: "personaleTecnico",
   },
+  competenzeQuestion("Quali competenze tecniche avete al vostro interno?"),
   {
     id: "certificazioni",
     kind: "multi",
@@ -289,6 +302,7 @@ const PATH_ASSOCIAZIONE: Question[] = [
     help: "Serve a valutare se riuscite a gestire una candidatura e il progetto che ne segue.",
     paramKey: "personaleTecnico",
   },
+  competenzeQuestion("Quali competenze tecniche sono disponibili nell'associazione?"),
   {
     id: "capacitaCofinanziamento",
     kind: "number",

@@ -19,8 +19,10 @@ import type {
   ParamValue,
   Profile,
   ScoreBreakdown,
+  TechnicalSkill,
   UncertainParam,
 } from "./types";
+import { TECHNICAL_SKILLS } from "./types";
 
 /** Soglia sopra la quale un nuovo bando viene segnalato nel digest. */
 export const DIGEST_THRESHOLD = 70;
@@ -56,6 +58,7 @@ const FIELD_LABELS: Record<string, string> = {
   capacitaCofinanziamento: "Capacità di cofinanziamento",
   rupDisponibile: "RUP interno",
   personaleTecnico: "Personale tecnico",
+  competenze: "Competenze tecniche",
   preavvisoMinimoGiorni: "Preavviso minimo",
   contributoMax: "Importo del contributo",
   deadline: "Scadenza",
@@ -119,16 +122,21 @@ interface Weights {
   capacitaOrganizzativa: number;
   tempistiche: number;
   requisitiDimensionali: number;
+  competenze: number;
 }
 
 function hasDemographicThresholds(opportunity: Opportunity): boolean {
   return opportunity.abitantiMin !== undefined || opportunity.abitantiMax !== undefined;
 }
 
+function hasRequiredSkills(opportunity: Opportunity): boolean {
+  return (opportunity.competenzeRichieste?.length ?? 0) > 0;
+}
+
 /**
  * I pesi si adattano al bando: se un bando non chiede cofinanziamento, la capacità
  * economica non deve pesare; se la scadenza è vicina, le tempistiche pesano di più;
- * le soglie demografiche pesano solo sui bandi che le prevedono.
+ * le soglie demografiche e le competenze pesano solo sui bandi che le prevedono.
  * I valori vengono poi normalizzati, così la somma resta sempre 1.
  */
 export function computeWeights(opportunity: Opportunity, daysLeft: number | null): Weights {
@@ -139,6 +147,7 @@ export function computeWeights(opportunity: Opportunity, daysLeft: number | null
     capacitaOrganizzativa: 1,
     tempistiche: 1,
     requisitiDimensionali: hasDemographicThresholds(opportunity) ? 2 : 0,
+    competenze: hasRequiredSkills(opportunity) ? 2 : 0,
   };
 
   if (opportunity.cofinanziamentoRichiestoPct && opportunity.cofinanziamentoRichiestoPct > 0) {
@@ -338,6 +347,43 @@ function scoreRequisitiDimensionali(profile: Profile, opportunity: Opportunity):
   };
 }
 
+/**
+ * Competenze richieste dal bando rispetto a quelle dichiarate dal profilo.
+ * Il punteggio è la quota coperta. Non blocca mai: una competenza mancante si può
+ * procurare con un partner, un raggruppamento o un incarico esterno.
+ */
+function scoreCompetenze(profile: Profile, opportunity: Opportunity): ScoreBreakdown {
+  const criterion = "Competenze tecniche";
+  const richieste = opportunity.competenzeRichieste ?? [];
+  const param = profile.params.competenze;
+  const disponibili = (param?.value as TechnicalSkill[] | null | undefined) ?? null;
+
+  if (!disponibili) {
+    return {
+      criterion,
+      weight: 0,
+      score: 50,
+      note: "Competenze del profilo non indicate",
+      nonBlocking: true,
+      uncertainParams: uncertain(criterion, "competenze", "mancante"),
+    };
+  }
+  const mancanti = richieste.filter((c) => !disponibili.includes(c));
+  const score = ((richieste.length - mancanti.length) / richieste.length) * 100;
+  const rti = profile.interviewAnswers?.disponibilitaRTI === true ? ": coperture possibili in raggruppamento" : "";
+  return {
+    criterion,
+    weight: 0,
+    score,
+    note:
+      mancanti.length === 0
+        ? "Tutte le competenze richieste sono disponibili"
+        : `Mancano ${mancanti.map((c) => TECHNICAL_SKILLS[c]).join(", ")}${rti || ": da coprire con un partner"}`,
+    nonBlocking: true,
+    uncertainParams: uncertain(criterion, "competenze", paramStatus(param)),
+  };
+}
+
 // ---------------------------------------------------------------------------
 // Valutazione complessiva
 // ---------------------------------------------------------------------------
@@ -388,15 +434,25 @@ export function evaluate(
   if (hasDemographicThresholds(opportunity)) {
     breakdown.push({ ...scoreRequisitiDimensionali(profile, opportunity), weight: weights.requisitiDimensionali });
   }
+  if (hasRequiredSkills(opportunity)) {
+    breakdown.push({ ...scoreCompetenze(profile, opportunity), weight: weights.competenze });
+  }
 
   // In un incarico tecnico il cofinanziamento è a carico del committente, non del
   // profilo valutato, e le soglie demografiche riguardano il Comune committente: questi
   // criteri non gli si applicano e il loro peso viene ridistribuito sugli altri, invece
   // di essere conteggiato come se lo studio dovesse pagare o avere abitanti.
+  // Allo stesso modo, per enti pubblici e persone fisiche le competenze tecniche sono
+  // quelle dei professionisti che verranno incaricati, non del soggetto valutato.
+  const notApplicable: Record<string, string> = role === "incarico-tecnico" ? { ...NOT_APPLICABLE_TO_TECHNICAL } : {};
+  if (profile.subjectType === "ente-pubblico" || profile.subjectType === "persona-fisica") {
+    notApplicable["Competenze tecniche"] = "Riguardano i professionisti da incaricare, non il soggetto";
+  }
+
   let effective = breakdown;
-  if (role === "incarico-tecnico") {
-    const excluded = breakdown.filter((b) => b.criterion in NOT_APPLICABLE_TO_TECHNICAL);
-    const others = breakdown.filter((b) => !(b.criterion in NOT_APPLICABLE_TO_TECHNICAL));
+  const excluded = breakdown.filter((b) => b.criterion in notApplicable);
+  if (excluded.length > 0) {
+    const others = breakdown.filter((b) => !(b.criterion in notApplicable));
     const freed = excluded.reduce((s, b) => s + b.weight, 0);
     const totalOthers = others.reduce((s, b) => s + b.weight, 0) || 1;
     effective = others.map((b) => ({ ...b, weight: b.weight + (b.weight / totalOthers) * freed }));
@@ -404,7 +460,7 @@ export function evaluate(
       ...excluded.map((b) => ({
         ...b,
         weight: 0,
-        note: NOT_APPLICABLE_TO_TECHNICAL[b.criterion],
+        note: notApplicable[b.criterion],
         uncertainParams: [],
       }))
     );
@@ -463,9 +519,10 @@ function deriveVerdict(
   breakdown: ScoreBreakdown[]
 ): Evaluation["verdict"] {
   // Un requisito di ammissibilità non soddisfatto blocca qualunque sia il suo peso;
-  // gli altri criteri bloccano solo se azzerati con un peso rilevante.
+  // gli altri criteri bloccano solo se azzerati con un peso rilevante, tranne quelli
+  // che per natura si possono compensare (es. competenze coperte da un partner).
   const blocking = breakdown.find(
-    (b) => b.score === 0 && b.weight > 0 && (b.eligibility || b.weight > 0.15)
+    (b) => b.score === 0 && b.weight > 0 && !b.nonBlocking && (b.eligibility || b.weight > 0.15)
   );
   if (blocking) return "NO-GO";
   if (role === "incarico-tecnico") return "Incarico tecnico";

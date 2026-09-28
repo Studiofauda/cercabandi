@@ -83,6 +83,13 @@ il peso del criterio. Se gli abitanti del profilo non sono indicati la valutazio
 con un intervallo più ampio. Per gli incarichi tecnici il criterio non si applica, perché
 le soglie riguardano il Comune committente.
 
+**Competenze tecniche.** Imprese e associazioni dichiarano nell'intervista le competenze
+interne (`params.competenze`); il bando indica quelle richieste (`competenzeRichieste`).
+Il criterio "Competenze tecniche" vale la quota coperta e pesa solo sui bandi che ne
+richiedono. Non blocca mai (`nonBlocking`): una competenza mancante si copre con un
+partner o un raggruppamento. Per enti pubblici e persone fisiche non si applica, perché
+le competenze sono quelle dei professionisti da incaricare.
+
 **Profilo reale o modello.** Nell'intervista la domanda `isTemplate` è una scelta tra
 "soggetto reale" e "modello di categoria"; `isTemplateFromAnswers()` la traduce nel campo
 del profilo.
@@ -122,7 +129,7 @@ Sono numeri scelti come punto di partenza ragionevole, da rivedere con dati real
   rispetto a uno mancante.
 - `UNCERTAINTY_SPREAD = 40` — ampiezza dell'intervallo generata da un criterio del tutto
   incerto, a peso pieno.
-- Pesi base in `computeWeights()` (le soglie demografiche pesano 2 quando presenti).
+- Pesi base in `computeWeights()` (soglie demografiche e competenze pesano 2 quando presenti).
 
 Nota: il ruolo di incarico tecnico **non è di per sé penalizzante**. Viene evidenziato nel
 verdetto, e il cofinanziamento non grava mai sulla capacità economica dello studio, perché

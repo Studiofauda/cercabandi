@@ -1,12 +1,12 @@
 import Link from "next/link";
-import type { Evaluation, Opportunity, Profile, ScoreBreakdown, Source } from "@/core/types";
+import { TECHNICAL_SKILLS, type Evaluation, type Opportunity, type Profile, type ScoreBreakdown, type Source, type TechnicalSkill } from "@/core/types";
 import type { OpportunityRow } from "@/lib/db/mappers";
 import type { AssessmentNoteRow, DismissalRow } from "@/lib/db/queries";
 import { Pill, VERDICT_TONE, type Tone } from "@/components/Pill";
 import { ScoreRange } from "@/components/ScoreRange";
 import { date, daysUntil, euro, pct } from "@/lib/format";
 import { EXPENSE_LABELS, PACK_LABELS, SUBJECT_LABELS, labelList } from "@/lib/labels";
-import { dismissOpportunity, markVerified, restoreOpportunity, saveAssessmentNote } from "./actions";
+import { dismissOpportunity, markVerified, restoreOpportunity, saveAssessmentNote, saveRequiredSkills } from "./actions";
 
 const ROLE_LABEL = {
   "beneficiario-diretto": "Candidatura diretta",
@@ -159,6 +159,35 @@ export function DetailPanel({
             <Row label="Replicabile" value={o.replicabile ? "Sì, su più committenti" : "No"} />
             {row.external_code && <Row label="Codice" value={row.external_code} />}
           </dl>
+        </Section>
+
+        {/* Competenze */}
+        <Section title="Competenze tecniche richieste">
+          <form action={saveRequiredSkills}>
+            {hidden}
+            <p className="mb-2 text-xs text-muted">
+              Segna quelle richieste dal bando: il motore le confronta con le competenze del profilo. Quelle mancanti riducono il punteggio ma non bloccano.
+            </p>
+            <div className="grid gap-x-3 gap-y-1.5 sm:grid-cols-2">
+              {(Object.entries(TECHNICAL_SKILLS) as [TechnicalSkill, string][]).map(([value, label]) => {
+                const required = o.competenzeRichieste?.includes(value) ?? false;
+                const owned = (profile.params.competenze?.value as TechnicalSkill[] | undefined)?.includes(value);
+                return (
+                  <label key={value} className="flex items-start gap-2 text-[12.5px]">
+                    <input type="checkbox" name="competenze" value={value} defaultChecked={required} className="mt-0.5" />
+                    <span className={required && !owned ? "font-semibold text-warning-text" : ""}>
+                      {label}
+                      {required && owned && <span className="text-positive-text"> ✓</span>}
+                    </span>
+                  </label>
+                );
+              })}
+            </div>
+            <div className="mt-2 flex items-center justify-between gap-2">
+              <span className="text-[11px] text-muted">✓ = disponibile nel profilo · in giallo le richieste mancanti</span>
+              <button className="rounded-control border border-line px-3 py-1.5 text-xs font-semibold hover:border-ink">Salva competenze</button>
+            </div>
+          </form>
         </Section>
 
         {/* Verifica */}

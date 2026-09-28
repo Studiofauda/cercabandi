@@ -72,6 +72,16 @@ export async function saveAssessmentNote(formData: FormData) {
   back(formData, error ? "Note non salvate: controlla di avere i permessi di modifica." : undefined);
 }
 
+/** Competenze tecniche richieste dal bando, lette sui testi ufficiali. */
+export async function saveRequiredSkills(formData: FormData) {
+  const supabase = await createClient();
+  const { error } = await supabase
+    .from("opportunities")
+    .update({ competenze_richieste: formData.getAll("competenze").map(String) })
+    .eq("id", field(formData, "opportunityId"));
+  back(formData, error ? "Competenze non salvate: controlla di avere i permessi di modifica e che il database sia aggiornato." : undefined);
+}
+
 /** Toglie l'etichetta «da verificare» dopo il controllo sui testi ufficiali. */
 export async function markVerified(formData: FormData) {
   const supabase = await createClient();

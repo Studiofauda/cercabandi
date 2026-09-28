@@ -72,6 +72,8 @@ export interface ProfileParams {
   // qualifiche
   certificazioni?: ParamValue<string[]>;
   polizzeMassimali?: ParamValue<number>;
+  /** Competenze tecniche disponibili all'interno (vedi TECHNICAL_SKILLS). */
+  competenze?: ParamValue<TechnicalSkill[]>;
 
   [key: string]: ParamValue<unknown> | undefined;
 }
@@ -142,6 +144,31 @@ export type ExpenseCategory =
   | "comunicazione"
   | "studi-indagini";
 
+/**
+ * Competenze tecniche: il profilo dichiara quelle che ha, il bando indica quelle richieste.
+ * Una competenza mancante riduce il punteggio ma non blocca: si può coprire con un partner.
+ */
+export const TECHNICAL_SKILLS = {
+  "progettazione-architettonica": "Progettazione architettonica",
+  "progettazione-strutturale": "Progettazione strutturale",
+  "progettazione-impiantistica": "Progettazione impiantistica",
+  "geologia-geotecnica": "Geologia e geotecnica",
+  idraulica: "Idraulica e difesa del suolo",
+  "energia-certificazione": "Energia e certificazione energetica",
+  "sicurezza-cantiere": "Sicurezza in cantiere (CSP/CSE)",
+  "direzione-lavori": "Direzione lavori",
+  collaudo: "Collaudo",
+  restauro: "Restauro e beni vincolati",
+  "urbanistica-paesaggio": "Urbanistica e paesaggio",
+  "ambiente-valutazioni": "Valutazioni ambientali (VIA, VAS)",
+  "antincendio-prevenzione": "Prevenzione incendi",
+  bim: "BIM",
+  "agronomia-forestale": "Agronomia e scienze forestali",
+  "rendicontazione-fondi": "Rendicontazione di fondi pubblici",
+} as const;
+
+export type TechnicalSkill = keyof typeof TECHNICAL_SKILLS;
+
 /** Origine dei fondi: rileva perché i fondi UE hanno vincoli di cumulo più stringenti. */
 export type FundingSource = "UE" | "Nazionale" | "Regionale" | "Privato";
 
@@ -193,6 +220,9 @@ export interface Opportunity {
    * per i profili che lavorano su commessa (requisiti v3, punto aperto 1).
    */
   replicabile: boolean;
+
+  /** Competenze tecniche che il bando richiede a chi si candida o svolge l'incarico. */
+  competenzeRichieste?: TechnicalSkill[];
 
   /** Partner o raggruppamenti richiesti dal bando (non sono un dato del profilo). */
   partnershipRichieste?: string[];
@@ -283,6 +313,8 @@ export interface ScoreBreakdown {
   note: string;
   /** Requisito di ammissibilità: se non soddisfatto (punteggio 0) blocca, qualunque sia il peso. */
   eligibility?: boolean;
+  /** Criterio che riduce il punteggio ma non blocca mai la candidatura, anche se azzerato. */
+  nonBlocking?: boolean;
   /** Dati incerti usati dal criterio: allargano l'intervallo di punteggio. */
   uncertainParams?: UncertainParam[];
 }

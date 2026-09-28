@@ -17,6 +17,7 @@ import type {
   SourceReliability,
   SourceScope,
   SubjectType,
+  TechnicalSkill,
 } from "@/core/types";
 
 // Righe come arrivano da Supabase (numeri e date possono arrivare come stringhe).
@@ -45,6 +46,8 @@ export interface OpportunityRow {
   expected_publication: string | null;
   replicabile: boolean;
   partnership_richieste: string[] | null;
+  /** Assente finché la migrazione sulle competenze non è stata eseguita. */
+  competenze_richieste?: string[] | null;
   source_id: string | null;
   source_url: string;
   verified_at: string | null;
@@ -117,6 +120,7 @@ export function toOpportunity(r: OpportunityRow): Opportunity {
     expectedPublication: opt(r.expected_publication),
     replicabile: r.replicabile,
     partnershipRichieste: opt(r.partnership_richieste),
+    competenzeRichieste: (r.competenze_richieste ?? []) as TechnicalSkill[],
     sourceId: r.source_id ?? "",
     sourceUrl: r.source_url,
     verifiedAt: opt(r.verified_at),

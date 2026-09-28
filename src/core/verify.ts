@@ -6,7 +6,7 @@
 import { buildInterview, deriveFromAnswers, isTemplateFromAnswers } from "./interview";
 import { evaluate, simulate, DIGEST_THRESHOLD } from "./scoring";
 import { findCombinations, describeCombination } from "./combinations";
-import type { Opportunity, Profile } from "./types";
+import type { Opportunity, Profile, TechnicalSkill } from "./types";
 
 function param<T>(value: T, confidence: "verificato" | "stimato" | "ipotesi" = "verificato") {
   return { value, confidence };
@@ -276,3 +276,48 @@ const combinazioni = findCombinations(piccoloComune, catalogo, { includeRejected
 for (const c of combinazioni) {
   console.log("\n" + describeCombination(c, catalogo));
 }
+
+// ---------------------------------------------------------------------------
+// Competenze tecniche: richieste dal bando, dichiarate dal profilo
+// ---------------------------------------------------------------------------
+
+const garaServiziTecnici: Opportunity = {
+  id: "gara-ponte",
+  title: "Progettazione e CSP per l'adeguamento di un ponte comunale",
+  authority: "Comune di Varallo",
+  level: "Locale",
+  status: "Aperto",
+  theme: "Ponti e viabilità",
+  territory: "Piemonte",
+  eligibleSubjectTypes: ["impresa"],
+  packs: ["engineering-procurement"],
+  competenzeRichieste: ["progettazione-strutturale", "geologia-geotecnica", "sicurezza-cantiere"],
+  budgetTotale: 180_000,
+  cofinanziamentoRichiestoPct: 0,
+  deadline: "2026-11-15",
+  replicabile: false,
+  sourceId: "comune",
+  sourceUrl: "https://example.org",
+  createdAt: now.toISOString(),
+  updatedAt: now.toISOString(),
+};
+
+console.log("\n=== Competenze tecniche: gara che richiede strutture, geologia e CSP ===");
+const variantiCompetenze = simulate(
+  studioFauda,
+  garaServiziTecnici,
+  [
+    { label: "competenze non indicate", params: {} },
+    { label: "strutture + sicurezza (manca geologia)", params: { competenze: param<TechnicalSkill[]>(["progettazione-strutturale", "sicurezza-cantiere", "idraulica"]) } },
+    { label: "nessuna delle tre", params: { competenze: param<TechnicalSkill[]>(["idraulica"]) } },
+    { label: "tutte e tre", params: { competenze: param<TechnicalSkill[]>(["progettazione-strutturale", "geologia-geotecnica", "sicurezza-cantiere"]) } },
+  ],
+  now
+);
+for (const v of variantiCompetenze) {
+  const e = v.evaluation;
+  const c = e.breakdown.find((b) => b.criterion === "Competenze tecniche")!;
+  console.log(`  ${v.label.padEnd(40)} -> ${String(e.score).padStart(3)} (${e.scoreRange[0]}–${e.scoreRange[1]}) · ${e.verdict.padEnd(16)} ${c.note}`);
+}
+const evalComuneGara = evaluate(piccoloComune, { ...garaServiziTecnici, eligibleSubjectTypes: ["ente-pubblico"] }, now);
+console.log(`  Piccolo Comune (stesso bando) -> ${evalComuneGara.score} · ${evalComuneGara.breakdown.find((b) => b.criterion === "Competenze tecniche")?.note}`);

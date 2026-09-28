@@ -142,11 +142,12 @@ coprire la propria quota, ed è quindi meno certo.
 ## Da costruire
 
 **Fase 1 — Fondamenta**
-- [ ] Progetto Next.js e schema del database
-- [ ] Autenticazione multi-utente
-- [ ] Interfaccia dell'intervista guidata
-- [ ] Viste Opportunità / Profili / Fonti collegate al database
-- [ ] Simulazione "cosa cambierebbe se…"
+- [x] Progetto Next.js e schema del database
+- [x] Autenticazione multi-utente
+- [x] Interfaccia dell'intervista guidata
+- [x] Viste Opportunità / Profili / Fonti collegate al database
+- [x] Simulazione "cosa cambierebbe se…"
+- [x] Cumulabilità tra bandi nell'interfaccia
 
 **Fase 2 — Fonti e continuità**
 - [ ] Ampliamento delle fonti e delle categorie (sanità, turismo, energia)

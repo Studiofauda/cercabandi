@@ -175,6 +175,11 @@ coprire la propria quota, ed è quindi meno certo.
 - [ ] Report di un singolo bando su pagina protetta, con testo copiabile
 - [ ] Microsoft To Do via Microsoft Graph (richiede registrazione su Azure)
 
+**MEV — Manutenzione evolutiva (dopo i passi in corso)**
+- [ ] Nuove fonti di ricerca proposte dall'AI, da valutare e integrare
+- [ ] Affinamento della selezione dei bandi in base ai profili e alle eliminazioni
+      (i motivi di scarto come segnale per le ricerche future)
+
 **Fase 4 — Modulo "Prepara candidatura"**
 - [ ] Elenco elaborati, indice, bozza
 - [ ] Gruppo di lavoro, governance, stima ore uomo

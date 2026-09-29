@@ -41,9 +41,14 @@ export function Sidebar({ email }: { email: string }) {
         <div className="hidden truncate text-[11px] text-muted md:block" title={email}>
           {email}
         </div>
-        <button type="submit" className="mt-1 text-[12px] font-semibold text-paper/80 hover:text-lime">
-          Esci
-        </button>
+        <div className="mt-1 flex gap-3">
+          <Link href="/utenti" className="text-[12px] font-semibold text-paper/80 hover:text-lime">
+            Utenti
+          </Link>
+          <button type="submit" className="text-[12px] font-semibold text-paper/80 hover:text-lime">
+            Esci
+          </button>
+        </div>
       </form>
     </aside>
   );

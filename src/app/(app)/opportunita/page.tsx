@@ -2,7 +2,7 @@ import Link from "next/link";
 import { findCombinations } from "@/core/combinations";
 import { evaluate } from "@/core/scoring";
 import type { Opportunity } from "@/core/types";
-import { getAssessmentNote, getDismissals, getOpportunities, getProfiles, getSources } from "@/lib/db/queries";
+import { getAssessmentNote, getDismissals, getOpportunities, getProfiles, getRevisions, getSources } from "@/lib/db/queries";
 import { OpportunityCard, ProfileChips } from "@/components/OpportunityCard";
 import { DetailPanel } from "./DetailPanel";
 
@@ -54,7 +54,9 @@ export default async function OpportunitaPage({ searchParams }: { searchParams: 
     );
 
   const selected = evaluated.find(({ o }) => o.id === bando);
-  const note = selected ? await getAssessmentNote(selected.o.id, profile.id) : null;
+  const [note, revisions] = selected
+    ? await Promise.all([getAssessmentNote(selected.o.id, profile.id), getRevisions(selected.o.id)])
+    : [null, []];
   const allOpportunities = new Map(evaluated.map(({ o }) => [o.id, o]));
   // Anche le combinazioni da escludere: nel dettaglio serve sapere perché due bandi non stanno insieme.
   const combinations = selected
@@ -68,7 +70,12 @@ export default async function OpportunitaPage({ searchParams }: { searchParams: 
       <ProfileChips profiles={profiles.map((p) => p.profile)} activeId={profile.id} hrefFor={(id) => href({ profilo: id })} />
 
       <div className="mt-5 flex flex-wrap items-baseline justify-between gap-2">
-        <h1 className="text-[21px] font-bold tracking-[-0.01em]">Opportunità</h1>
+        <h1 className="flex items-center gap-3 text-[21px] font-bold tracking-[-0.01em]">
+          Opportunità
+          <Link href="/bandi/nuovo" className="rounded-control bg-ink px-2.5 py-1 text-xs font-semibold tracking-normal text-lime">
+            + Nuovo bando
+          </Link>
+        </h1>
         <p className="text-xs text-muted">
           Punteggio e verdetto calcolati per <strong className="text-ink">{profile.name}</strong> · {rows.length} opportunità
         </p>
@@ -108,6 +115,7 @@ export default async function OpportunitaPage({ searchParams }: { searchParams: 
           source={sources.find((s) => s.source.id === selected.o.sourceId)?.source}
           dismissal={dismissals.get(selected.o.id)}
           note={note}
+          revisions={revisions}
           closeHref={href(base)}
           selfHref={href({ ...base, bando: selected.o.id })}
           error={errore}

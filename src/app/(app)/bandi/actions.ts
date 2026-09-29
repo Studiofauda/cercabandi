@@ -60,7 +60,11 @@ function validate(row: ReturnType<typeof rowFromForm>): string | null {
   return null;
 }
 
-const backTo = (fd: FormData, fallback: string) => str(fd, "back") || fallback;
+/** Ritorno dopo il salvataggio: solo percorsi interni al sito. */
+const backTo = (fd: FormData, fallback: string) => {
+  const b = str(fd, "back");
+  return b.startsWith("/") && !b.startsWith("//") ? b : fallback;
+};
 
 export async function createOpportunity(formData: FormData) {
   const row = rowFromForm(formData);

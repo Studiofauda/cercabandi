@@ -171,6 +171,25 @@ export async function getLatestRuns(profileId: string, limit = 5) {
   return data as IngestionRunRow[];
 }
 
+export interface RevisionRow {
+  id: string;
+  detected_at: string;
+  changes: Array<{ field: string; previous: unknown; current: unknown; by?: string }>;
+}
+
+/** Storico di un bando: ogni modifica, della fonte o manuale, con il valore precedente. */
+export async function getRevisions(opportunityId: string) {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("opportunity_revisions")
+    .select("id, detected_at, changes")
+    .eq("opportunity_id", opportunityId)
+    .order("detected_at", { ascending: false })
+    .limit(30);
+  if (error) return [];
+  return data as RevisionRow[];
+}
+
 export async function getSources() {
   const supabase = await createClient();
   const { data, error } = await supabase.from("sources").select("*").order("scope").order("name");

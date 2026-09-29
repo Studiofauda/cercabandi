@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { TECHNICAL_SKILLS, type Evaluation, type ExpenseCategory, type Opportunity, type Profile, type ScoreBreakdown, type Source, type TechnicalSkill } from "@/core/types";
 import type { OpportunityRow } from "@/lib/db/mappers";
-import type { AssessmentNoteRow, DismissalRow } from "@/lib/db/queries";
+import type { AssessmentNoteRow, DismissalRow, RevisionRow } from "@/lib/db/queries";
+import { History } from "./History";
 import { Pill, VERDICT_TONE, type Tone } from "@/components/Pill";
 import { ScoreRange } from "@/components/ScoreRange";
 import { date, daysUntil, euro, pct } from "@/lib/format";
@@ -51,6 +52,7 @@ export function DetailPanel({
   combinations,
   allOpportunities,
   hrefFor,
+  revisions,
 }: {
   combinations: CombinationFinding[];
   allOpportunities: Map<string, Opportunity>;
@@ -65,6 +67,7 @@ export function DetailPanel({
   closeHref: string;
   selfHref: string;
   error?: string;
+  revisions: RevisionRow[];
   now: Date;
 }) {
   const days = o.deadline && o.status !== "Chiuso" ? daysUntil(o.deadline, now) : null;
@@ -121,6 +124,9 @@ export function DetailPanel({
           {blocking && <p className="mt-2 text-[13px] font-semibold text-red">Non ammissibile: {blocking.note}</p>}
           <Link href={`/simulazione?profilo=${profile.id}&bando=${o.id}`} className="mt-2 inline-block text-xs font-semibold underline">
             Cosa cambierebbe se… →
+          </Link>
+          <Link href={`/bandi/${o.id}/modifica?back=${encodeURIComponent(selfHref)}`} className="mt-2 ml-4 inline-block text-xs font-semibold underline">
+            Modifica dati del bando
           </Link>
         </section>
 
@@ -304,6 +310,11 @@ export function DetailPanel({
               </button>
             </form>
           </details>
+        </Section>
+
+        {/* Storico */}
+        <Section title="Cronologia delle modifiche">
+          <History revisions={revisions} />
         </Section>
 
         {/* Analisi qualitativa */}

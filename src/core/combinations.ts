@@ -1,5 +1,5 @@
 /**
- * Cerca Bandi — cumulabilità tra bandi
+ * Cercabandi — cumulabilità tra bandi
  *
  * Individua coppie di bandi che potrebbero finanziare lo stesso progetto coprendo voci
  * di spesa diverse, senza incorrere nel divieto di doppio finanziamento.

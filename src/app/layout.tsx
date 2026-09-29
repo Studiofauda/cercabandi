@@ -11,7 +11,7 @@ const archivo = Archivo({
 });
 
 export const metadata: Metadata = {
-  title: "Cerca Bandi",
+  title: "Cercabandi",
   description: "Studio Fauda — individuazione e valutazione di bandi e finanziamenti",
 };
 

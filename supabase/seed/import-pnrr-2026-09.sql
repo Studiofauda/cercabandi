@@ -1,5 +1,5 @@
 -- ===========================================================================
--- Cerca Bandi — avvisi PNRR ancora in corso o in programma (importazione una tantum)
+-- Cercabandi — avvisi PNRR ancora in corso o in programma (importazione una tantum)
 --
 -- Fonte: catalogo «Bandi delle amministrazioni titolari» di Italia Domani, letto il
 -- 29/09/2026. 18 avvisi. Tutti «da verificare». Si può eseguire più volte: gli avvisi

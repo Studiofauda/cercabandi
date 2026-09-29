@@ -1,5 +1,5 @@
 -- ===========================================================================
--- Cerca Bandi — importazione dei dati del prototipo
+-- Cercabandi — importazione dei dati del prototipo
 --
 -- Da eseguire UNA SOLA VOLTA nel SQL Editor di Supabase, dopo lo schema iniziale
 -- e dopo aver creato lo spazio di lavoro «Studio Fauda».

@@ -1,5 +1,5 @@
 /**
- * Cerca Bandi — motore di valutazione
+ * Cercabandi — motore di valutazione
  *
  * Principi (requisiti v3):
  * - I pesi non sono fissi: si proporzionano ai requisiti del singolo bando.

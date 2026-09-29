@@ -1,5 +1,5 @@
 -- ===========================================================================
--- Cerca Bandi — nuova fonte automatica «feed» (Regione Piemonte, fondazioni, GSE)
+-- Cercabandi — nuova fonte automatica «feed» (Regione Piemonte, fondazioni, GSE)
 --
 -- Aggiunge «feed» ai valori ammessi per le ricerche salvate e per l'origine dei bandi.
 -- Si può eseguire più volte.

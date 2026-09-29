@@ -1,5 +1,5 @@
 /**
- * Cerca Bandi — questionario-intervista
+ * Cercabandi — questionario-intervista
  *
  * Il profilo non si compila con un modulo a campi liberi: si costruisce con un'intervista
  * guidata che cambia percorso in base al tipo di soggetto (requisiti v3, punto aperto 4).

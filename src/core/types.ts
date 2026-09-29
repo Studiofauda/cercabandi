@@ -1,5 +1,5 @@
 /**
- * Cerca Bandi — modello dati
+ * Cercabandi — modello dati
  *
  * Principio guida (requisiti v3, §2): un profilo NON è una scheda fissa con campi
  * eventualmente mancanti, ma un modello parametrico. Ogni campo è sempre compilabile

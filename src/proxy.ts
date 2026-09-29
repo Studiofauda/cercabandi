@@ -13,7 +13,7 @@ export async function proxy(request: NextRequest) {
 
   const configError = checkConfig();
   if (configError) {
-    return new NextResponse(`Configurazione di Cerca Bandi incompleta: ${configError}`, {
+    return new NextResponse(`Configurazione di Cercabandi incompleta: ${configError}`, {
       status: 500,
       headers: { "content-type": "text/plain; charset=utf-8" },
     });

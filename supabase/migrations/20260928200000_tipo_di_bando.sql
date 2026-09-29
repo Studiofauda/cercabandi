@@ -1,5 +1,5 @@
 -- ===========================================================================
--- Cerca Bandi — tipo di bando (contributo, gara, qualificazione)
+-- Cercabandi — tipo di bando (contributo, gara, qualificazione)
 --
 -- Nelle gare d'appalto il territorio orienta ma non esclude: un operatore di qualsiasi
 -- regione può partecipare. Nei contributi resta un requisito.

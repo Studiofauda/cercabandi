@@ -113,7 +113,7 @@ export default async function SediaPage({
             <input type="number" name="budget_min" min={0} step="any" defaultValue={f.budgetMin ?? ""} className={`${input} w-36 py-1`} />€
           </label>
           <p className="text-[11px] text-muted">
-            Il portale lascia «aperti» anche bandi scaduti da tempo: Cerca Bandi tiene solo quelli con una scadenza futura, o annunciati di recente.
+            Il portale lascia «aperti» anche bandi scaduti da tempo: Cercabandi tiene solo quelli con una scadenza futura, o annunciati di recente.
           </p>
         </Section>
 

@@ -1,5 +1,5 @@
 -- ===========================================================================
--- Cerca Bandi — schema iniziale del database
+-- Cercabandi — schema iniziale del database
 --
 -- Rispecchia il modello dati di src/core/types.ts. Principi:
 -- - ogni tabella appartiene a uno spazio di lavoro (workspace_id): oggi ce n'è uno solo,

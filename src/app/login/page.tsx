@@ -1,7 +1,19 @@
 "use client";
 
-import { useActionState } from "react";
+import { Suspense, useActionState } from "react";
+import { useSearchParams } from "next/navigation";
 import { sendMagicLink, type LoginState } from "./actions";
+
+/** Avviso quando si arriva da un link di accesso scaduto o già usato. */
+function LinkError() {
+  const params = useSearchParams();
+  if (params.get("errore") !== "link") return null;
+  return (
+    <p className="mt-5 rounded-control bg-nogo/10 px-3 py-2 text-xs text-red">
+      Il link di accesso è scaduto o è già stato usato. Chiedine uno nuovo a chi ti ha dato l&apos;accesso, oppure richiedilo qui sotto.
+    </p>
+  );
+}
 
 export default function LoginPage() {
   const [state, action, pending] = useActionState<LoginState, FormData>(sendMagicLink, { status: "idle" });
@@ -11,6 +23,9 @@ export default function LoginPage() {
       <div className="w-full max-w-sm rounded-card bg-paper px-6 py-7">
         <div className="text-[26px] leading-none font-black tracking-tight">cercabandi</div>
         <div className="mt-1 text-xs text-muted">studiofauda</div>
+        <Suspense>
+          <LinkError />
+        </Suspense>
 
         {state.status === "sent" ? (
           <div className="mt-6">

@@ -1,4 +1,4 @@
-# Cerca Bandi — Studio Fauda
+# Cercabandi — Studio Fauda
 
 Strumento per individuare bandi e opportunità di finanziamento coerenti con profili di
 potenziali beneficiari, valutarne la compatibilità e preparare le candidature.

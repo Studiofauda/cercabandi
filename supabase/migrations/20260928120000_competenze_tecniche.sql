@@ -1,5 +1,5 @@
 -- ===========================================================================
--- Cerca Bandi — competenze tecniche richieste dai bandi
+-- Cercabandi — competenze tecniche richieste dai bandi
 --
 -- Le competenze del profilo stanno nei parametri (params.competenze), come gli altri
 -- dati del profilo. Qui si aggiunge al bando l'elenco delle competenze richieste.

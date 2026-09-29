@@ -2,7 +2,7 @@
   "name": "cercabandi",
   "version": "0.1.0",
   "private": true,
-  "description": "Cerca Bandi — Studio Fauda. Applicazione Next.js costruita sul nucleo logico in src/core.",
+  "description": "Cercabandi — Studio Fauda. Applicazione Next.js costruita sul nucleo logico in src/core.",
   "type": "module",
   "engines": {
     "node": ">=22"

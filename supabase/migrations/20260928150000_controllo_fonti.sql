@@ -1,5 +1,5 @@
 -- ===========================================================================
--- Cerca Bandi — controllo delle fonti (Fase 2, tappa 1)
+-- Cercabandi — controllo delle fonti (Fase 2, tappa 1)
 --
 -- - origin: da dove viene un bando (inserito a mano, prototipo, lettori automatici)
 -- - connector_settings: i filtri di ogni lettore, modificabili dall'app

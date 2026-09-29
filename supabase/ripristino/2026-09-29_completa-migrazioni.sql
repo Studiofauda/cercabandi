@@ -1,5 +1,5 @@
 -- ===========================================================================
--- Cerca Bandi — completamento delle migrazioni del 28/09/2026
+-- Cercabandi — completamento delle migrazioni del 28/09/2026
 --
 -- Completa, solo dove serve, le migrazioni:
 --   20260928120000_competenze_tecniche.sql

@@ -2,12 +2,13 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { headers } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getWorkspaceId } from "@/lib/db/queries";
 
 /*
- * Gestione delle persone che accedono a Cerca Bandi.
+ * Gestione delle persone che accedono a Cercabandi.
  *
  * - Creare l'account richiede la chiave segreta (solo sul server): gli account non si
  *   possono registrare da soli.
@@ -63,6 +64,30 @@ export async function addMember(formData: FormData) {
 
   revalidatePath("/utenti");
   redirect(`/utenti?aggiunto=${encodeURIComponent(email)}`);
+}
+
+export type LoginLinkState = { link?: string; email?: string; error?: string };
+
+/**
+ * Link di accesso personale, da mandare a mano (nessuna email automatica). Il codice è
+ * monouso e scade secondo l'impostazione «Email OTP Expiration» di Supabase.
+ * Il link non passa mai dall'indirizzo della pagina: si mostra solo a chi l'ha generato.
+ */
+export async function generateLoginLink(userId: string, _prev: LoginLinkState): Promise<LoginLinkState> {
+  if ((await currentRole()).role !== "admin") return { error: "Solo un amministratore può generare link di accesso." };
+  try {
+    const admin = createAdminClient();
+    const { data: found } = await admin.auth.admin.getUserById(userId);
+    const email = found.user?.email;
+    if (!email) return { error: "Account non trovato." };
+    const { data, error } = await admin.auth.admin.generateLink({ type: "magiclink", email });
+    const token = data.properties?.hashed_token;
+    if (error || !token) return { error: "Link non generato: riprova." };
+    const origin = (await headers()).get("origin") ?? process.env.NEXT_PUBLIC_SITE_URL ?? "";
+    return { email, link: `${origin}/auth/confirm?token_hash=${encodeURIComponent(token)}&type=email` };
+  } catch {
+    return { error: "Link non generato: controlla che la chiave segreta di Supabase sia configurata su Vercel." };
+  }
 }
 
 export async function changeRole(userId: string, formData: FormData) {

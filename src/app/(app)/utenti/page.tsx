@@ -4,6 +4,7 @@ import { date } from "@/lib/format";
 import { Pill } from "@/components/Pill";
 import { SubmitButton } from "@/components/SubmitButton";
 import { addMember, changeRole, removeMember } from "./actions";
+import { LoginLink } from "./LoginLink";
 
 const ROLE_LABEL = {
   admin: "Amministratore: tutto, compresa la gestione delle persone",
@@ -44,15 +45,14 @@ export default async function UtentiPage({ searchParams }: { searchParams: Promi
 
   return (
     <div className="mx-auto max-w-3xl">
-      <h1 className="text-[21px] font-bold tracking-[-0.01em]">Persone che usano Cerca Bandi</h1>
+      <h1 className="text-[21px] font-bold tracking-[-0.01em]">Persone che usano Cercabandi</h1>
       <p className="mt-1 text-xs text-muted">L&apos;accesso è solo su invito: chi non è in questo elenco non vede nulla, nemmeno conoscendo l&apos;indirizzo del sito.</p>
 
       {aggiunto && (
         <div className="mt-4 rounded-card border-2 border-green bg-go/15 px-4 py-3 text-[13px]">
           <p className="font-bold">✓ {aggiunto} può ora accedere.</p>
           <p className="mt-1 text-xs">
-            Mandale o mandagli l&apos;indirizzo del sito: dalla pagina di accesso inserisce la sua email e riceve il link per entrare. Il link va aperto dallo stesso browser
-            in cui è stato richiesto.
+            Ora premi <strong>Genera link di accesso</strong> accanto al suo nome e mandale o mandagli il link con la tua email: aprendolo entra direttamente, senza password.
           </p>
         </div>
       )}
@@ -74,6 +74,7 @@ export default async function UtentiPage({ searchParams }: { searchParams: Promi
               </div>
               {isAdmin && !self ? (
                 <div className="flex flex-wrap items-center gap-2">
+                  <LoginLink userId={m.user_id} />
                   <form action={changeRole.bind(null, m.user_id)} className="flex items-center gap-1">
                     <select name="role" defaultValue={m.role} className="rounded-control border border-line bg-paper px-2 py-1 text-xs">
                       <option value="admin">Amministratore</option>
@@ -120,8 +121,8 @@ export default async function UtentiPage({ searchParams }: { searchParams: Promi
             ))}
           </ul>
           <p className="mt-2 text-[11px] text-muted">
-            Nessuna email di invito viene spedita: la persona entra dalla pagina di accesso con il link che riceve per email. Perché il link arrivi a indirizzi diversi dal
-            tuo serve il servizio email configurato in Supabase.
+            Nessuna email viene spedita dal sito: dopo averla aggiunta, genera il link di accesso della persona e mandaglielo tu. Resterà collegata su quel browser finché
+            non preme «Esci»; per un altro browser o computer, genera un link nuovo.
           </p>
         </form>
       ) : (

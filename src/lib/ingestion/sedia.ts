@@ -47,7 +47,7 @@ export const DEFAULT_SEDIA_FILTERS: SediaFilters = {
   ricerca: "",
 };
 
-/** Programmi europei principali, con gli ambiti di Cerca Bandi a cui si collegano di solito. */
+/** Programmi europei principali, con gli ambiti di Cercabandi a cui si collegano di solito. */
 export const SEDIA_PROGRAMMES: Array<{ code: string; label: string; packs: PackId[] }> = [
   { code: "43108390", label: "Horizon Europe (ricerca e innovazione)", packs: [] },
   { code: "43252405", label: "LIFE (ambiente e clima)", packs: ["energy", "agri-rural"] },
@@ -65,7 +65,7 @@ export const SEDIA_PROGRAMMES: Array<{ code: string; label: string; packs: PackI
   { code: "44416173", label: "Investimenti interregionali per l'innovazione (I3)", packs: ["public-territorial"] },
 ];
 
-// Di partenza si leggono solo i programmi utili ai profili di Cerca Bandi.
+// Di partenza si leggono solo i programmi utili ai profili di Cercabandi.
 DEFAULT_SEDIA_FILTERS.programmi = SEDIA_PROGRAMMES.map((p) => p.code);
 
 /** Parole del titolo che indicano un ambito, per i programmi generici come Horizon. */

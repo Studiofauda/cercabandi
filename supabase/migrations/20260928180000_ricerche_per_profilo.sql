@@ -1,5 +1,5 @@
 -- ===========================================================================
--- Cerca Bandi — ricerche delle fonti per profilo
+-- Cercabandi — ricerche delle fonti per profilo
 --
 -- Ogni profilo ha la sua ricerca (es. Studio Fauda: servizi di ingegneria in Piemonte;
 -- un'associazione: altri filtri). Il registro dei controlli ricorda profilo e filtri

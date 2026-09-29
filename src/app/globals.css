@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /*
- * Identità visiva di Cerca Bandi — palette "contrasto fluo" del prototipo.
+ * Identità visiva di Cercabandi — palette "contrasto fluo" del prototipo.
  * Ogni colore è definito una sola volta qui: le pagine usano i nomi (bg-ink, text-muted,
  * bg-go…), mai i valori esadecimali. Per cambiare un colore basta modificarlo in questo file.
  */

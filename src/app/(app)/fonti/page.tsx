@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Source } from "@/core/types";
-import { getProfiles, getRuns, getSources } from "@/lib/db/queries";
+import { getProfiles, getRuns, getSavedSearchCounts, getSources } from "@/lib/db/queries";
 import { PACK_LABELS } from "@/lib/labels";
 import { date } from "@/lib/format";
 import { Pill, type Tone } from "@/components/Pill";
@@ -17,7 +17,7 @@ const RELIABILITY_ORDER: Record<Source["reliability"], number> = { Ufficiale: 0,
 
 export default async function FontiPage({ searchParams }: { searchParams: Promise<{ profilo?: string }> }) {
   const { profilo } = await searchParams;
-  const [sources, profiles, anacRuns, sediaRuns] = await Promise.all([getSources(), getProfiles(), getRuns("anac", 1), getRuns("sedia", 1)]);
+  const [sources, profiles, anacRuns, sediaRuns, saved] = await Promise.all([getSources(), getProfiles(), getRuns("anac", 1), getRuns("sedia", 1), getSavedSearchCounts()]);
   const lastAnac = anacRuns[0];
   const lastSedia = sediaRuns[0];
   const profile = profiles.find((p) => p.profile.id === profilo)?.profile;
@@ -51,12 +51,16 @@ export default async function FontiPage({ searchParams }: { searchParams: Promis
         ].map((c) => (
           <div key={c.key} className="mt-2 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-2 first-of-type:border-t-0">
             <div className="text-[13px]">
-              <strong>{c.name}</strong> <Pill tone="go">attivo</Pill>
+              <strong>{c.name}</strong>{" "}
+              {saved[c.key] ? <Pill tone="go">attivo</Pill> : <Pill tone="cond">nessuna ricerca salvata</Pill>}
               <span className="ml-1 text-xs text-muted">{c.what}</span>
               <p className="text-xs text-muted">
+                {saved[c.key]
+                  ? `${saved[c.key]} ${saved[c.key] === 1 ? "ricerca salvata" : "ricerche salvate"} nel controllo del mattino · `
+                  : "Il controllo del mattino parte quando almeno un profilo ha una ricerca salvata · "}
                 {c.last
-                  ? `Ultimo controllo ${date(c.last.started_at)} (${c.last.triggered_by ? "manuale" : "automatico"}): ${c.last.inserted} nuovi, ${c.last.updated} aggiornati`
-                  : "Nessun controllo ancora eseguito"}
+                  ? `ultimo controllo ${date(c.last.started_at)} (${c.last.triggered_by ? "manuale" : "automatico"}): ${c.last.inserted} nuovi, ${c.last.updated} aggiornati`
+                  : "nessun controllo ancora eseguito"}
               </p>
             </div>
             <Link href={`/fonti/${c.key}${profile ? `?profilo=${profile.id}` : ""}`} className="rounded-control bg-ink px-3 py-1.5 text-xs font-semibold text-lime">

@@ -142,6 +142,16 @@ export async function getRuns(connector: string, limit = 10, profileId?: string)
   return data as IngestionRunRow[];
 }
 
+/** Quante ricerche salvate ha ogni fonte (sono quelle del controllo del mattino). */
+export async function getSavedSearchCounts(): Promise<Record<string, number>> {
+  const supabase = await createClient();
+  const { data, error } = await supabase.from("connector_settings").select("connector").eq("enabled", true);
+  if (error) return {};
+  const counts: Record<string, number> = {};
+  for (const r of data as Array<{ connector: string }>) counts[r.connector] = (counts[r.connector] ?? 0) + 1;
+  return counts;
+}
+
 export async function getRun(id: string) {
   const supabase = await createClient();
   const { data } = await supabase.from("ingestion_runs").select("*").eq("id", id).maybeSingle();

@@ -11,9 +11,10 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { fetchAnac, rejectReason, DEFAULT_ANAC_FILTERS, type AnacCandidate, type AnacFilters } from "./anac";
 import { fetchSedia, rejectSedia, DEFAULT_SEDIA_FILTERS, type SediaCandidate, type SediaFilters } from "./sedia";
+import { fetchFeeds, rejectFeed, DEFAULT_FEED_FILTERS, type FeedCandidate, type FeedFilters } from "./feeds";
 import { date, euro } from "@/lib/format";
 
-export type Connector = "anac" | "sedia";
+export type Connector = "anac" | "sedia" | "feed";
 
 export interface RunSummary {
   runId: string;
@@ -302,4 +303,58 @@ export async function runSedia(supabase: SupabaseClient, workspaceId: string, pr
   });
 }
 
-export const RUNNERS: Record<Connector, typeof runAnac> = { anac: runAnac, sedia: runSedia };
+// ---------------------------------------------------------------------------
+// Regione Piemonte, fondazioni, GSE (feed e API dei siti)
+// ---------------------------------------------------------------------------
+
+function feedRow(c: FeedCandidate, workspaceId: string, source: string | null, today: string): Row {
+  const notes = [
+    `Trovato su ${c.source.label} il ${date(new Date().toISOString())}, pubblicato il ${date(c.publishedAt)}.`,
+    c.allDeadlines.length
+      ? `Scadenze lette nel testo: ${c.allDeadlines.map((d) => date(d)).join(", ")} (da verificare sul bando).`
+      : "Nessuna scadenza trovata nel testo: da verificare sulla pagina del bando.",
+    "Soggetti ammessi, importi e cofinanziamento: da verificare sul testo del bando.",
+    "",
+    c.summary,
+  ].join("\n");
+
+  return {
+    workspace_id: workspaceId,
+    external_code: c.externalCode,
+    origin: "feed",
+    kind: "contributo",
+    title: c.title,
+    authority: c.source.label,
+    level: c.source.level,
+    status: c.deadline && c.deadline < today ? "Chiuso" : "Aperto",
+    theme: c.source.label,
+    territory: c.source.territory,
+    eligible_subject_types: c.source.eligible,
+    packs: c.packs,
+    funding_source: c.source.fundingSource,
+    deadline: c.deadline,
+    replicabile: false,
+    source_id: source,
+    source_url: c.link,
+    verified_at: new Date().toISOString(),
+    needs_review: true,
+    review_notes: notes,
+  };
+}
+
+export async function runFeed(supabase: SupabaseClient, workspaceId: string, profileId: string): Promise<RunSummary> {
+  const filters = await loadFilters<FeedFilters>(supabase, workspaceId, "feed", profileId, DEFAULT_FEED_FILTERS);
+  const to = new Date();
+  const today = iso(to);
+  return execute(supabase, { workspaceId, profileId, connector: "feed", hash: filtersHash(filters), from: null, to }, async () => {
+    const { items, errors } = await cachedRead(`feed:${[...filters.fonti].sort()}:${today}`, () => fetchFeeds(filters.fonti, today));
+    const { kept, rejected } = applyFilter(items, (c) => rejectFeed(c, filters, today));
+    // Una fonte irraggiungibile non ferma le altre: resta segnalata nel registro.
+    for (const e of errors) rejected[`errore ${e}`] = 1;
+    const { data: sources } = await supabase.from("sources").select("id, name").eq("workspace_id", workspaceId);
+    const byName = new Map((sources ?? []).map((s) => [s.name as string, s.id as string]));
+    return { found: items.length, rows: kept.map((c) => feedRow(c, workspaceId, byName.get(c.source.sourceName) ?? null, today)), rejected };
+  });
+}
+
+export const RUNNERS: Record<Connector, typeof runAnac> = { anac: runAnac, sedia: runSedia, feed: runFeed };

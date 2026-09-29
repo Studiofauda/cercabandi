@@ -18,6 +18,7 @@ const RELIABILITY_ORDER: Record<Source["reliability"], number> = { Ufficiale: 0,
 export default async function FontiPage({ searchParams }: { searchParams: Promise<{ profilo?: string }> }) {
   const { profilo } = await searchParams;
   const [sources, profiles, anacRuns, sediaRuns, saved] = await Promise.all([getSources(), getProfiles(), getRuns("anac", 1), getRuns("sedia", 1), getSavedSearchCounts()]);
+  const lastFeed = (await getRuns("feed", 1))[0];
   const lastAnac = anacRuns[0];
   const lastSedia = sediaRuns[0];
   const profile = profiles.find((p) => p.profile.id === profilo)?.profile;
@@ -48,6 +49,7 @@ export default async function FontiPage({ searchParams }: { searchParams: Promis
         {[
           { key: "anac", name: "ANAC · Pubblicità legale", what: "gare d'appalto di tutte le stazioni appaltanti italiane", last: lastAnac },
           { key: "sedia", name: "Funding & Tenders", what: "contributi europei diretti (Horizon, LIFE, Erasmus+, CERV…)", last: lastSedia },
+          { key: "feed", name: "Regione Piemonte, fondazioni, GSE", what: "contributi regionali, Compagnia di San Paolo, CRT, Con il Sud, incentivi energia", last: lastFeed },
         ].map((c) => (
           <div key={c.key} className="mt-2 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-2 first-of-type:border-t-0">
             <div className="text-[13px]">

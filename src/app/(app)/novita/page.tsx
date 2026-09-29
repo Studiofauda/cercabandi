@@ -4,7 +4,7 @@ import { getDismissals, getLatestRuns, getOpportunities, getProfiles, getRun } f
 import { date, dateTime } from "@/lib/format";
 import { OpportunityCard, ProfileChips } from "@/components/OpportunityCard";
 
-const ORIGIN_LABEL: Record<string, string> = { anac: "ANAC", ted: "TED", sedia: "Funding & Tenders" };
+const ORIGIN_LABEL: Record<string, string> = { anac: "ANAC", ted: "TED", sedia: "Funding & Tenders", feed: "Regione, fondazioni e GSE" };
 
 /**
  * Bandi trovati dai controlli automatici negli ultimi giorni, valutati sul profilo scelto.
@@ -48,6 +48,9 @@ export default async function NovitaPage({
           </Link>
           <Link href={`/fonti/sedia?profilo=${profile.id}`} className="rounded-control bg-ink px-3 py-1.5 text-xs font-semibold text-lime">
             Ricerca bandi UE →
+          </Link>
+          <Link href={`/fonti/feed?profilo=${profile.id}`} className="rounded-control bg-ink px-3 py-1.5 text-xs font-semibold text-lime">
+            Regione e fondazioni →
           </Link>
         </span>
       </div>

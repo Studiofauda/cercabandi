@@ -48,19 +48,32 @@ export async function GET(request: NextRequest) {
   }
 
   const started = Date.now();
-  const results: Array<{ connector: string; profile: string; inserted?: number; updated?: number; error?: string; rinviato?: boolean }> = [];
-  for (const s of searches ?? []) {
-    if (Date.now() - started > TIME_BUDGET_MS) {
-      results.push({ connector: s.connector, profile: s.profile_id, rinviato: true });
-      continue;
-    }
-    try {
-      const r = await RUNNERS[s.connector as Connector](supabase, s.workspace_id, s.profile_id);
-      results.push({ connector: s.connector, profile: s.profile_id, inserted: r.inserted, updated: r.updated });
-    } catch (e) {
-      // Una ricerca con un errore non ferma le altre; l'errore resta nel registro dei controlli.
-      results.push({ connector: s.connector, profile: s.profile_id, error: e instanceof Error ? e.message : "errore" });
-    }
-  }
+  type Result = { connector: string; profile: string; inserted?: number; updated?: number; error?: string; rinviato?: boolean };
+
+  // Le fonti sono siti diversi: si leggono in parallelo, ognuna con le sue pause di
+  // cortesia. Dentro la stessa fonte i profili vanno in fila (e riusano la lettura).
+  const byConnector = new Map<string, typeof searches>();
+  for (const s of searches ?? []) byConnector.set(s.connector, [...(byConnector.get(s.connector) ?? []), s]);
+
+  const groups = await Promise.all(
+    [...byConnector.entries()].map(async ([connector, list]) => {
+      const out: Result[] = [];
+      for (const s of list ?? []) {
+        if (Date.now() - started > TIME_BUDGET_MS) {
+          out.push({ connector, profile: s.profile_id, rinviato: true });
+          continue;
+        }
+        try {
+          const r = await RUNNERS[connector as Connector](supabase, s.workspace_id, s.profile_id);
+          out.push({ connector, profile: s.profile_id, inserted: r.inserted, updated: r.updated });
+        } catch (e) {
+          // Una ricerca con un errore non ferma le altre; l'errore resta nel registro dei controlli.
+          out.push({ connector, profile: s.profile_id, error: e instanceof Error ? e.message : "errore" });
+        }
+      }
+      return out;
+    })
+  );
+  const results = groups.flat();
   return NextResponse.json({ ricerche: results.length, risultati: results });
 }

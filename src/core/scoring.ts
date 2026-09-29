@@ -279,7 +279,11 @@ function scoreCapacitaEconomica(profile: Profile, opportunity: Opportunity): Sco
   if (pct === 0) {
     return { criterion, weight: 0, score: 100, note: "Nessun cofinanziamento richiesto" };
   }
-  const budget = opportunity.contributoMax ?? opportunity.budgetTotale ?? 0;
+  // Il cofinanziamento si calcola sul contributo massimo per progetto. La dotazione totale
+  // del bando non lo sostituisce: è il fondo da dividere tra tutti i beneficiari, e usarla
+  // penalizzerebbe i piccoli soggetti su bandi ampi. Senza contributo massimo l'importo
+  // resta «non noto» (punteggio neutro, intervallo più ampio).
+  const budget = opportunity.contributoMax ?? 0;
   const richiesto = (budget * pct) / 100;
   const disponibile = profile.params.capacitaCofinanziamento?.value as number | undefined;
 

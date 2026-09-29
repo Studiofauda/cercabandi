@@ -90,6 +90,11 @@ richiedono. Non blocca mai (`nonBlocking`): una competenza mancante si copre con
 partner o un raggruppamento. Per enti pubblici e persone fisiche non si applica, perché
 le competenze sono quelle dei professionisti da incaricare.
 
+**Cofinanziamento sul contributo per progetto.** La quota richiesta si calcola sul
+contributo massimo (`contributoMax`), mai sulla dotazione totale del bando, che è il fondo da
+dividere tra tutti i beneficiari. Senza contributo massimo l'importo è «non noto»: punteggio
+neutro e intervallo più ampio, finché il dato non si ricava dal testo del bando.
+
 **Territorio: contributi e gare.** Ogni bando ha un tipo (`kind`: contributo, gara,
 qualificazione). Nei contributi locali il territorio è un requisito: fuori regione il
 criterio vale 0 e può bloccare. Nelle gare e nelle qualificazioni può partecipare un

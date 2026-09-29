@@ -349,3 +349,22 @@ for (const t of territorio) {
   const c = e.breakdown.find((b) => b.criterion === "Coerenza territoriale")!;
   console.log(`  ${t.label.padEnd(38)} -> ${String(e.score).padStart(3)} · ${e.verdict.padEnd(10)} ${c.note}`);
 }
+
+// ---------------------------------------------------------------------------
+// Cofinanziamento: la dotazione totale non è il costo del progetto
+// ---------------------------------------------------------------------------
+
+const bandoSport: Opportunity = {
+  ...bandoEfficientamento,
+  id: "sport-energia",
+  title: "Efficienza energetica negli impianti sportivi pubblici",
+  budgetTotale: 14_000_000,
+  contributoMax: undefined,
+  cofinanziamentoRichiestoPct: 30,
+};
+console.log("\n=== Cofinanziamento su un bando da 14 mln senza contributo massimo (Piccolo Comune) ===");
+for (const [label, o] of [["contributo massimo non indicato", bandoSport], ["contributo massimo 500.000 €", { ...bandoSport, contributoMax: 500_000 }]] as const) {
+  const e = evaluate(piccoloComune, o, now);
+  const c = e.breakdown.find((b) => b.criterion === "Capacità economica")!;
+  console.log(`  ${label.padEnd(34)} -> ${String(e.score).padStart(3)} (${e.scoreRange[0]}–${e.scoreRange[1]}) · ${e.verdict.padEnd(16)} ${c.note}`);
+}

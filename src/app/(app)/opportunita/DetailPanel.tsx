@@ -37,6 +37,9 @@ const RELIABILITY_TONE: Record<Source["reliability"], Tone> = {
 };
 
 
+/** Combinazioni visibili subito nella scheda; le altre dietro «Mostra le altre». */
+const COMBINATIONS_SHOWN = 3;
+
 export function DetailPanel({
   opportunity: o,
   row,
@@ -253,65 +256,6 @@ export function DetailPanel({
           </div>
         </Section>
 
-        {/* Cumulabilità */}
-        <Section title="Combinabile con…">
-          <p className="mb-2 text-[11px] text-muted">{COMBINATION_DISCLAIMER}</p>
-          {combinations.length === 0 ? (
-            <p className="text-xs text-muted">Nessun altro bando accessibile a questo profilo sugli stessi ambiti.</p>
-          ) : (
-            <div className="flex flex-col gap-2">
-              {combinations.map((f) => (
-                <CombinationCard key={f.opportunityIds.join("+")} finding={f} opportunities={allOpportunities} hrefFor={hrefFor} focusId={o.id} />
-              ))}
-            </div>
-          )}
-
-          <details className="mt-3 rounded-control bg-panel px-3 py-2" open={!o.expenseCategories?.length}>
-            <summary className="cursor-pointer text-xs font-semibold">Tipo di bando e dati per la cumulabilità</summary>
-            <form action={saveCumulabilityData} className="mt-2 flex flex-col gap-2.5">
-              {hidden}
-              <label className="flex flex-col gap-1 text-xs">
-                <span className="font-semibold">Tipo di bando</span>
-                <select name="kind" defaultValue={o.kind ?? "contributo"} className="rounded-control border border-line bg-paper px-2 py-1.5">
-                  {Object.entries(KIND_LABEL).map(([value, label]) => (
-                    <option key={value} value={value}>
-                      {label}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <div>
-                <span className="text-xs font-semibold">Voci di spesa finanziate</span>
-                <div className="mt-1 grid gap-x-3 gap-y-1 sm:grid-cols-2">
-                  {(Object.entries(EXPENSE_LABELS) as [ExpenseCategory, string][]).map(([value, label]) => (
-                    <label key={value} className="flex items-center gap-1.5 text-[12.5px]">
-                      <input type="checkbox" name="expense" value={value} defaultChecked={o.expenseCategories?.includes(value)} />
-                      {label}
-                    </label>
-                  ))}
-                </div>
-              </div>
-              <div className="grid gap-2 sm:grid-cols-3">
-                <label className="flex flex-col gap-1 text-xs">
-                  <span className="font-semibold">Origine dei fondi</span>
-                  <select name="funding_source" defaultValue={o.fundingSource ?? ""} className="rounded-control border border-line bg-paper px-2 py-1.5">
-                    <option value="">Non indicata</option>
-                    <option value="UE">UE</option>
-                    <option value="Nazionale">Nazionale</option>
-                    <option value="Regionale">Regionale</option>
-                    <option value="Privato">Privato</option>
-                  </select>
-                </label>
-                <TriStateSelect name="cumulabile" label="Il bando si dichiara cumulabile?" value={o.cumulabile} />
-                <TriStateSelect name="cofin_altri" label="Cofinanziamento da altri fondi?" value={o.cofinanziamentoDaAltriFondi} />
-              </div>
-              <button className="self-end rounded-control border border-line bg-paper px-3 py-1.5 text-xs font-semibold hover:border-ink">
-                Salva dati di cumulabilità
-              </button>
-            </form>
-          </details>
-        </Section>
-
         {/* Storico */}
         <Section title="Cronologia delle modifiche">
           <History revisions={revisions} />
@@ -363,6 +307,79 @@ export function DetailPanel({
               </button>
             </form>
           )}
+        </Section>
+
+        {/* Cumulabilità: in fondo, perché l'elenco può essere lungo. */}
+        <Section title="Combinabile con…">
+          <p className="mb-2 text-[11px] text-muted">{COMBINATION_DISCLAIMER}</p>
+          {combinations.length === 0 ? (
+            <p className="text-xs text-muted">Nessun altro bando accessibile a questo profilo sugli stessi ambiti.</p>
+          ) : (
+            <div className="flex flex-col gap-2">
+              {/* Già ordinate dalla più promettente: le prime bastano, le altre si aprono a richiesta. */}
+              {combinations.slice(0, COMBINATIONS_SHOWN).map((f) => (
+                <CombinationCard key={f.opportunityIds.join("+")} finding={f} opportunities={allOpportunities} hrefFor={hrefFor} focusId={o.id} />
+              ))}
+              {combinations.length > COMBINATIONS_SHOWN && (
+                <details className="group">
+                  <summary className="cursor-pointer text-xs font-semibold underline">
+                    <span className="group-open:hidden">Mostra le altre {combinations.length - COMBINATIONS_SHOWN} combinazioni</span>
+                    <span className="hidden group-open:inline">Nascondi le altre combinazioni</span>
+                  </summary>
+                  <div className="mt-2 flex flex-col gap-2">
+                    {combinations.slice(COMBINATIONS_SHOWN).map((f) => (
+                      <CombinationCard key={f.opportunityIds.join("+")} finding={f} opportunities={allOpportunities} hrefFor={hrefFor} focusId={o.id} />
+                    ))}
+                  </div>
+                </details>
+              )}
+            </div>
+          )}
+
+          <details className="mt-3 rounded-control bg-panel px-3 py-2" open={!o.expenseCategories?.length}>
+            <summary className="cursor-pointer text-xs font-semibold">Tipo di bando e dati per la cumulabilità</summary>
+            <form action={saveCumulabilityData} className="mt-2 flex flex-col gap-2.5">
+              {hidden}
+              <label className="flex flex-col gap-1 text-xs">
+                <span className="font-semibold">Tipo di bando</span>
+                <select name="kind" defaultValue={o.kind ?? "contributo"} className="rounded-control border border-line bg-paper px-2 py-1.5">
+                  {Object.entries(KIND_LABEL).map(([value, label]) => (
+                    <option key={value} value={value}>
+                      {label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <div>
+                <span className="text-xs font-semibold">Voci di spesa finanziate</span>
+                <div className="mt-1 grid gap-x-3 gap-y-1 sm:grid-cols-2">
+                  {(Object.entries(EXPENSE_LABELS) as [ExpenseCategory, string][]).map(([value, label]) => (
+                    <label key={value} className="flex items-center gap-1.5 text-[12.5px]">
+                      <input type="checkbox" name="expense" value={value} defaultChecked={o.expenseCategories?.includes(value)} />
+                      {label}
+                    </label>
+                  ))}
+                </div>
+              </div>
+              <div className="grid gap-2 sm:grid-cols-3">
+                <label className="flex flex-col gap-1 text-xs">
+                  <span className="font-semibold">Origine dei fondi</span>
+                  <select name="funding_source" defaultValue={o.fundingSource ?? ""} className="rounded-control border border-line bg-paper px-2 py-1.5">
+                    <option value="">Non indicata</option>
+                    <option value="UE">UE</option>
+                    <option value="Nazionale">Nazionale</option>
+                    <option value="Regionale">Regionale</option>
+                    <option value="Privato">Privato</option>
+                  </select>
+                </label>
+                <TriStateSelect name="cumulabile" label="Il bando si dichiara cumulabile?" value={o.cumulabile} />
+                <TriStateSelect name="cofin_altri" label="Cofinanziamento da altri fondi?" value={o.cofinanziamentoDaAltriFondi} />
+              </div>
+              <button className="self-end rounded-control border border-line bg-paper px-3 py-1.5 text-xs font-semibold hover:border-ink">
+                Salva dati di cumulabilità
+              </button>
+            </form>
+          </details>
         </Section>
       </aside>
     </div>

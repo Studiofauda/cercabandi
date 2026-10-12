@@ -5,11 +5,23 @@ import type { Opportunity } from "@/core/types";
 import { getAssessmentNote, getDismissals, getOpportunities, getProfiles, getRevisions, getSources } from "@/lib/db/queries";
 import { OpportunityCard, ProfileChips } from "@/components/OpportunityCard";
 import { DetailPanel } from "./DetailPanel";
+import { Filters, type FilterValues } from "./Filters";
 
 /** Prima i bandi utilizzabili, poi quelli chiusi; a parità, il punteggio più alto. */
 const STATUS_ORDER: Record<Opportunity["status"], number> = { Aperto: 0, "In arrivo": 1, Chiuso: 2 };
 
-type Search = { profilo?: string; tutti?: string; bando?: string; errore?: string };
+type Search = FilterValues & { profilo?: string; tutti?: string; bando?: string; errore?: string };
+
+/** Verdetti ammessi da ciascuna scelta della tendina «verdetto». */
+const VERDICT_SETS: Record<string, string[]> = {
+  go: ["GO"],
+  buoni: ["GO", "GO condizionato"],
+  "no-nogo": ["GO", "GO condizionato", "Da approfondire", "Incarico tecnico"],
+  incarico: ["Incarico tecnico"],
+};
+
+/** Ricerca senza distinguere maiuscole e accenti («citta» trova «città»). */
+const fold = (s: string) => s.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
 
 function href(params: Search) {
   const q = new URLSearchParams();
@@ -19,7 +31,7 @@ function href(params: Search) {
 }
 
 export default async function OpportunitaPage({ searchParams }: { searchParams: Promise<Search> }) {
-  const { profilo, tutti, bando, errore } = await searchParams;
+  const { profilo, tutti, bando, errore, ...filters } = await searchParams;
   const [profiles, opportunities, sources] = await Promise.all([getProfiles(), getOpportunities(), getSources()]);
 
   if (profiles.length === 0) {
@@ -35,7 +47,8 @@ export default async function OpportunitaPage({ searchParams }: { searchParams: 
   const showAll = tutti === "1";
   const now = new Date();
   const dismissals = await getDismissals(profile.id);
-  const base: Search = { profilo: profile.id, tutti: showAll ? "1" : undefined };
+  // I filtri restano attivi aprendo e chiudendo la scheda di un bando.
+  const base: Search = { ...filters, profilo: profile.id, tutti: showAll ? "1" : undefined };
 
   const evaluated = opportunities.map(({ opportunity, row }) => ({
     o: opportunity,
@@ -44,8 +57,34 @@ export default async function OpportunitaPage({ searchParams }: { searchParams: 
     dismissed: dismissals.has(opportunity.id),
   }));
   const hidden = evaluated.filter(({ e }) => e.verdict === "Non applicabile").length;
-  const rows = evaluated
-    .filter(({ e }) => showAll || e.verdict !== "Non applicabile")
+  const relevant = evaluated.filter(({ e }) => showAll || e.verdict !== "Non applicabile");
+
+  const words = fold(filters.q ?? "").split(/\s+/).filter(Boolean);
+  const stato = filters.stato ?? "attivi";
+  const verdicts = VERDICT_SETS[filters.verdetto ?? ""];
+  const days = Number(filters.scadenza) || 0;
+  const matches = ({ o, row, e, dismissed }: (typeof evaluated)[number]) => {
+    if (dismissed && filters.scartati !== "1") return false;
+    if (stato === "attivi" ? o.status === "Chiuso" : stato !== "tutti" && o.status !== stato) return false;
+    if (verdicts && !verdicts.includes(e.verdict)) return false;
+    if (filters.tipo && (o.kind ?? "contributo") !== filters.tipo) return false;
+    if (filters.livello && o.level !== filters.livello) return false;
+    if (filters.fonte && row.origin !== filters.fonte) return false;
+    if (days) {
+      if (!o.deadline) return false;
+      const left = (new Date(o.deadline).getTime() - now.getTime()) / 86_400_000;
+      if (left < 0 || left > days) return false;
+    }
+    if (words.length) {
+      // Ogni parola deve comparire in almeno uno dei campi.
+      const text = fold([o.title, o.authority, o.theme, o.territory, row.external_code ?? ""].join(" "));
+      if (!words.every((w) => text.includes(w))) return false;
+    }
+    return true;
+  };
+
+  const rows = relevant
+    .filter(matches)
     .sort(
       (a, b) =>
         Number(a.dismissed) - Number(b.dismissed) ||
@@ -67,7 +106,7 @@ export default async function OpportunitaPage({ searchParams }: { searchParams: 
 
   return (
     <div className="mx-auto max-w-4xl">
-      <ProfileChips profiles={profiles.map((p) => p.profile)} activeId={profile.id} hrefFor={(id) => href({ profilo: id })} />
+      <ProfileChips profiles={profiles.map((p) => p.profile)} activeId={profile.id} hrefFor={(id) => href({ ...base, profilo: id })} />
 
       <div className="mt-5 flex flex-wrap items-baseline justify-between gap-2">
         <h1 className="flex items-center gap-3 text-[21px] font-bold tracking-[-0.01em]">
@@ -80,6 +119,15 @@ export default async function OpportunitaPage({ searchParams }: { searchParams: 
           Punteggio e verdetto calcolati per <strong className="text-ink">{profile.name}</strong> · {rows.length} opportunità
         </p>
       </div>
+
+      <Filters
+        key={JSON.stringify(filters)}
+        values={filters}
+        keep={{ profilo: profile.id, tutti: showAll ? "1" : undefined }}
+        shown={rows.length}
+        total={relevant.length}
+        resetHref={href({ profilo: profile.id, tutti: showAll ? "1" : undefined })}
+      />
 
       {hidden > 0 && (
         <p className="mt-1 text-xs text-muted">
